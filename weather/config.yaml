@@ -1,0 +1,36 @@
+# Verified standalone scenario configuration for the V6 weather pipeline.
+
+scenarios:
+  CORDEX_CMIP5_REMO2015_rcp85:
+    variant_root: data/CORDEX_CMIP5/NAM-22_REMO2015_r1i1p1
+    gcm: MPI-ESM-LR
+    rcm: REMO2015
+
+  CORDEX_CMIP5_RegCM_rcp85:
+    variant_root: data/CORDEX_CMIP5/NAM-22_RegCM_r1i1p1
+    gcm: MPI-ESM-LR
+    rcm: RegCM
+
+  CMIP5_rcp85:
+    cmip5_base_path: data/CMIP5_merged
+    gcm: MPI-ESM-LR
+    rcm: null
+
+baseline:
+  start_year: 1991
+  end_year: 2010
+
+full_history:
+  enabled: true
+  isd_dir: "data/ISD_complete_solar"
+
+validation:
+  start_date: "2011-01-01"
+  end_date: "2020-12-31"
+
+city_timezones:
+  Los Angeles: America/Los_Angeles
+  Los_Angeles: America/Los_Angeles
+  Miami: America/New_York
+  Toronto: America/Toronto
+  Montreal: America/Montreal

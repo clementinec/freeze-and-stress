@@ -1,0 +1,19 @@
+{
+  "created_at": "2026-03-30T19:27:30",
+  "metric_files": [
+    "/Users/hongshanguo/Library/CloudStorage/OneDrive-TheUniversityOfHongKong/Misc/EPWs/samy_v6_eplus_standalone/epw_pipeline/energyplus_runner/metric_exports_test/annual_metrics.csv"
+  ],
+  "output_dir": "/Users/hongshanguo/Library/CloudStorage/OneDrive-TheUniversityOfHongKong/Misc/EPWs/samy_v6_eplus_standalone/epw_pipeline/energyplus_runner/breakyear_quick_test",
+  "rows_loaded": 3,
+  "city_series": 1,
+  "building_scenario_groups": 1,
+  "definition": {
+    "metric": "occupied cooling setpoint-not-met hours",
+    "source_column_priority": [
+      "abups_occupied_cooling_not_met_hours",
+      "facility_cooling_setpoint_not_met_occupied_time_total_hours"
+    ],
+    "break_year_over_mild_threshold": 30.0,
+    "break_year_over_strong_threshold": 100.0
+  }
+}

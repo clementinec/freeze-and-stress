@@ -1,0 +1,2 @@
+scenario,building,cities_with_data,cities_breaking_mild,cities_breaking_strong,median_break_year_over_30h,earliest_break_year_over_30h,latest_break_year_over_30h,never_break_count_over_30h,median_break_year_over_100h,earliest_break_year_over_100h,latest_break_year_over_100h,never_break_count_over_100h
+CMIP5_rcp85,apartment,1,1,0,2025,2025,2025,0,Never,Never,Never,1
