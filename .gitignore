@@ -19,3 +19,5 @@ epw_pipeline/energyplus_runner/unmet_relative_summary_current/
 
 # Local monitoring logs
 run_status/
+
+.vscode/
