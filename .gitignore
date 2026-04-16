@@ -4,6 +4,7 @@ __pycache__/
 
 # Local input data to be provisioned separately
 weather/data/
+data/
 
 # Generated weather artifacts and EPWs
 weather/output/
@@ -21,3 +22,7 @@ epw_pipeline/energyplus_runner/unmet_relative_summary_current/
 run_status/
 
 .vscode/
+.claude/
+
+AGENTS.md
+CLAUDE.md
