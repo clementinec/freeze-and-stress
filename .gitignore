@@ -11,8 +11,10 @@ weather/output/
 epw_pipeline/epw_out/
 
 # EnergyPlus run outputs and derived analysis exports
+epw_pipeline/energyplus_runner/output/
 epw_pipeline/energyplus_runner/results/
 epw_pipeline/energyplus_runner/results_*/
+epw_pipeline/energyplus_runner/refreeze_results*/
 epw_pipeline/energyplus_runner/smoke_results*/
 epw_pipeline/energyplus_runner/metric_exports*/
 epw_pipeline/energyplus_runner/breakyear_quick_by_scenario/
