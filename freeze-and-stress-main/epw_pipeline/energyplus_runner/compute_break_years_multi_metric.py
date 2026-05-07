@@ -26,8 +26,21 @@ if not DEFAULT_INPUT.exists():
 DEFAULT_OUTPUT = SCRIPT_DIR / "paper_metrics_summary.csv"
 DEFAULT_SCREENING_OUTPUT = SCRIPT_DIR / "paper_metric_screening.csv"
 DEFAULT_REGISTRY_OUTPUT = SCRIPT_DIR / "paper_metric_registry.csv"
+DEFAULT_CLIMATE_TYPE_SCREENING_OUTPUT = SCRIPT_DIR / "paper_screening_by_climate_type.csv"
+DEFAULT_BLOCK_DECOMPOSITION_OUTPUT = SCRIPT_DIR / "paper_block_decomposition.csv"
 
 DEFAULT_BASELINE_YEAR = 2025
+
+# Köppen climate type mapping for per-climate-type analysis (NCC paper).
+# Each city is assigned to its representative Köppen zone.
+CITY_KOPPEN_MAP: dict[str, str] = {
+    "Phoenix": "BWh",        # hot arid
+    "Miami": "Am",           # tropical monsoon / hot-humid
+    "Los_Angeles": "Csb",    # warm-summer Mediterranean
+    "Toronto": "Dfa",        # humid continental
+    "Montreal": "Dfb",       # cold continental
+    "Vancouver": "Cfb",      # marine / oceanic
+}
 SUSTAINED_YEARS = 5
 FAILURE_OCCURRENCE_WINDOWS = (2, 3, 5)
 FAILURE_OCCURRENCE_RATIO_THRESHOLD = 0.25
@@ -382,6 +395,16 @@ def parse_args() -> argparse.Namespace:
         "--registry-output",
         default=str(DEFAULT_REGISTRY_OUTPUT),
         help="Output metric registry CSV with roles, thresholds, and retention notes.",
+    )
+    parser.add_argument(
+        "--climate-type-screening-output",
+        default=str(DEFAULT_CLIMATE_TYPE_SCREENING_OUTPUT),
+        help="Output per-climate-type screening CSV (NCC Fig 2).",
+    )
+    parser.add_argument(
+        "--block-decomposition-output",
+        default=str(DEFAULT_BLOCK_DECOMPOSITION_OUTPUT),
+        help="Output driver-block variance decomposition CSV (NCC Fig 3).",
     )
     parser.add_argument(
         "--baseline-year",
@@ -1065,6 +1088,57 @@ def driver_response_attribution(records: list[dict[str, object]], metric: Metric
     return result
 
 
+def driver_block_variance_share(
+    records: list[dict[str, object]],
+    metric: MetricSpec,
+) -> dict[str, object]:
+    """Compute driver-block-level variance share for a response metric.
+
+    Aggregates squared standardized betas within each driver block and
+    expresses them as fractions of total explained variance. Used for
+    NCC Fig 3 (variance decomposition by driver block).
+    """
+    result: dict[str, object] = {"block_decomposition_n": ""}
+    for block_name in DRIVER_BLOCK_REPRESENTATIVES:
+        result[f"block_beta2_share_{block_name}"] = None
+    result["block_dominant"] = ""
+    result["block_dominant_share"] = None
+    result["block_decomposition_r2"] = None
+
+    if metric.role != "response":
+        return result
+
+    # Reuse the per-key attribution to get betas
+    attribution = driver_response_attribution(records, metric)
+    if not attribution.get("driver_response_n"):
+        return result
+
+    # Collect betas per driver block
+    block_beta2: dict[str, float] = {}
+    for block_name, block_keys in DRIVER_BLOCK_REPRESENTATIVES.items():
+        beta2_sum = 0.0
+        for key in block_keys:
+            beta = attribution.get(f"driver_response_beta_{key}")
+            if beta is not None:
+                beta2_sum += float(beta) ** 2
+        block_beta2[block_name] = beta2_sum
+
+    total_beta2 = sum(block_beta2.values())
+    if total_beta2 <= 1e-12:
+        return result
+
+    result["block_decomposition_n"] = attribution["driver_response_n"]
+    result["block_decomposition_r2"] = attribution["driver_response_r2"]
+    for block_name, beta2 in block_beta2.items():
+        result[f"block_beta2_share_{block_name}"] = beta2 / total_beta2
+
+    dominant_block = max(block_beta2, key=block_beta2.get)  # type: ignore[arg-type]
+    result["block_dominant"] = dominant_block
+    result["block_dominant_share"] = block_beta2[dominant_block] / total_beta2
+
+    return result
+
+
 def build_screening_rows(
     records: list[dict[str, object]],
     grouped_stats: dict[tuple[str | None, str | None, str | None], dict[str, dict[str, object]]],
@@ -1335,12 +1409,36 @@ def build_registry_rows(fieldnames: list[str]) -> list[dict[str, object]]:
     return rows
 
 
+def block_decomposition_fieldnames() -> list[str]:
+    return [
+        "climate_type",
+        "city",
+        "role",
+        "family",
+        "subfamily",
+        "metric",
+        "label",
+        "block_decomposition_n",
+        "block_decomposition_r2",
+        *[f"block_beta2_share_{block}" for block in DRIVER_BLOCK_REPRESENTATIVES],
+        "block_dominant",
+        "block_dominant_share",
+    ]
+
+
+def climate_type_screening_fieldnames() -> list[str]:
+    base = screening_fieldnames()
+    return ["climate_type"] + base
+
+
 def main() -> None:
     args = parse_args()
     input_csv = Path(args.file).resolve()
     output_csv = Path(args.output).resolve()
     screening_output_csv = Path(args.screening_output).resolve()
     registry_output_csv = Path(args.registry_output).resolve()
+    climate_type_screening_csv = Path(args.climate_type_screening_output).resolve()
+    block_decomposition_csv = Path(args.block_decomposition_output).resolve()
 
     rows: list[dict[str, object]] = []
     with open(input_csv, encoding="utf-8") as infile:
@@ -1378,6 +1476,53 @@ def main() -> None:
     write_csv(screening_output_csv, screening_rows, screening_fieldnames())
     write_csv(registry_output_csv, build_registry_rows(source_fieldnames), registry_fieldnames())
 
+    # ── Per-climate-type screening (NCC Fig 2) ──────────────────────────
+    climate_type_screening_rows: list[dict[str, object]] = []
+    by_climate_type: defaultdict[str, list[dict[str, object]]] = defaultdict(list)
+    for row in valid_rows:
+        city = str(row.get("city", ""))
+        climate_type = CITY_KOPPEN_MAP.get(city, "Unknown")
+        by_climate_type[climate_type].append(row)
+
+    for climate_type, ct_rows in sorted(by_climate_type.items()):
+        # Build grouped_stats for this climate type only
+        ct_grouped: defaultdict[tuple[str | None, str | None, str | None], list[dict[str, object]]] = defaultdict(list)
+        for row in ct_rows:
+            ct_grouped[(row["scenario"], row["building"], row["city"])].append(row)
+        ct_grouped_stats: dict[tuple[str | None, str | None, str | None], dict[str, dict[str, object]]] = {}
+        for group_key, records in ct_grouped.items():
+            _, stats = summarize(records, args.baseline_year, args.sustained_years, args.occurrence_ratio_threshold)
+            ct_grouped_stats[group_key] = stats
+
+        ct_screening = build_screening_rows(ct_rows, ct_grouped_stats, source_fieldnames)
+        for row in ct_screening:
+            row["climate_type"] = climate_type
+        climate_type_screening_rows.extend(ct_screening)
+
+    write_csv(climate_type_screening_csv, climate_type_screening_rows, climate_type_screening_fieldnames())
+
+    # ── Driver-block variance decomposition (NCC Fig 3) ─────────────────
+    block_decomposition_rows: list[dict[str, object]] = []
+    for climate_type, ct_rows in sorted(by_climate_type.items()):
+        cities_in_type = sorted(set(str(row.get("city", "")) for row in ct_rows))
+        for metric in METRICS:
+            if metric.role != "response":
+                continue
+            decomp = driver_block_variance_share(ct_rows, metric)
+            decomp.update({
+                "climate_type": climate_type,
+                "city": "; ".join(cities_in_type),
+                "role": metric.role,
+                "family": metric.family,
+                "subfamily": metric.subfamily,
+                "metric": metric.key,
+                "label": metric.label,
+            })
+            block_decomposition_rows.append(decomp)
+
+    write_csv(block_decomposition_csv, block_decomposition_rows, block_decomposition_fieldnames())
+
+    # ── Summary ─────────────────────────────────────────────────────────
     available_count = sum(
         1
         for metric in METRICS
@@ -1389,9 +1534,12 @@ def main() -> None:
     print(f"Summary rows      : {len(summary_rows)}")
     print(f"Metric specs      : {len(METRICS)}")
     print(f"Metrics with data : {available_count}")
+    print(f"Climate types     : {len(by_climate_type)}")
     print(f"Saved summary     : {output_csv}")
     print(f"Saved screening   : {screening_output_csv}")
     print(f"Saved registry    : {registry_output_csv}")
+    print(f"Saved CT screening: {climate_type_screening_csv}")
+    print(f"Saved block decomp: {block_decomposition_csv}")
 
 
 if __name__ == "__main__":
