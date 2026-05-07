@@ -1,0 +1,16 @@
+ ReadVarsESO
+ processing:/Users/kanxuanhe/Document/251117_scaled_sepw/global_sAMY/output/epjson/Los_Angeles/ASHRAE901_OfficeMedium_STD2019_Los_Angeles.rvi
+ input file:/Users/kanxuanhe/Document/251117_scaled_sepw/global_sAMY/output/simulations/20260107_232950/Los_Angeles/OfficeMedium/sizing/eplusout.eso
+ output file:/Users/kanxuanhe/Document/251117_scaled_sepw/global_sAMY/output/simulations/20260107_232950/Los_Angeles/OfficeMedium/sizing/eplusout.csv
+ getting all vars from:/Users/kanxuanhe/Document/251117_scaled_sepw/global_sAMY/output/simulations/20260107_232950/Los_Angeles/OfficeMedium/sizing/eplusout.eso
+  number variables requested for output=          95
+ ReadVars Run Time=00hr 00min  0.03sec
+ ReadVarsESO program completed successfully.
+ ReadVarsESO
+ processing:/Users/kanxuanhe/Document/251117_scaled_sepw/global_sAMY/output/epjson/Los_Angeles/ASHRAE901_OfficeMedium_STD2019_Los_Angeles.mvi
+ input file:/Users/kanxuanhe/Document/251117_scaled_sepw/global_sAMY/output/simulations/20260107_232950/Los_Angeles/OfficeMedium/sizing/eplusout.mtr
+ output file:/Users/kanxuanhe/Document/251117_scaled_sepw/global_sAMY/output/simulations/20260107_232950/Los_Angeles/OfficeMedium/sizing/eplusmtr.csv
+ getting all vars from:/Users/kanxuanhe/Document/251117_scaled_sepw/global_sAMY/output/simulations/20260107_232950/Los_Angeles/OfficeMedium/sizing/eplusout.mtr
+  number variables requested for output=           2
+ ReadVars Run Time=00hr 00min  0.00sec
+ ReadVarsESO program completed successfully.

@@ -1,0 +1,49 @@
+# =========================
+# 基础路径
+# =========================
+paths:
+  raw_data_dir: city_weather/raw
+  processed_data_dir: city_weather/processed
+  output_dir: city_weather/output
+
+# =========================
+# 时间范围
+# =========================
+baseline:
+  start_year: 1991
+  end_year: 2010
+
+validation:
+  start_date: "2011-01-01"
+  end_date: "2020-12-31"
+
+full_period:
+  start_year: 1973
+  end_year: 2023
+
+# =========================
+# 城市 & ISD站点（需要你确认）
+# =========================
+cities:
+  Miami:
+    isd_station: "722020-12839"
+  Los_Angeles:
+    isd_station: "722950-23174"
+  Toronto:
+    isd_station: "716240-99999"
+  Montreal:
+    isd_station: "716270-99999"
+
+# =========================
+# 数据处理参数
+# =========================
+processing:
+  missing_value_threshold: 0.1
+  interpolation_method: linear
+
+# =========================
+# 输出控制
+# =========================
+output:
+  save_intermediate: true
+  overwrite: true

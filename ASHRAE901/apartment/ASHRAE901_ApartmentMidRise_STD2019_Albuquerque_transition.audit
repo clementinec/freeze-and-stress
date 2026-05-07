@@ -1,0 +1,145 @@
+
+Conversion 22.1 => 22.2
+ Starting new Transition.audit
+ Will create new full IDFs
+ Will create new IDF lines with units where applicable
+ Will create new IDF lines leaving blank incoming fields as blank (no default fill)
+ Processing IDF -- E:\00_research\03_freezethenstress\ASHRAE901\apartment\ASHRAE901_ApartmentMidRise_STD2019_Albuquerque.idf
+   ** Warning ** Object=Sizing:Zone, name=G SW Apartment, entered with less than minimum number of fields.
+   **   ~~~   ** Attempting fill to minimum.
+   ** Warning ** Object=Sizing:Zone, name=G NW Apartment, entered with less than minimum number of fields.
+   **   ~~~   ** Attempting fill to minimum.
+   ** Warning ** Object=Sizing:Zone, name=Office, entered with less than minimum number of fields.
+   **   ~~~   ** Attempting fill to minimum.
+   ** Warning ** Object=Sizing:Zone, name=G NE Apartment, entered with less than minimum number of fields.
+   **   ~~~   ** Attempting fill to minimum.
+   ** Warning ** Object=Sizing:Zone, name=G N1 Apartment, entered with less than minimum number of fields.
+   **   ~~~   ** Attempting fill to minimum.
+   ** Warning ** Object=Sizing:Zone, name=G N2 Apartment, entered with less than minimum number of fields.
+   **   ~~~   ** Attempting fill to minimum.
+   ** Warning ** Object=Sizing:Zone, name=G S1 Apartment, entered with less than minimum number of fields.
+   **   ~~~   ** Attempting fill to minimum.
+   ** Warning ** Object=Sizing:Zone, name=G S2 Apartment, entered with less than minimum number of fields.
+   **   ~~~   ** Attempting fill to minimum.
+   ** Warning ** Object=Sizing:Zone, name=M SW Apartment, entered with less than minimum number of fields.
+   **   ~~~   ** Attempting fill to minimum.
+   ** Warning ** Object=Sizing:Zone, name=M NW Apartment, entered with less than minimum number of fields.
+   **   ~~~   ** Attempting fill to minimum.
+   ** Warning ** Object=Sizing:Zone, name=M SE Apartment, entered with less than minimum number of fields.
+   **   ~~~   ** Attempting fill to minimum.
+   ** Warning ** Object=Sizing:Zone, name=M NE Apartment, entered with less than minimum number of fields.
+   **   ~~~   ** Attempting fill to minimum.
+   ** Warning ** Object=Sizing:Zone, name=M N1 Apartment, entered with less than minimum number of fields.
+   **   ~~~   ** Attempting fill to minimum.
+   ** Warning ** Object=Sizing:Zone, name=M N2 Apartment, entered with less than minimum number of fields.
+   **   ~~~   ** Attempting fill to minimum.
+   ** Warning ** Object=Sizing:Zone, name=M S1 Apartment, entered with less than minimum number of fields.
+   **   ~~~   ** Attempting fill to minimum.
+   ** Warning ** Object=Sizing:Zone, name=M S2 Apartment, entered with less than minimum number of fields.
+   **   ~~~   ** Attempting fill to minimum.
+   ** Warning ** Object=Sizing:Zone, name=T SW Apartment, entered with less than minimum number of fields.
+   **   ~~~   ** Attempting fill to minimum.
+   ** Warning ** Object=Sizing:Zone, name=T NW Apartment, entered with less than minimum number of fields.
+   **   ~~~   ** Attempting fill to minimum.
+   ** Warning ** Object=Sizing:Zone, name=T SE Apartment, entered with less than minimum number of fields.
+   **   ~~~   ** Attempting fill to minimum.
+   ** Warning ** Object=Sizing:Zone, name=T NE Apartment, entered with less than minimum number of fields.
+   **   ~~~   ** Attempting fill to minimum.
+   ** Warning ** Object=Sizing:Zone, name=T N1 Apartment, entered with less than minimum number of fields.
+   **   ~~~   ** Attempting fill to minimum.
+   ** Warning ** Object=Sizing:Zone, name=T N2 Apartment, entered with less than minimum number of fields.
+   **   ~~~   ** Attempting fill to minimum.
+   ** Warning ** Object=Sizing:Zone, name=T S1 Apartment, entered with less than minimum number of fields.
+   **   ~~~   ** Attempting fill to minimum.
+   ** Warning ** Object=Sizing:Zone, name=T S2 Apartment, entered with less than minimum number of fields.
+   **   ~~~   ** Attempting fill to minimum.
+
+Conversion 22.2 => 23.1
+ Starting new Transition.audit
+ Will create new full IDFs
+ Will create new IDF lines with units where applicable
+ Will create new IDF lines leaving blank incoming fields as blank (no default fill)
+ Processing IDF -- E:\00_research\03_freezethenstress\ASHRAE901\apartment\ASHRAE901_ApartmentMidRise_STD2019_Albuquerque.idf
+   ** Warning ** Object=Coil:Cooling:DX:SingleSpeed, name=Split GSW Cooling Coil, entered with less than minimum number of fields.
+   **   ~~~   ** Attempting fill to minimum.
+   ** Warning ** Object=Coil:Cooling:DX:SingleSpeed, name=Split GNW Cooling Coil, entered with less than minimum number of fields.
+   **   ~~~   ** Attempting fill to minimum.
+   ** Warning ** Object=Coil:Cooling:DX:SingleSpeed, name=Split Office Cooling Coil, entered with less than minimum number of fields.
+   **   ~~~   ** Attempting fill to minimum.
+   ** Warning ** Object=Coil:Cooling:DX:SingleSpeed, name=Split GNE Cooling Coil, entered with less than minimum number of fields.
+   **   ~~~   ** Attempting fill to minimum.
+   ** Warning ** Object=Coil:Cooling:DX:SingleSpeed, name=Split GN1 Cooling Coil, entered with less than minimum number of fields.
+   **   ~~~   ** Attempting fill to minimum.
+   ** Warning ** Object=Coil:Cooling:DX:SingleSpeed, name=Split GN2 Cooling Coil, entered with less than minimum number of fields.
+   **   ~~~   ** Attempting fill to minimum.
+   ** Warning ** Object=Coil:Cooling:DX:SingleSpeed, name=Split GS1 Cooling Coil, entered with less than minimum number of fields.
+   **   ~~~   ** Attempting fill to minimum.
+   ** Warning ** Object=Coil:Cooling:DX:SingleSpeed, name=Split GS2 Cooling Coil, entered with less than minimum number of fields.
+   **   ~~~   ** Attempting fill to minimum.
+   ** Warning ** Object=Coil:Cooling:DX:SingleSpeed, name=Split MSW Cooling Coil, entered with less than minimum number of fields.
+   **   ~~~   ** Attempting fill to minimum.
+   ** Warning ** Object=Coil:Cooling:DX:SingleSpeed, name=Split MNW Cooling Coil, entered with less than minimum number of fields.
+   **   ~~~   ** Attempting fill to minimum.
+   ** Warning ** Object=Coil:Cooling:DX:SingleSpeed, name=Split MSE Cooling Coil, entered with less than minimum number of fields.
+   **   ~~~   ** Attempting fill to minimum.
+   ** Warning ** Object=Coil:Cooling:DX:SingleSpeed, name=Split MNE Cooling Coil, entered with less than minimum number of fields.
+   **   ~~~   ** Attempting fill to minimum.
+   ** Warning ** Object=Coil:Cooling:DX:SingleSpeed, name=Split MN1 Cooling Coil, entered with less than minimum number of fields.
+   **   ~~~   ** Attempting fill to minimum.
+   ** Warning ** Object=Coil:Cooling:DX:SingleSpeed, name=Split MN2 Cooling Coil, entered with less than minimum number of fields.
+   **   ~~~   ** Attempting fill to minimum.
+   ** Warning ** Object=Coil:Cooling:DX:SingleSpeed, name=Split MS1 Cooling Coil, entered with less than minimum number of fields.
+   **   ~~~   ** Attempting fill to minimum.
+   ** Warning ** Object=Coil:Cooling:DX:SingleSpeed, name=Split MS2 Cooling Coil, entered with less than minimum number of fields.
+   **   ~~~   ** Attempting fill to minimum.
+   ** Warning ** Object=Coil:Cooling:DX:SingleSpeed, name=Split TSW Cooling Coil, entered with less than minimum number of fields.
+   **   ~~~   ** Attempting fill to minimum.
+   ** Warning ** Object=Coil:Cooling:DX:SingleSpeed, name=Split TNW Cooling Coil, entered with less than minimum number of fields.
+   **   ~~~   ** Attempting fill to minimum.
+   ** Warning ** Object=Coil:Cooling:DX:SingleSpeed, name=Split TSE Cooling Coil, entered with less than minimum number of fields.
+   **   ~~~   ** Attempting fill to minimum.
+   ** Warning ** Object=Coil:Cooling:DX:SingleSpeed, name=Split TNE Cooling Coil, entered with less than minimum number of fields.
+   **   ~~~   ** Attempting fill to minimum.
+   ** Warning ** Object=Coil:Cooling:DX:SingleSpeed, name=Split TN1 Cooling Coil, entered with less than minimum number of fields.
+   **   ~~~   ** Attempting fill to minimum.
+   ** Warning ** Object=Coil:Cooling:DX:SingleSpeed, name=Split TN2 Cooling Coil, entered with less than minimum number of fields.
+   **   ~~~   ** Attempting fill to minimum.
+   ** Warning ** Object=Coil:Cooling:DX:SingleSpeed, name=Split TS1 Cooling Coil, entered with less than minimum number of fields.
+   **   ~~~   ** Attempting fill to minimum.
+   ** Warning ** Object=Coil:Cooling:DX:SingleSpeed, name=Split TS2 Cooling Coil, entered with less than minimum number of fields.
+   **   ~~~   ** Attempting fill to minimum.
+
+Conversion 23.1 => 23.2
+ Starting new Transition.audit
+ Will create new full IDFs
+ Will create new IDF lines with units where applicable
+ Will create new IDF lines leaving blank incoming fields as blank (no default fill)
+ Processing IDF -- E:\00_research\03_freezethenstress\ASHRAE901\apartment\ASHRAE901_ApartmentMidRise_STD2019_Albuquerque.idf
+
+Conversion 23.2 => 24.1
+ Starting new Transition.audit
+ Will create new full IDFs
+ Will create new IDF lines with units where applicable
+ Will create new IDF lines leaving blank incoming fields as blank (no default fill)
+ Processing IDF -- E:\00_research\03_freezethenstress\ASHRAE901\apartment\ASHRAE901_ApartmentMidRise_STD2019_Albuquerque.idf
+
+Conversion 24.1 => 24.2
+ Starting new Transition.audit
+ Will create new full IDFs
+ Will create new IDF lines with units where applicable
+ Will create new IDF lines leaving blank incoming fields as blank (no default fill)
+ Processing IDF -- E:\00_research\03_freezethenstress\ASHRAE901\apartment\ASHRAE901_ApartmentMidRise_STD2019_Albuquerque.idf
+
+Conversion 24.2 => 25.1
+ Starting new Transition.audit
+ Will create new full IDFs
+ Will create new IDF lines with units where applicable
+ Will create new IDF lines leaving blank incoming fields as blank (no default fill)
+ Processing IDF -- E:\00_research\03_freezethenstress\ASHRAE901\apartment\ASHRAE901_ApartmentMidRise_STD2019_Albuquerque.idf
+
+Conversion 25.1 => 25.2
+ Starting new Transition.audit
+ Will create new full IDFs
+ Will create new IDF lines with units where applicable
+ Will create new IDF lines leaving blank incoming fields as blank (no default fill)
+ Processing IDF -- E:\00_research\03_freezethenstress\ASHRAE901\apartment\ASHRAE901_ApartmentMidRise_STD2019_Albuquerque.idf

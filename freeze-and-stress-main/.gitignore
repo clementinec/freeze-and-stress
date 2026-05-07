@@ -1,0 +1,21 @@
+.DS_Store
+__pycache__/
+*.pyc
+
+# Local input data to be provisioned separately
+weather/data/
+
+# Generated weather artifacts and EPWs
+weather/output/
+epw_pipeline/epw_out/
+
+# EnergyPlus run outputs and derived analysis exports
+epw_pipeline/energyplus_runner/results/
+epw_pipeline/energyplus_runner/results_*/
+epw_pipeline/energyplus_runner/smoke_results*/
+epw_pipeline/energyplus_runner/metric_exports*/
+epw_pipeline/energyplus_runner/breakyear_quick_by_scenario/
+epw_pipeline/energyplus_runner/unmet_relative_summary_current/
+
+# Local monitoring logs
+run_status/

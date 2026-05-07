@@ -1,0 +1,1195 @@
+Program Version,EnergyPlus, Version 25.1.0-68a4a7c774, YMD=2026.01.07 23:31
+! <Version>, Version ID
+ Version, 25.1
+! <Timesteps per Hour>, #TimeSteps, Minutes per TimeStep {minutes}
+ Timesteps per Hour,  6, 10
+! <System Convergence Limits>, Minimum System TimeStep {minutes}, Max HVAC Iterations, Minimum Plant Iterations, Maximum Plant Iterations
+ System Convergence Limits, 1, 20, 2, 8
+! <Simulation Control>, Do Zone Sizing, Do System Sizing, Do Plant Sizing, Do Design Days, Do Weather Simulation, Do HVAC Sizing Simulation
+ Simulation Control, Yes, Yes, Yes, Yes, No, No
+! <Performance Precision Tradeoffs>, Use Coil Direct Simulation, Zone Radiant Exchange Algorithm, Override Mode, Number of Timestep In Hour, Force Euler Method, Minimum Number of Warmup Days, Force Suppress All Begin Environment Resets, Minimum System Timestep, MaxZoneTempDiff, MaxAllowedDelTemp
+ Performance Precision Tradeoffs, No, ScriptF, Normal, 6, No, 1, No, 1.0, 0.300, 2.0000E-003
+! <Output Reporting Tolerances>, Tolerance for Time Heating Setpoint Not Met, Tolerance for Zone Cooling Setpoint Not Met Time
+ Output Reporting Tolerances, 0.556, 0.556, 
+! <Site:GroundTemperature:BuildingSurface>,Jan{C},Feb{C},Mar{C},Apr{C},May{C},Jun{C},Jul{C},Aug{C},Sep{C},Oct{C},Nov{C},Dec{C}
+ Site:GroundTemperature:BuildingSurface,  18.00,  18.00,  18.00,  18.00,  18.00,  18.00,  18.00,  18.00,  18.00,  18.00,  18.00,  18.00
+! <Site:GroundTemperature:FCfactorMethod>,Jan{C},Feb{C},Mar{C},Apr{C},May{C},Jun{C},Jul{C},Aug{C},Sep{C},Oct{C},Nov{C},Dec{C}
+ Site:GroundTemperature:FCfactorMethod,  15.00,  15.50,  16.50,  17.50,  18.50,  19.50,  20.50,  21.00,  20.00,  19.00,  17.00,  15.50
+! <Site:GroundTemperature:Shallow>,Jan{C},Feb{C},Mar{C},Apr{C},May{C},Jun{C},Jul{C},Aug{C},Sep{C},Oct{C},Nov{C},Dec{C}
+ Site:GroundTemperature:Shallow,  13.00,  13.00,  13.00,  13.00,  13.00,  13.00,  13.00,  13.00,  13.00,  13.00,  13.00,  13.00
+! <Site:GroundTemperature:Deep>,Jan{C},Feb{C},Mar{C},Apr{C},May{C},Jun{C},Jul{C},Aug{C},Sep{C},Oct{C},Nov{C},Dec{C}
+ Site:GroundTemperature:Deep,  16.00,  16.00,  16.00,  16.00,  16.00,  16.00,  16.00,  16.00,  16.00,  16.00,  16.00,  16.00
+! <Site:GroundReflectance>,Jan{dimensionless},Feb{dimensionless},Mar{dimensionless},Apr{dimensionless},May{dimensionless},Jun{dimensionless},Jul{dimensionless},Aug{dimensionless},Sep{dimensionless},Oct{dimensionless},Nov{dimensionless},Dec{dimensionless}
+ Site:GroundReflectance,  0.20,  0.20,  0.20,  0.20,  0.20,  0.20,  0.20,  0.20,  0.20,  0.20,  0.20,  0.20
+! <Site:GroundReflectance:SnowModifier>, Normal, Daylighting {dimensionless}
+ Site:GroundReflectance:SnowModifier,   1.000,   1.000
+! <Site:GroundReflectance:Snow>,Jan{dimensionless},Feb{dimensionless},Mar{dimensionless},Apr{dimensionless},May{dimensionless},Jun{dimensionless},Jul{dimensionless},Aug{dimensionless},Sep{dimensionless},Oct{dimensionless},Nov{dimensionless},Dec{dimensionless}
+ Site:GroundReflectance:Snow,  0.20,  0.20,  0.20,  0.20,  0.20,  0.20,  0.20,  0.20,  0.20,  0.20,  0.20,  0.20
+! <Site:GroundReflectance:Snow:Daylighting>,Jan{dimensionless},Feb{dimensionless},Mar{dimensionless},Apr{dimensionless},May{dimensionless},Jun{dimensionless},Jul{dimensionless},Aug{dimensionless},Sep{dimensionless},Oct{dimensionless},Nov{dimensionless},Dec{dimensionless}
+ Site:GroundReflectance:Snow:Daylighting,  0.20,  0.20,  0.20,  0.20,  0.20,  0.20,  0.20,  0.20,  0.20,  0.20,  0.20,  0.20
+! <Environment:Weather Station>,Wind Sensor Height Above Ground {m},Wind Speed Profile Exponent {},Wind Speed Profile Boundary Layer Thickness {m},Air Temperature Sensor Height Above Ground {m},Wind Speed Modifier Coefficient-Internal,Temperature Modifier Coefficient-Internal
+Environment:Weather Station,10.000,0.140,270.000,1.500,1.586,9.750E-003
+! <Site:Location>, Location Name, Latitude {N+/S- Deg}, Longitude {E+/W- Deg},  Time Zone Number {GMT+/-}, Elevation {m},  Standard Pressure at Elevation {Pa}, Standard RhoAir at Elevation
+Site:Location,Los Angeles-USA TMY WMO#=000000,34.05,-118.24,-8.00,0.00,101325,1.2043
+! <Site Water Mains Temperature Information>,Calculation Method{},Water Mains Temperature Schedule Name{},Annual Average Outdoor Air Temperature{C},Maximum Difference In Monthly Average Outdoor Air Temperatures{deltaC},Fixed Default Water Mains Temperature{C}
+Site Water Mains Temperature Information,FixedDefault,NA,NA,NA,10.0
+! <Building Information>, Building Name,North Axis {deg},Terrain,  Loads Convergence Tolerance Value,Temperature Convergence Tolerance Value,  Solar Distribution,Maximum Number of Warmup Days,Minimum Number of Warmup Days
+ Building Information,OfficeMedium,0.000,City,4.00000E-002,0.20000,FullInteriorAndExterior,25,6
+! <Inside Convection Algorithm>, Algorithm {Simple | TARP | CeilingDiffuser | AdaptiveConvectionAlgorithm}
+Inside Convection Algorithm,TARP
+! <Outside Convection Algorithm>, Algorithm {SimpleCombined | TARP | MoWitt | DOE-2 | AdaptiveConvectionAlgorithm}
+Outside Convection Algorithm,TARP
+! <Sky Radiance Distribution>, Value {Anisotropic}
+Sky Radiance Distribution,Anisotropic
+! <Zone Air Solution Algorithm>, Algorithm {ThirdOrderBackwardDifference | AnalyticalSolution | EulerMethod}, Space Heat Balance Sizing, Space Heat Balance Simulation
+ Zone Air Solution Algorithm, ThirdOrderBackwardDifference, No, No
+! <Zone Air Carbon Dioxide Balance Simulation>, Simulation {Yes/No}, Carbon Dioxide Concentration
+ Zone Air Carbon Dioxide Balance Simulation, No,N/A
+! <Zone Air Generic Contaminant Balance Simulation>, Simulation {Yes/No}, Generic Contaminant Concentration
+ Zone Air Generic Contaminant Balance Simulation, No,N/A
+! <Zone Air Mass Flow Balance Simulation>, Enforce Mass Balance, Adjust Zone Mixing and Return {AdjustMixingOnly | AdjustReturnOnly | AdjustMixingThenReturn | AdjustReturnThenMixing | None}, Adjust Zone Infiltration {AddInfiltration | AdjustInfiltration | None}, Infiltration Zones {MixingSourceZonesOnly | AllZones}
+ Zone Air Mass Flow Balance Simulation, No,N/A,N/A,N/A
+! <HVACSystemRootFindingAlgorithm>, Value {RegulaFalsi | Bisection | BisectionThenRegulaFalsi | RegulaFalsiThenBisection}
+ HVACSystemRootFindingAlgorithm, RegulaFalsi
+! <Environment:Site Atmospheric Variation>,Wind Speed Profile Exponent {},Wind Speed Profile Boundary Layer Thickness {m},Air Temperature Gradient Coefficient {K/m}
+Environment:Site Atmospheric Variation,0.330,460.000,6.500000E-003
+! <Shadowing/Sun Position Calculations Annual Simulations>, Shading Calculation Method, Shading Calculation Update Frequency Method, Shading Calculation Update Frequency {days}, Maximum Figures in Shadow Overlap Calculations {}, Polygon Clipping Algorithm, Pixel Counting Resolution, Sky Diffuse Modeling Algorithm, Output External Shading Calculation Results, Disable Self-Shading Within Shading Zone Groups, Disable Self-Shading From Shading Zone Groups to Other Zones
+Shadowing/Sun Position Calculations Annual Simulations,PolygonClipping,Periodic,30,15000,SutherlandHodgman,512,SimpleSkyDiffuseModeling,No,No,No
+! <Surface Geometry>,Starting Corner,Vertex Input Direction,Coordinate System,Daylight Reference Point Coordinate System,Rectangular (Simple) Surface Coordinate System
+ Surface Geometry,UpperLeftCorner,Counterclockwise,RelativeCoordinateSystem,RelativeCoordinateSystem,RelativeToZoneOrigin
+! <Surface Heat Transfer Algorithm>, Value {CTF - ConductionTransferFunction | EMPD - MoisturePenetrationDepthConductionTransferFunction | CondFD - ConductionFiniteDifference | HAMT - CombinedHeatAndMoistureFiniteElement} - Description,Inside Surface Max Temperature Limit{C}, Surface Convection Coefficient Lower Limit {W/m2-K}, Surface Convection Coefficient Upper Limit {W/m2-K}
+Surface Heat Transfer Algorithm, CTF - ConductionTransferFunction,200,0.10,1000.0
+! <Shading Summary>, Number of Fixed Detached Shades, Number of Building Detached Shades, Number of Attached Shades
+ Shading Summary,0,0,0
+! <Zone Summary>, Number of Zones, Number of Zone Surfaces, Number of SubSurfaces
+ Zone Summary,18,167,24
+! <Zone Information>,Zone Name,North Axis {deg},Origin X-Coordinate {m},Origin Y-Coordinate {m},Origin Z-Coordinate {m},Centroid X-Coordinate {m},Centroid Y-Coordinate {m},Centroid Z-Coordinate {m},Type,Zone Multiplier,Zone List Multiplier,Minimum X {m},Maximum X {m},Minimum Y {m},Maximum Y {m},Minimum Z {m},Maximum Z {m},Ceiling Height {m},Volume {m3},Zone Inside Convection Algorithm {Simple-Detailed-CeilingDiffuser-TrombeWall},Zone Outside Convection Algorithm {Simple-Detailed-Tarp-MoWitt-DOE-2-BLAST}, Floor Area {m2},Exterior Gross Wall Area {m2},Exterior Net Wall Area {m2},Exterior Window Area {m2}, Number of Surfaces, Number of SubSurfaces, Number of Shading SubSurfaces,  Part of Total Building Area
+ Zone Information, CORE_BOTTOM,0.0,0.00,0.00,0.00,24.96,16.64,1.37,1,1,1,4.57,45.34,4.57,28.70,0.00,2.74,2.74,2698.04,TARP,TARP,983.54,0.00,0.00,0.00,6,0,0,Yes
+ Zone Information, CORE_MID,0.0,0.00,0.00,0.00,24.96,16.64,5.33,1,1,1,4.57,45.34,4.57,28.70,3.96,6.71,2.74,2698.04,TARP,TARP,983.54,0.00,0.00,0.00,6,0,0,Yes
+ Zone Information, CORE_TOP,0.0,0.00,0.00,0.00,24.96,16.64,9.30,1,1,1,4.57,45.34,4.57,28.70,7.92,10.67,2.74,2698.04,TARP,TARP,983.54,0.00,0.00,0.00,6,0,0,Yes
+ Zone Information, FIRSTFLOOR_PLENUM,0.0,0.00,0.00,0.00,24.96,16.64,3.35,1,1,1,0.00,49.91,0.00,33.27,2.74,3.96,1.22,2024.76,TARP,TARP,1660.73,202.84,202.84,0.00,14,0,0,No
+ Zone Information, MIDFLOOR_PLENUM,0.0,0.00,0.00,0.00,24.96,16.64,7.32,1,1,1,0.00,49.91,0.00,33.27,6.71,7.92,1.22,2024.76,TARP,TARP,1660.73,202.84,202.84,0.00,14,0,0,No
+ Zone Information, PERIMETER_BOT_ZN_1,0.0,0.00,0.00,0.00,24.96,2.16,1.37,1,1,1,0.00,49.91,0.00,4.57,0.00,2.74,2.74,568.77,TARP,TARP,207.34,136.92,67.75,65.26,6,5,0,Yes
+ Zone Information, PERIMETER_BOT_ZN_2,0.0,0.00,0.00,0.00,47.82,16.64,1.37,1,1,1,45.34,49.91,0.00,33.27,0.00,2.74,2.74,360.08,TARP,TARP,131.26,91.28,45.82,43.51,6,3,0,Yes
+ Zone Information, PERIMETER_BOT_ZN_3,0.0,0.00,0.00,0.00,24.96,31.11,1.37,1,1,1,0.00,49.91,28.70,33.27,0.00,2.74,2.74,568.77,TARP,TARP,207.34,136.92,67.75,65.26,6,5,0,Yes
+ Zone Information, PERIMETER_BOT_ZN_4,0.0,0.00,0.00,0.00,2.09,16.64,1.37,1,1,1,0.00,4.57,0.00,33.27,0.00,2.74,2.74,360.05,TARP,TARP,131.25,91.28,45.82,43.51,6,3,0,Yes
+ Zone Information, PERIMETER_MID_ZN_1,0.0,0.00,0.00,0.00,24.96,2.16,5.33,1,1,1,0.00,49.91,0.00,4.57,3.96,6.71,2.74,568.77,TARP,TARP,207.34,136.92,71.65,65.26,6,1,0,Yes
+ Zone Information, PERIMETER_MID_ZN_2,0.0,0.00,0.00,0.00,47.82,16.64,5.33,1,1,1,45.34,49.91,0.00,33.27,3.96,6.71,2.74,360.08,TARP,TARP,131.26,91.28,47.77,43.51,6,1,0,Yes
+ Zone Information, PERIMETER_MID_ZN_3,0.0,0.00,0.00,0.00,24.96,31.11,5.33,1,1,1,0.00,49.91,28.70,33.27,3.96,6.71,2.74,568.77,TARP,TARP,207.34,136.92,71.65,65.26,6,1,0,Yes
+ Zone Information, PERIMETER_MID_ZN_4,0.0,0.00,0.00,0.00,2.09,16.64,5.33,1,1,1,0.00,4.57,0.00,33.27,3.96,6.71,2.74,360.05,TARP,TARP,131.25,91.28,47.77,43.51,6,1,0,Yes
+ Zone Information, PERIMETER_TOP_ZN_1,0.0,0.00,0.00,0.00,24.96,2.16,9.30,1,1,1,0.00,49.91,0.00,4.57,7.92,10.67,2.74,568.77,TARP,TARP,207.34,136.92,71.65,65.26,6,1,0,Yes
+ Zone Information, PERIMETER_TOP_ZN_2,0.0,0.00,0.00,0.00,47.82,16.64,9.30,1,1,1,45.34,49.91,0.00,33.27,7.92,10.67,2.74,360.08,TARP,TARP,131.26,91.28,47.77,43.51,6,1,0,Yes
+ Zone Information, PERIMETER_TOP_ZN_3,0.0,0.00,0.00,0.00,24.96,31.11,9.30,1,1,1,0.00,49.91,28.70,33.27,7.92,10.67,2.74,568.77,TARP,TARP,207.34,136.92,71.65,65.26,6,1,0,Yes
+ Zone Information, PERIMETER_TOP_ZN_4,0.0,0.00,0.00,0.00,2.09,16.64,9.30,1,1,1,0.00,4.57,0.00,33.27,7.92,10.67,2.74,360.05,TARP,TARP,131.25,91.28,47.77,43.51,6,1,0,Yes
+ Zone Information, TOPFLOOR_PLENUM,0.0,0.00,0.00,0.00,24.96,16.64,11.28,1,1,1,0.00,49.91,0.00,33.27,10.67,11.89,1.22,2024.76,TARP,TARP,1660.73,202.84,202.84,0.00,10,0,0,No
+! <Zone Internal Gains Nominal>,Zone Name, Floor Area {m2},# Occupants,Area per Occupant {m2/person},Occupant per Area {person/m2},Interior Lighting {W/m2},Electric Load {W/m2},Gas Load {W/m2},Other Load {W/m2},Hot Water Eq {W/m2},Steam Equipment {W/m2},Sum Loads per Area {W/m2},Outdoor Controlled Baseboard Heat
+ Zone Internal Gains Nominal, CORE_BOTTOM,983.54,52.9,18.579,5.382E-002,6.664,24.834,0.000,0.000,0.000,0.000,31.498,No
+ Zone Internal Gains Nominal, CORE_MID,983.54,52.9,18.579,5.382E-002,6.664,8.070,0.000,0.000,0.000,0.000,14.734,No
+ Zone Internal Gains Nominal, CORE_TOP,983.54,52.9,18.579,5.382E-002,6.664,8.070,0.000,0.000,0.000,0.000,14.734,No
+ Zone Internal Gains Nominal, FIRSTFLOOR_PLENUM,1660.73,0.0,N/A,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,No
+ Zone Internal Gains Nominal, MIDFLOOR_PLENUM,1660.73,0.0,N/A,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,No
+ Zone Internal Gains Nominal, PERIMETER_BOT_ZN_1,207.34,11.2,18.579,5.382E-002,6.664,8.070,0.000,0.000,0.000,0.000,14.734,No
+ Zone Internal Gains Nominal, PERIMETER_BOT_ZN_2,131.26,7.1,18.579,5.382E-002,6.664,8.069,0.000,0.000,0.000,0.000,14.733,No
+ Zone Internal Gains Nominal, PERIMETER_BOT_ZN_3,207.34,11.2,18.579,5.382E-002,6.664,8.070,0.000,0.000,0.000,0.000,14.734,No
+ Zone Internal Gains Nominal, PERIMETER_BOT_ZN_4,131.25,7.1,18.579,5.382E-002,6.664,8.070,0.000,0.000,0.000,0.000,14.734,No
+ Zone Internal Gains Nominal, PERIMETER_MID_ZN_1,207.34,11.2,18.579,5.382E-002,6.664,8.070,0.000,0.000,0.000,0.000,14.734,No
+ Zone Internal Gains Nominal, PERIMETER_MID_ZN_2,131.26,7.1,18.579,5.382E-002,6.664,8.069,0.000,0.000,0.000,0.000,14.733,No
+ Zone Internal Gains Nominal, PERIMETER_MID_ZN_3,207.34,11.2,18.579,5.382E-002,6.664,8.070,0.000,0.000,0.000,0.000,14.734,No
+ Zone Internal Gains Nominal, PERIMETER_MID_ZN_4,131.25,7.1,18.579,5.382E-002,6.664,8.070,0.000,0.000,0.000,0.000,14.734,No
+ Zone Internal Gains Nominal, PERIMETER_TOP_ZN_1,207.34,11.2,18.579,5.382E-002,6.664,8.070,0.000,0.000,0.000,0.000,14.734,No
+ Zone Internal Gains Nominal, PERIMETER_TOP_ZN_2,131.26,7.1,18.579,5.382E-002,6.664,8.069,0.000,0.000,0.000,0.000,14.733,No
+ Zone Internal Gains Nominal, PERIMETER_TOP_ZN_3,207.34,11.2,18.579,5.382E-002,6.664,8.070,0.000,0.000,0.000,0.000,14.734,No
+ Zone Internal Gains Nominal, PERIMETER_TOP_ZN_4,131.25,7.1,18.579,5.382E-002,6.664,8.070,0.000,0.000,0.000,0.000,14.734,No
+ Zone Internal Gains Nominal, TOPFLOOR_PLENUM,1660.73,0.0,N/A,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,No
+! <People Internal Gains Nominal>,Name,Schedule Name,Zone Name,Zone Floor Area {m2},# Zone Occupants,Number of People {},People/Floor Area {person/m2},Floor Area per person {m2/person},Fraction Radiant,Fraction Convected,Sensible Fraction Calculation,Activity level,ASHRAE 55 Warnings,Carbon Dioxide Generation Rate,Minimum Number of People for All Day Types,Maximum Number of People for All Day Types,Minimum Number of People for Weekdays, Maximum Number of People for Weekdays, Minimum Number of People for Weekends/Holidays, Maximum Number of People for Weekends /Holidays,Minimum Number of People for Summer Design Days, Maximum Number of People for Summer Design Days,Minimum Number of People for Winter Design Days, Maximum Number of People for Winter Design Days,MRT Calculation Type,Work Efficiency, Clothing Insulation Calculation Method,Clothing Insulation Calculation Method Schedule,Clothing,Air Velocity,Fanger Calculation,Pierce Calculation,KSU Calculation,Cooling Effect Calculation,Ankle Draft Calculation
+ People Internal Gains Nominal, CORE_BOTTOM,BLDG_OCC_SCH_WO_SB,CORE_BOTTOM,983.54,52.9,52.9,5.382E-002,18.579,0.300,0.700,AutoCalculate,ACTIVITY_SCH,No,3.8200E-008,0.0,52.9,0.0,51.7,0.0,16.3,5.3E-008,52.9,0.0,0.0,Zone Averaged,WORK_EFF_SCH,Clothing Insulation Schedule,N/A,CLOTHING_SCH,AIR_VELO_SCH,Yes,No,No,No,No
+ People Internal Gains Nominal, CORE_MID,BLDG_OCC_SCH_WO_SB,CORE_MID,983.54,52.9,52.9,5.382E-002,18.579,0.300,0.700,AutoCalculate,ACTIVITY_SCH,No,3.8200E-008,0.0,52.9,0.0,51.7,0.0,16.3,5.3E-008,52.9,0.0,0.0,Zone Averaged,WORK_EFF_SCH,Clothing Insulation Schedule,N/A,CLOTHING_SCH,AIR_VELO_SCH,Yes,No,No,No,No
+ People Internal Gains Nominal, CORE_TOP,BLDG_OCC_SCH_WO_SB,CORE_TOP,983.54,52.9,52.9,5.382E-002,18.579,0.300,0.700,AutoCalculate,ACTIVITY_SCH,No,3.8200E-008,0.0,52.9,0.0,51.7,0.0,16.3,5.3E-008,52.9,0.0,0.0,Zone Averaged,WORK_EFF_SCH,Clothing Insulation Schedule,N/A,CLOTHING_SCH,AIR_VELO_SCH,Yes,No,No,No,No
+ People Internal Gains Nominal, PERIMETER_BOT_ZN_1,BLDG_OCC_SCH_WO_SB,PERIMETER_BOT_ZN_1,207.34,11.2,11.2,5.382E-002,18.579,0.300,0.700,AutoCalculate,ACTIVITY_SCH,No,3.8200E-008,0.0,11.2,0.0,10.9,0.0,3.4,1.1E-008,11.2,0.0,0.0,Zone Averaged,WORK_EFF_SCH,Clothing Insulation Schedule,N/A,CLOTHING_SCH,AIR_VELO_SCH,Yes,No,No,No,No
+ People Internal Gains Nominal, PERIMETER_BOT_ZN_2,BLDG_OCC_SCH_WO_SB,PERIMETER_BOT_ZN_2,131.26,7.1,7.1,5.382E-002,18.579,0.300,0.700,AutoCalculate,ACTIVITY_SCH,No,3.8200E-008,0.0,7.1,0.0,6.9,0.0,2.2,7.1E-009,7.1,0.0,0.0,Zone Averaged,WORK_EFF_SCH,Clothing Insulation Schedule,N/A,CLOTHING_SCH,AIR_VELO_SCH,Yes,No,No,No,No
+ People Internal Gains Nominal, PERIMETER_BOT_ZN_3,BLDG_OCC_SCH_WO_SB,PERIMETER_BOT_ZN_3,207.34,11.2,11.2,5.382E-002,18.579,0.300,0.700,AutoCalculate,ACTIVITY_SCH,No,3.8200E-008,0.0,11.2,0.0,10.9,0.0,3.4,1.1E-008,11.2,0.0,0.0,Zone Averaged,WORK_EFF_SCH,Clothing Insulation Schedule,N/A,CLOTHING_SCH,AIR_VELO_SCH,Yes,No,No,No,No
+ People Internal Gains Nominal, PERIMETER_BOT_ZN_4,BLDG_OCC_SCH_WO_SB,PERIMETER_BOT_ZN_4,131.25,7.1,7.1,5.382E-002,18.579,0.300,0.700,AutoCalculate,ACTIVITY_SCH,No,3.8200E-008,0.0,7.1,0.0,6.9,0.0,2.2,7.1E-009,7.1,0.0,0.0,Zone Averaged,WORK_EFF_SCH,Clothing Insulation Schedule,N/A,CLOTHING_SCH,AIR_VELO_SCH,Yes,No,No,No,No
+ People Internal Gains Nominal, PERIMETER_MID_ZN_1,BLDG_OCC_SCH_WO_SB,PERIMETER_MID_ZN_1,207.34,11.2,11.2,5.382E-002,18.579,0.300,0.700,AutoCalculate,ACTIVITY_SCH,No,3.8200E-008,0.0,11.2,0.0,10.9,0.0,3.4,1.1E-008,11.2,0.0,0.0,Zone Averaged,WORK_EFF_SCH,Clothing Insulation Schedule,N/A,CLOTHING_SCH,AIR_VELO_SCH,Yes,No,No,No,No
+ People Internal Gains Nominal, PERIMETER_MID_ZN_2,BLDG_OCC_SCH_W_SB,PERIMETER_MID_ZN_2,131.26,7.1,7.1,5.382E-002,18.579,0.300,0.700,AutoCalculate,ACTIVITY_SCH,No,3.8200E-008,0.0,7.1,0.0,6.7,0.0,2.1,7.1E-009,7.1,0.0,0.0,Zone Averaged,WORK_EFF_SCH,Clothing Insulation Schedule,N/A,CLOTHING_SCH,AIR_VELO_SCH,Yes,No,No,No,No
+ People Internal Gains Nominal, PERIMETER_MID_ZN_3,BLDG_OCC_SCH_WO_SB,PERIMETER_MID_ZN_3,207.34,11.2,11.2,5.382E-002,18.579,0.300,0.700,AutoCalculate,ACTIVITY_SCH,No,3.8200E-008,0.0,11.2,0.0,10.9,0.0,3.4,1.1E-008,11.2,0.0,0.0,Zone Averaged,WORK_EFF_SCH,Clothing Insulation Schedule,N/A,CLOTHING_SCH,AIR_VELO_SCH,Yes,No,No,No,No
+ People Internal Gains Nominal, PERIMETER_MID_ZN_4,BLDG_OCC_SCH_WO_SB,PERIMETER_MID_ZN_4,131.25,7.1,7.1,5.382E-002,18.579,0.300,0.700,AutoCalculate,ACTIVITY_SCH,No,3.8200E-008,0.0,7.1,0.0,6.9,0.0,2.2,7.1E-009,7.1,0.0,0.0,Zone Averaged,WORK_EFF_SCH,Clothing Insulation Schedule,N/A,CLOTHING_SCH,AIR_VELO_SCH,Yes,No,No,No,No
+ People Internal Gains Nominal, PERIMETER_TOP_ZN_1,BLDG_OCC_SCH_WO_SB,PERIMETER_TOP_ZN_1,207.34,11.2,11.2,5.382E-002,18.579,0.300,0.700,AutoCalculate,ACTIVITY_SCH,No,3.8200E-008,0.0,11.2,0.0,10.9,0.0,3.4,1.1E-008,11.2,0.0,0.0,Zone Averaged,WORK_EFF_SCH,Clothing Insulation Schedule,N/A,CLOTHING_SCH,AIR_VELO_SCH,Yes,No,No,No,No
+ People Internal Gains Nominal, PERIMETER_TOP_ZN_2,BLDG_OCC_SCH_WO_SB,PERIMETER_TOP_ZN_2,131.26,7.1,7.1,5.382E-002,18.579,0.300,0.700,AutoCalculate,ACTIVITY_SCH,No,3.8200E-008,0.0,7.1,0.0,6.9,0.0,2.2,7.1E-009,7.1,0.0,0.0,Zone Averaged,WORK_EFF_SCH,Clothing Insulation Schedule,N/A,CLOTHING_SCH,AIR_VELO_SCH,Yes,No,No,No,No
+ People Internal Gains Nominal, PERIMETER_TOP_ZN_3,BLDG_OCC_SCH_WO_SB,PERIMETER_TOP_ZN_3,207.34,11.2,11.2,5.382E-002,18.579,0.300,0.700,AutoCalculate,ACTIVITY_SCH,No,3.8200E-008,0.0,11.2,0.0,10.9,0.0,3.4,1.1E-008,11.2,0.0,0.0,Zone Averaged,WORK_EFF_SCH,Clothing Insulation Schedule,N/A,CLOTHING_SCH,AIR_VELO_SCH,Yes,No,No,No,No
+ People Internal Gains Nominal, PERIMETER_TOP_ZN_4,BLDG_OCC_SCH_WO_SB,PERIMETER_TOP_ZN_4,131.25,7.1,7.1,5.382E-002,18.579,0.300,0.700,AutoCalculate,ACTIVITY_SCH,No,3.8200E-008,0.0,7.1,0.0,6.9,0.0,2.2,7.1E-009,7.1,0.0,0.0,Zone Averaged,WORK_EFF_SCH,Clothing Insulation Schedule,N/A,CLOTHING_SCH,AIR_VELO_SCH,Yes,No,No,No,No
+! <Lights Internal Gains Nominal>,Name,Schedule Name,Zone Name,Zone Floor Area {m2},# Zone Occupants,Lighting Level {W},Lights/Floor Area {W/m2},Lights per person {W/person},Fraction Return Air,Fraction Radiant,Fraction Short Wave,Fraction Convected,Fraction Replaceable,End-Use, Minimum Lighting Level for All Day Types {W},Maximum Lighting Level for All Day Types {W},Minimum Lighting Level for Weekdays {W}, Maximum Lighting Level for Weekdays {W},Minimum Lighting Level for Weekends/Holidays {W}, Maximum Lighting Level for Weekends /Holidays {W},Minimum Lighting Level for Summer Design Days {W}, Maximum Lighting Level for Summer Design Days {W},Minimum Lighting Level for Winter Design Days {W}, Maximum Lighting Level for Winter Design Days {W}
+ Lights Internal Gains Nominal, CORE_BOTTOM_LIGHTS,LTG_SCH_OFFICE,CORE_BOTTOM,983.54,52.9,6553.914,6.664,123.802,0.000,0.700,0.200,0.100,1.000,LightsWired,0.000,6553.914,274.216,4936.0,274.216,1645.360,6553.914,6553.914,0.000,0.000
+ Lights Internal Gains Nominal, CORE_MID_LIGHTS,LTG_SCH_OFFICE,CORE_MID,983.54,52.9,6553.914,6.664,123.802,0.000,0.700,0.200,0.100,1.000,LightsWired,0.000,6553.914,274.216,4936.0,274.216,1645.360,6553.914,6553.914,0.000,0.000
+ Lights Internal Gains Nominal, CORE_TOP_LIGHTS,LTG_SCH_OFFICE,CORE_TOP,983.54,52.9,6553.914,6.664,123.802,0.000,0.700,0.200,0.100,1.000,LightsWired,0.000,6553.914,274.216,4936.0,274.216,1645.360,6553.914,6553.914,0.000,0.000
+ Lights Internal Gains Nominal, PERIMETER_BOT_ZN_1_LIGHTS,LTG_SCH_OFFICE,PERIMETER_BOT_ZN_1,207.34,11.2,1381.623,6.664,123.802,0.000,0.700,0.200,0.100,1.000,LightsWired,0.000,1381.623,57.807,1040.6,57.807,346.856,1381.623,1381.623,0.000,0.000
+ Lights Internal Gains Nominal, PERIMETER_BOT_ZN_2_LIGHTS,LTG_SCH_OFFICE,PERIMETER_BOT_ZN_2,131.26,7.1,874.681,6.664,123.802,0.000,0.700,0.200,0.100,1.000,LightsWired,0.000,874.681,36.597,658.8,36.597,219.589,874.681,874.681,0.000,0.000
+ Lights Internal Gains Nominal, PERIMETER_BOT_ZN_3_LIGHTS,LTG_SCH_OFFICE,PERIMETER_BOT_ZN_3,207.34,11.2,1381.623,6.664,123.802,0.000,0.700,0.200,0.100,1.000,LightsWired,0.000,1381.623,57.807,1040.6,57.807,346.856,1381.623,1381.623,0.000,0.000
+ Lights Internal Gains Nominal, PERIMETER_BOT_ZN_4_LIGHTS,LTG_SCH_OFFICE,PERIMETER_BOT_ZN_4,131.25,7.1,874.624,6.664,123.802,0.000,0.700,0.200,0.100,1.000,LightsWired,0.000,874.624,36.594,658.7,36.594,219.574,874.624,874.624,0.000,0.000
+ Lights Internal Gains Nominal, PERIMETER_MID_ZN_1_LIGHTS,LTG_SCH_OFFICE,PERIMETER_MID_ZN_1,207.34,11.2,1381.623,6.664,123.802,0.000,0.700,0.200,0.100,1.000,LightsWired,0.000,1381.623,57.807,1040.6,57.807,346.856,1381.623,1381.623,0.000,0.000
+ Lights Internal Gains Nominal, PERIMETER_MID_ZN_2_LIGHTS,LTG_SCH_OFFICE,PERIMETER_MID_ZN_2,131.26,7.1,874.681,6.664,123.802,0.000,0.700,0.200,0.100,1.000,LightsWired,0.000,874.681,36.597,658.8,36.597,219.589,874.681,874.681,0.000,0.000
+ Lights Internal Gains Nominal, PERIMETER_MID_ZN_3_LIGHTS,LTG_SCH_OFFICE,PERIMETER_MID_ZN_3,207.34,11.2,1381.623,6.664,123.802,0.000,0.700,0.200,0.100,1.000,LightsWired,0.000,1381.623,57.807,1040.6,57.807,346.856,1381.623,1381.623,0.000,0.000
+ Lights Internal Gains Nominal, PERIMETER_MID_ZN_4_LIGHTS,LTG_SCH_OFFICE,PERIMETER_MID_ZN_4,131.25,7.1,874.624,6.664,123.802,0.000,0.700,0.200,0.100,1.000,LightsWired,0.000,874.624,36.594,658.7,36.594,219.574,874.624,874.624,0.000,0.000
+ Lights Internal Gains Nominal, PERIMETER_TOP_ZN_1_LIGHTS,LTG_SCH_OFFICE,PERIMETER_TOP_ZN_1,207.34,11.2,1381.623,6.664,123.802,0.000,0.700,0.200,0.100,1.000,LightsWired,0.000,1381.623,57.807,1040.6,57.807,346.856,1381.623,1381.623,0.000,0.000
+ Lights Internal Gains Nominal, PERIMETER_TOP_ZN_2_LIGHTS,LTG_SCH_OFFICE,PERIMETER_TOP_ZN_2,131.26,7.1,874.681,6.664,123.802,0.000,0.700,0.200,0.100,1.000,LightsWired,0.000,874.681,36.597,658.8,36.597,219.589,874.681,874.681,0.000,0.000
+ Lights Internal Gains Nominal, PERIMETER_TOP_ZN_3_LIGHTS,LTG_SCH_OFFICE,PERIMETER_TOP_ZN_3,207.34,11.2,1381.623,6.664,123.802,0.000,0.700,0.200,0.100,1.000,LightsWired,0.000,1381.623,57.807,1040.6,57.807,346.856,1381.623,1381.623,0.000,0.000
+ Lights Internal Gains Nominal, PERIMETER_TOP_ZN_4_LIGHTS,LTG_SCH_OFFICE,PERIMETER_TOP_ZN_4,131.25,7.1,874.624,6.664,123.802,0.000,0.700,0.200,0.100,1.000,LightsWired,0.000,874.624,36.594,658.7,36.594,219.574,874.624,874.624,0.000,0.000
+! <ElectricEquipment Internal Gains Nominal>,Name,Schedule Name,Zone Name,Zone Floor Area {m2},# Zone Occupants,Equipment Level {W},Equipment/Floor Area {W/m2},Equipment per person {W/person},Fraction Latent,Fraction Radiant,Fraction Lost,Fraction Convected,End-Use SubCategory,Minimum Equipment Level for All Day Types {W},Maximum Equipment Level for All Day Types {W},Minimum Equipment Level for Weekdays {W}, Maximum Equipment Level for Weekdays {W},Minimum Equipment Level for Weekends/Holidays {W}, Maximum Equipment Level for Weekends /Holidays {W},Minimum Equipment Level for Summer Design Days {W}, Maximum Equipment Level for Summer Design Days {W},Minimum Equipment Level for Winter Design Days {W}, Maximum Equipment Level for Winter Design Days {W}
+ ElectricEquipment Internal Gains Nominal, CORE_BOTTOM_ELEVATORS_EQUIP,BLDG_ELEVATORS,CORE_BOTTOM,983.54,52.9,16363.220,16.637,309.098,0.000,0.500,0.000,0.500,ElevatorLift,1963.586,11290.622,1963.586,11290.622,1963.586,4090.805,11290.622,11290.622,1963.586,1963.586
+ ElectricEquipment Internal Gains Nominal, CORE_BOTTOM_MISCPLUG_EQUIP,BLDG_EQUIP_SCH,CORE_BOTTOM,983.54,52.9,7937.156,8.070,149.931,0.000,0.500,0.000,0.500,MiscPlug,0.000,7937.156,2442.055,6808.320,1831.541,3782.400,7937.156,7937.156,0.000,0.000
+ ElectricEquipment Internal Gains Nominal, CORE_MID_MISCPLUG_EQUIP,BLDG_EQUIP_SCH,CORE_MID,983.54,52.9,7937.156,8.070,149.931,0.000,0.500,0.000,0.500,MiscPlug,0.000,7937.156,2442.055,6808.320,1831.541,3782.400,7937.156,7937.156,0.000,0.000
+ ElectricEquipment Internal Gains Nominal, CORE_TOP_MISCPLUG_EQUIP,BLDG_EQUIP_SCH,CORE_TOP,983.54,52.9,7937.156,8.070,149.931,0.000,0.500,0.000,0.500,MiscPlug,0.000,7937.156,2442.055,6808.320,1831.541,3782.400,7937.156,7937.156,0.000,0.000
+ ElectricEquipment Internal Gains Nominal, ELEVATORS_LIGHTS_FAN,ELEV_LIGHT_FAN_SCH_ADD_DF,CORE_BOTTOM,983.54,52.9,125.000,0.127,2.361,0.000,0.500,0.000,0.500,ElevatorLightsFan,0.000,86.250,0.000,86.250,0.000,31.250,86.250,86.250,0.000,0.000
+ ElectricEquipment Internal Gains Nominal, PERIMETER_BOT_ZN_1_MISCPLUG_EQUIP,BLDG_EQUIP_SCH,PERIMETER_BOT_ZN_1,207.34,11.2,1673.203,8.070,149.929,0.000,0.500,0.000,0.500,MiscPlug,0.000,1673.203,514.801,1435.237,386.101,797.354,1673.203,1673.203,0.000,0.000
+ ElectricEquipment Internal Gains Nominal, PERIMETER_BOT_ZN_2_MISCPLUG_EQUIP,BLDG_EQUIP_SCH,PERIMETER_BOT_ZN_2,131.26,7.1,1059.217,8.069,149.921,0.000,0.500,0.000,0.500,MiscPlug,0.000,1059.217,325.893,908.573,244.420,504.763,1059.217,1059.217,0.000,0.000
+ ElectricEquipment Internal Gains Nominal, PERIMETER_BOT_ZN_3_MISCPLUG_EQUIP,BLDG_EQUIP_SCH,PERIMETER_BOT_ZN_3,207.34,11.2,1673.214,8.070,149.930,0.000,0.500,0.000,0.500,MiscPlug,0.000,1673.214,514.804,1435.246,386.103,797.359,1673.214,1673.214,0.000,0.000
+ ElectricEquipment Internal Gains Nominal, PERIMETER_BOT_ZN_4_MISCPLUG_EQUIP,BLDG_EQUIP_SCH,PERIMETER_BOT_ZN_4,131.25,7.1,1059.210,8.070,149.930,0.000,0.500,0.000,0.500,MiscPlug,0.000,1059.210,325.891,908.567,244.418,504.760,1059.210,1059.210,0.000,0.000
+ ElectricEquipment Internal Gains Nominal, PERIMETER_MID_ZN_1_MISCPLUG_EQUIP,BLDG_EQUIP_SCH,PERIMETER_MID_ZN_1,207.34,11.2,1673.203,8.070,149.929,0.000,0.500,0.000,0.500,MiscPlug,0.000,1673.203,514.801,1435.237,386.101,797.354,1673.203,1673.203,0.000,0.000
+ ElectricEquipment Internal Gains Nominal, PERIMETER_MID_ZN_2_MISCPLUG_EQUIP,BLDG_EQUIP_SCH,PERIMETER_MID_ZN_2,131.26,7.1,1059.217,8.069,149.921,0.000,0.500,0.000,0.500,MiscPlug,0.000,1059.217,325.893,908.573,244.420,504.763,1059.217,1059.217,0.000,0.000
+ ElectricEquipment Internal Gains Nominal, PERIMETER_MID_ZN_3_MISCPLUG_EQUIP,BLDG_EQUIP_SCH,PERIMETER_MID_ZN_3,207.34,11.2,1673.214,8.070,149.930,0.000,0.500,0.000,0.500,MiscPlug,0.000,1673.214,514.804,1435.246,386.103,797.359,1673.214,1673.214,0.000,0.000
+ ElectricEquipment Internal Gains Nominal, PERIMETER_MID_ZN_4_MISCPLUG_EQUIP,BLDG_EQUIP_SCH,PERIMETER_MID_ZN_4,131.25,7.1,1059.210,8.070,149.930,0.000,0.500,0.000,0.500,MiscPlug,0.000,1059.210,325.891,908.567,244.418,504.760,1059.210,1059.210,0.000,0.000
+ ElectricEquipment Internal Gains Nominal, PERIMETER_TOP_ZN_1_MISCPLUG_EQUIP,BLDG_EQUIP_SCH,PERIMETER_TOP_ZN_1,207.34,11.2,1673.203,8.070,149.929,0.000,0.500,0.000,0.500,MiscPlug,0.000,1673.203,514.801,1435.237,386.101,797.354,1673.203,1673.203,0.000,0.000
+ ElectricEquipment Internal Gains Nominal, PERIMETER_TOP_ZN_2_MISCPLUG_EQUIP,BLDG_EQUIP_SCH,PERIMETER_TOP_ZN_2,131.26,7.1,1059.217,8.069,149.921,0.000,0.500,0.000,0.500,MiscPlug,0.000,1059.217,325.893,908.573,244.420,504.763,1059.217,1059.217,0.000,0.000
+ ElectricEquipment Internal Gains Nominal, PERIMETER_TOP_ZN_3_MISCPLUG_EQUIP,BLDG_EQUIP_SCH,PERIMETER_TOP_ZN_3,207.34,11.2,1673.214,8.070,149.930,0.000,0.500,0.000,0.500,MiscPlug,0.000,1673.214,514.804,1435.246,386.103,797.359,1673.214,1673.214,0.000,0.000
+ ElectricEquipment Internal Gains Nominal, PERIMETER_TOP_ZN_4_MISCPLUG_EQUIP,BLDG_EQUIP_SCH,PERIMETER_TOP_ZN_4,131.25,7.1,1059.210,8.070,149.930,0.000,0.500,0.000,0.500,MiscPlug,0.000,1059.210,325.891,908.567,244.418,504.760,1059.210,1059.210,0.000,0.000
+! <Construction CTF>,Construction Name,Index,#Layers,#CTFs,Time Step {hours},ThermalConductance {w/m2-K},OuterThermalAbsorptance,InnerThermalAbsorptance,OuterSolarAbsorptance,InnerSolarAbsorptance,Roughness
+! <Material CTF Summary>,Material Name,Thickness {m},Conductivity {w/m-K},Density {kg/m3},Specific Heat {J/kg-K},ThermalResistance {m2-K/w}
+! <Material:Air>,Material Name,ThermalResistance {m2-K/w}
+! <CTF>,Time,Outside,Cross,Inside,Flux (except final one)
+ Construction CTF,DROPCEILING,   3,   1,   3,   0.167,      4.488    ,   0.900,   0.900,   0.700,   0.700,MediumSmooth
+ Material CTF Summary,AC02 Acoustic Ceiling,  0.0127,         0.057,    288.000,     1339.000,  0.2228    
+ CTF,   3,     -0.21589802E-09,      0.15643069E-09,     -0.21589802E-09,      0.12999471E-21
+ CTF,   2,      0.50772448E-02,      0.30006816E-02,      0.50772448E-02,     -0.13693132E-08
+ CTF,   1,      -2.5944910    ,       1.4597758    ,      -2.5944910    ,      0.76344767E-02
+ CTF,   0,       7.0433378    ,       2.9911476    ,       7.0433378    
+ Construction CTF,INTERIORFURNISHINGS,   4,   1,   9,   0.167,     0.8000    ,   0.900,   0.900,   0.700,   0.700,MediumSmooth
+ Material CTF Summary,Std Wood 6inch,  0.1500,         0.120,    540.000,     1210.000,   1.250    
+ CTF,   9,     -0.27580628E-02,      0.97439125E-12,     -0.27580628E-02,      0.28516790E-03
+ CTF,   8,      0.73590997E-01,      0.21837543E-08,      0.73590997E-01,     -0.77836043E-02
+ CTF,   7,     -0.82599318    ,      0.23162835E-06,     -0.82599318    ,      0.89703933E-01
+ CTF,   6,       5.1113916    ,      0.48671053E-05,       5.1113916    ,     -0.57224845    
+ CTF,   5,      -19.214933    ,      0.30163627E-04,      -19.214933    ,       2.2266322    
+ CTF,   4,       45.557404    ,      0.63181060E-04,       45.557404    ,      -5.4853312    
+ CTF,   3,      -68.275533    ,      0.44785456E-04,      -68.275533    ,       8.5710568    
+ CTF,   2,       62.555368    ,      0.93952058E-05,       62.555368    ,      -8.2111738    
+ CTF,   1,      -31.904423    ,      0.39200004E-06,      -31.904423    ,       4.3886678    
+ CTF,   0,       6.9260389    ,      0.77047546E-09,       6.9260389    
+ Construction CTF,SWINGING DOOR_CON,   6,   1,   1,   0.167,      2.101    ,   0.900,   0.900,   0.700,   0.700,MediumRough
+ Material CTF Summary,OPAQUE DOOR PANEL_CON,  0.0000,         0.000,      0.000,        0.000,  0.4760    
+ CTF,   1,       0.0000000    ,       0.0000000    ,      -0.0000000    ,      -0.0000000    
+ CTF,   0,       2.1009573    ,       2.1009573    ,       2.1009573    
+ Construction CTF,INT_SLAB_CEILING,  17,   2,   7,   0.167,      3.839    ,   0.900,   0.900,   0.700,   0.700,VeryRough
+ Material CTF Summary,CP02 CARPET PAD,  0.0000,         0.000,      0.000,        0.000,  0.2165    
+ Material CTF Summary,100mm Normalweight concrete floor,  0.1016,         2.310,   2322.000,      832.000,  0.4398E-01
+ CTF,   7,      0.50922094E-17,     -0.24650168E-16,      0.12197447E-15,       0.0000000    
+ CTF,   6,      0.18162511E-10,      0.98084868E-11,      0.69434226E-09,     -0.40871243E-12
+ CTF,   5,     -0.16918523E-06,      0.28373718E-06,     -0.12888762E-04,      0.92361873E-08
+ CTF,   4,      0.22646198E-03,      0.33697681E-03,      0.25174112E-01,     -0.31467795E-04
+ CTF,   3,     -0.48495626E-01,      0.27170599E-01,      -3.7600775    ,      0.94171705E-02
+ CTF,   2,       1.2284947    ,      0.22121684    ,       51.553741    ,     -0.25833933    
+ CTF,   1,      -5.1479470    ,      0.21944682    ,      -128.86110    ,       1.1228340    
+ CTF,   0,       4.4519351    ,      0.16043331E-01,       81.526494    
+ Construction CTF,INT_SLAB_FLOOR,  18,   2,   7,   0.167,      3.839    ,   0.900,   0.900,   0.700,   0.700,MediumRough
+ Material CTF Summary,100mm Normalweight concrete floor,  0.1016,         2.310,   2322.000,      832.000,  0.4398E-01
+ Material CTF Summary,CP02 CARPET PAD,  0.0000,         0.000,      0.000,        0.000,  0.2165    
+ CTF,   7,      0.12197447E-15,     -0.24650168E-16,      0.50922094E-17,       0.0000000    
+ CTF,   6,      0.69434226E-09,      0.98084868E-11,      0.18162511E-10,     -0.40871243E-12
+ CTF,   5,     -0.12888762E-04,      0.28373718E-06,     -0.16918523E-06,      0.92361873E-08
+ CTF,   4,      0.25174112E-01,      0.33697681E-03,      0.22646198E-03,     -0.31467795E-04
+ CTF,   3,      -3.7600775    ,      0.27170599E-01,     -0.48495626E-01,      0.94171705E-02
+ CTF,   2,       51.553741    ,      0.22121684    ,       1.2284947    ,     -0.25833933    
+ CTF,   1,      -128.86110    ,      0.21944682    ,      -5.1479470    ,       1.1228340    
+ CTF,   0,       81.526494    ,      0.16043331E-01,       4.4519351    
+ Construction CTF,INT_WALL,  19,   2,   4,   0.167,      6.299    ,   0.900,   0.900,   0.700,   0.700,Smooth
+ Material CTF Summary,G01 13mm gypsum board,  0.0127,         0.160,    800.000,     1090.000,  0.7937E-01
+ Material CTF Summary,G01 13mm gypsum board,  0.0127,         0.160,    800.000,     1090.000,  0.7937E-01
+ CTF,   4,      0.68458728E-09,      0.26079551E-09,      0.68458728E-09,     -0.34507121E-18
+ CTF,   3,     -0.72180374E-03,      0.24295686E-03,     -0.72180374E-03,      0.69691454E-09
+ CTF,   2,      0.83054762    ,      0.27682775    ,      0.83054762    ,     -0.35168967E-03
+ CTF,   1,      -12.650482    ,       3.3590720    ,      -12.650482    ,      0.19281313    
+ CTF,   0,       16.907513    ,       1.4507143    ,       16.907513    
+ Construction CTF,NONRES_EXT_WALL_GRD,  21,   4,   6,   0.167,      1.328    ,   0.900,   0.900,   0.700,   0.700,Smooth
+ Material CTF Summary,F07 25mm stucco,  0.0254,         0.720,   1856.000,      840.000,  0.3528E-01
+ Material CTF Summary,G01 16mm gypsum board,  0.0159,         0.160,    800.000,     1090.000,  0.9938E-01
+ Material CTF Summary,NONRES_EXTERIOR_WALL_INSULATION_GRD,  0.0000,         0.000,      0.000,        0.000,  0.5188    
+ Material CTF Summary,G01 16mm gypsum board,  0.0159,         0.160,    800.000,     1090.000,  0.9938E-01
+ CTF,   6,      0.22034119E-07,      0.34186667E-09,      0.51028043E-08,     -0.99966795E-13
+ CTF,   5,     -0.15575685E-03,      0.30726149E-05,     -0.80471308E-04,      0.50596976E-08
+ CTF,   4,      0.25098773    ,      0.15612093E-02,      0.84928613E-01,     -0.27863917E-04
+ CTF,   3,      -6.4488769    ,      0.50236036E-01,      -2.0965073    ,      0.25009644E-01
+ CTF,   2,       38.172500    ,      0.18459162    ,       14.265034    ,     -0.30329881    
+ CTF,   1,      -78.474946    ,      0.85697261E-01,      -28.243456    ,       1.0344939    
+ CTF,   0,       46.824353    ,      0.17727373E-02,       16.313943    
+ Construction CTF,NONRES_EXT_WALL_MID,  22,   4,   6,   0.167,      1.313    ,   0.900,   0.900,   0.700,   0.700,Smooth
+ Material CTF Summary,F07 25mm stucco,  0.0254,         0.720,   1856.000,      840.000,  0.3528E-01
+ Material CTF Summary,G01 16mm gypsum board,  0.0159,         0.160,    800.000,     1090.000,  0.9938E-01
+ Material CTF Summary,NONRES_EXTERIOR_WALL_INSULATION_MID,  0.0000,         0.000,      0.000,        0.000,  0.5277    
+ Material CTF Summary,G01 16mm gypsum board,  0.0159,         0.160,    800.000,     1090.000,  0.9938E-01
+ CTF,   6,      0.22220471E-07,      0.33897870E-09,      0.51439591E-08,     -0.10094351E-12
+ CTF,   5,     -0.15674173E-03,      0.30417725E-05,     -0.80970714E-04,      0.51000978E-08
+ CTF,   4,      0.25219758    ,      0.15433791E-02,      0.85360851E-01,     -0.28028645E-04
+ CTF,   3,      -6.4729780    ,      0.49601353E-01,      -2.1036496    ,      0.25127351E-01
+ CTF,   2,       38.252148    ,      0.18206636    ,       14.294681    ,     -0.30418501    
+ CTF,   1,      -78.536155    ,      0.84448529E-01,      -28.270134    ,       1.0357980    
+ CTF,   0,       46.824353    ,      0.17453530E-02,       16.313230    
+ Construction CTF,NONRES_EXT_WALL_TOP,  23,   4,   6,   0.167,      1.592    ,   0.900,   0.900,   0.700,   0.700,Smooth
+ Material CTF Summary,F07 25mm stucco,  0.0254,         0.720,   1856.000,      840.000,  0.3528E-01
+ Material CTF Summary,G01 16mm gypsum board,  0.0159,         0.160,    800.000,     1090.000,  0.9938E-01
+ Material CTF Summary,NONRES_EXTERIOR_WALL_INSULATION_TOP,  0.0000,         0.000,      0.000,        0.000,  0.3941    
+ Material CTF Summary,G01 16mm gypsum board,  0.0159,         0.160,    800.000,     1090.000,  0.9938E-01
+ CTF,   6,      0.18845480E-07,      0.38509844E-09,      0.43982754E-08,     -0.83379515E-13
+ CTF,   5,     -0.13867918E-03,      0.35672754E-05,     -0.71780061E-04,      0.43666335E-08
+ CTF,   4,      0.22968634    ,      0.18605187E-02,      0.77334699E-01,     -0.24995801E-04
+ CTF,   3,      -6.0237384    ,      0.61253070E-01,      -1.9705638    ,      0.22935651E-01
+ CTF,   2,       36.766583    ,      0.22953206    ,       13.740229    ,     -0.28766105    
+ CTF,   1,      -77.393480    ,      0.10834582    ,      -27.770672    ,       1.0114547    
+ CTF,   0,       46.824361    ,      0.22782066E-02,       16.327018    
+ Construction CTF,NONRES_ROOF,  26,   3,   3,   0.167,     0.2832    ,   0.750,   0.900,   0.450,   0.700,Rough
+ Material CTF Summary,F13 Built-up roofing,  0.0095,         0.160,   1120.000,     1460.000,  0.5938E-01
+ Material CTF Summary,NONRES_ROOF_INSULATION,  0.0000,         0.000,      0.000,        0.000,   3.472    
+ Material CTF Summary,F08 Metal surface,  0.0008,        45.280,   7824.000,      500.000,  0.1767E-04
+ CTF,   3,     -0.61927053E-06,      0.12767249E-08,     -0.37968499E-05,      0.16832131E-17
+ CTF,   2,      0.77611055    ,      0.17315568E-02,       1.0534842    ,     -0.72792597E-06
+ CTF,   1,      -21.915918    ,      0.11588205    ,      -6.3286394    ,      0.20197014    
+ CTF,   0,       21.365777    ,      0.10835518    ,       5.5011278    
+ Construction CTF,CORE_BOT_ZN_5_FLOOR_FFACTOR,  39,   2,   8,   0.167,     0.5650E-02,   0.000,   0.900,   0.000,   0.700,MediumRough
+ Material CTF Summary,~FC_Insulation_1,  0.0000,         0.000,      0.000,        0.000,   176.9    
+ Material CTF Summary,~FC_Concrete,  0.1500,         1.950,   2240.000,      900.000,  0.7692E-01
+ CTF,   8,      0.57026216E-10,     -0.29656739E-13,      0.26072253E-13,     -0.16907584E-15
+ CTF,   7,     -0.80728763E-07,      0.14958947E-11,     -0.10196182E-04,      0.85534123E-07
+ CTF,   6,      0.59163330E-05,      0.23390251E-08,      0.39199948E-02,     -0.33137873E-04
+ CTF,   5,     -0.14678961E-03,      0.29443049E-06,     -0.24001665    ,      0.21083805E-02
+ CTF,   4,      0.15257864E-02,      0.63469284E-05,       4.9653291    ,     -0.46676227E-01
+ CTF,   3,     -0.74362311E-02,      0.30151767E-04,      -38.474208    ,      0.40407555    
+ CTF,   2,      0.17883035E-01,      0.32406056E-04,       117.10039    ,      -1.4265819    
+ CTF,   1,     -0.20235698E-01,      0.62001922E-05,      -144.19380    ,       2.0537490    
+ CTF,   0,      0.84795330E-02,      0.69040512E-07,       60.838472    
+ Construction CTF,PERIMETER_BOT_ZN_1_FLOOR_FFACTOR,  40,   2,   7,   0.167,     0.3203    ,   0.000,   0.900,   0.000,   0.700,MediumRough
+ Material CTF Summary,~FC_Insulation_2,  0.0000,         0.000,      0.000,        0.000,   3.046    
+ Material CTF Summary,~FC_Concrete,  0.1500,         1.950,   2240.000,      900.000,  0.7692E-01
+ CTF,   7,     -0.13016834E-08,     -0.16290694E-15,      0.88498836E-14,     -0.12135921E-15
+ CTF,   6,      0.89451614E-05,      0.61645875E-08,      0.31803256E-02,     -0.26679236E-04
+ CTF,   5,     -0.64742195E-03,      0.36547247E-05,     -0.22318204    ,      0.19513616E-02
+ CTF,   4,      0.14916847E-01,      0.16643957E-03,       4.8205084    ,     -0.45178110E-01
+ CTF,   3,     -0.13105961    ,      0.13242136E-02,      -37.970359    ,      0.39808941    
+ CTF,   2,      0.46545055    ,      0.22037745E-02,       116.38457    ,      -1.4166100    
+ CTF,   1,     -0.67185732    ,      0.67187123E-03,      -143.84880    ,       2.0480783    
+ CTF,   0,      0.32757419    ,      0.16219505E-04,       60.838472    
+ Construction CTF,PERIMETER_BOT_ZN_2_FLOOR_FFACTOR,  41,   2,   7,   0.167,     0.3382    ,   0.000,   0.900,   0.000,   0.700,MediumRough
+ Material CTF Summary,~FC_Insulation_3,  0.0000,         0.000,      0.000,        0.000,   2.880    
+ Material CTF Summary,~FC_Concrete,  0.1500,         1.950,   2240.000,      900.000,  0.7692E-01
+ CTF,   7,     -0.12303558E-08,     -0.14270226E-15,      0.91996233E-14,     -0.98296057E-16
+ CTF,   6,      0.94498489E-05,      0.65153511E-08,      0.31788960E-02,     -0.26667243E-04
+ CTF,   5,     -0.68440608E-03,      0.38634918E-05,     -0.22310077    ,      0.19506443E-02
+ CTF,   4,      0.15771280E-01,      0.17595783E-03,       4.8191544    ,     -0.45165095E-01
+ CTF,   3,     -0.13857160    ,      0.14000615E-02,      -37.962708    ,      0.39800485    
+ CTF,   2,      0.49213314    ,      0.23301078E-02,       116.36968    ,      -1.4164108    
+ CTF,   1,     -0.71037381    ,      0.71049155E-03,      -143.84004    ,       2.0479342    
+ CTF,   0,      0.34635356    ,      0.17130188E-04,       60.838472    
+ Construction CTF,PERIMETER_BOT_ZN_3_FLOOR_FFACTOR,  42,   2,   7,   0.167,     0.3203    ,   0.000,   0.900,   0.000,   0.700,MediumRough
+ Material CTF Summary,~FC_Insulation_4,  0.0000,         0.000,      0.000,        0.000,   3.046    
+ Material CTF Summary,~FC_Concrete,  0.1500,         1.950,   2240.000,      900.000,  0.7692E-01
+ CTF,   7,     -0.13016834E-08,     -0.16290694E-15,      0.88498836E-14,     -0.12135921E-15
+ CTF,   6,      0.89451614E-05,      0.61645875E-08,      0.31803256E-02,     -0.26679236E-04
+ CTF,   5,     -0.64742195E-03,      0.36547247E-05,     -0.22318204    ,      0.19513616E-02
+ CTF,   4,      0.14916847E-01,      0.16643957E-03,       4.8205084    ,     -0.45178110E-01
+ CTF,   3,     -0.13105961    ,      0.13242136E-02,      -37.970359    ,      0.39808941    
+ CTF,   2,      0.46545055    ,      0.22037745E-02,       116.38457    ,      -1.4166100    
+ CTF,   1,     -0.67185732    ,      0.67187123E-03,      -143.84880    ,       2.0480783    
+ CTF,   0,      0.32757419    ,      0.16219505E-04,       60.838472    
+ Construction CTF,PERIMETER_BOT_ZN_4_FLOOR_FFACTOR,  43,   2,   7,   0.167,     0.3382    ,   0.000,   0.900,   0.000,   0.700,MediumRough
+ Material CTF Summary,~FC_Insulation_5,  0.0000,         0.000,      0.000,        0.000,   2.880    
+ Material CTF Summary,~FC_Concrete,  0.1500,         1.950,   2240.000,      900.000,  0.7692E-01
+ CTF,   7,     -0.12302676E-08,     -0.14265290E-15,      0.90677771E-14,     -0.97960605E-16
+ CTF,   6,      0.94505094E-05,      0.65155409E-08,      0.31788941E-02,     -0.26667228E-04
+ CTF,   5,     -0.68445446E-03,      0.38637844E-05,     -0.22310066    ,      0.19506433E-02
+ CTF,   4,      0.15772398E-01,      0.17596982E-03,       4.8191526    ,     -0.45165078E-01
+ CTF,   3,     -0.13858143    ,      0.14001646E-02,      -37.962698    ,      0.39800473    
+ CTF,   2,      0.49216804    ,      0.23302591E-02,       116.36966    ,      -1.4164106    
+ CTF,   1,     -0.71042418    ,      0.71056164E-03,      -143.84003    ,       2.0479340    
+ CTF,   0,      0.34637812    ,      0.17122305E-04,       60.838472    
+! <WindowConstruction>,Construction Name,Index,#Layers,Roughness,Conductance {W/m2-K},Conductance (Before Adjusted) {W/m2-K},Convection Coefficient Adjustment Ratio,SHGC,Solar Transmittance at Normal Incidence,Visible Transmittance at Normal Incidence
+! <WindowMaterial:Glazing>, Material Name, Optical Data Type, Spectral Data Set Name, Thickness {m}, Solar Transmittance,Front Solar Reflectance, Back Solar Reflectance, Visible Transmittance, Front Visible Reflectance,Back Visible Reflectance,Infrared Transmittance, Front Thermal Emissivity, Back Thermal Emissivity,Conductivity {W/m-K},Dirt Factor,Solar Diffusing
+ WindowConstruction,WINDOW_U_0.504_SHGC_EAST_0.229,7,1,VerySmooth,2.865,2.865,1.000,0.230,0.141,0.253
+ WindowMaterial:Glazing,GLAZING LAYER EAST,SpectralAverage,,1.91956E-002,0.14029,0.63148,0.63148,0.25190,0.16103,0.23774,0.00000,0.84000,0.84000,0.10739,1.00000,No
+ WindowConstruction,WINDOW_U_0.504_SHGC_NORTH_0.229,8,1,VerySmooth,2.865,2.865,1.000,0.230,0.141,0.253
+ WindowMaterial:Glazing,GLAZING LAYER NORTH,SpectralAverage,,1.91956E-002,0.14029,0.63148,0.63148,0.25190,0.16103,0.23774,0.00000,0.84000,0.84000,0.10739,1.00000,No
+ WindowConstruction,WINDOW_U_0.504_SHGC_SOUTH_0.229,9,1,VerySmooth,2.865,2.865,1.000,0.230,0.141,0.253
+ WindowMaterial:Glazing,GLAZING LAYER SOUTH,SpectralAverage,,1.91956E-002,0.14029,0.63148,0.63148,0.25190,0.16103,0.23774,0.00000,0.84000,0.84000,0.10739,1.00000,No
+ WindowConstruction,WINDOW_U_0.504_SHGC_WEST_0.229,10,1,VerySmooth,2.865,2.865,1.000,0.230,0.141,0.253
+ WindowMaterial:Glazing,GLAZING LAYER WEST,SpectralAverage,,1.91956E-002,0.14029,0.63148,0.63148,0.25190,0.16103,0.23774,0.00000,0.84000,0.84000,0.10739,1.00000,No
+! <Enclosure/Window Adjacency Daylighting Counts>, Enclosure Name, Number of Exterior Windows, Number of Exterior Windows in Adjacent Enclosures
+Enclosure/Window Adjacency Daylighting Counts, PERIMETER_BOT_ZN_1,3,0
+Enclosure/Window Adjacency Daylighting Counts, PERIMETER_BOT_ZN_2,2,0
+Enclosure/Window Adjacency Daylighting Counts, PERIMETER_BOT_ZN_3,3,0
+Enclosure/Window Adjacency Daylighting Counts, PERIMETER_BOT_ZN_4,2,0
+Enclosure/Window Adjacency Daylighting Counts, PERIMETER_MID_ZN_1,1,0
+Enclosure/Window Adjacency Daylighting Counts, PERIMETER_MID_ZN_2,1,0
+Enclosure/Window Adjacency Daylighting Counts, PERIMETER_MID_ZN_3,1,0
+Enclosure/Window Adjacency Daylighting Counts, PERIMETER_MID_ZN_4,1,0
+Enclosure/Window Adjacency Daylighting Counts, PERIMETER_TOP_ZN_1,1,0
+Enclosure/Window Adjacency Daylighting Counts, PERIMETER_TOP_ZN_2,1,0
+Enclosure/Window Adjacency Daylighting Counts, PERIMETER_TOP_ZN_3,1,0
+Enclosure/Window Adjacency Daylighting Counts, PERIMETER_TOP_ZN_4,1,0
+! <Enclosure/Window Adjacency Daylighting Matrix>, Enclosure Name, Number of Adjacent Enclosures with Windows,Adjacent Enclosure Names - 1st 100 (max)
+Enclosure/Window Adjacency Daylighting Matrix, PERIMETER_BOT_ZN_1,0
+Enclosure/Window Adjacency Daylighting Matrix, PERIMETER_BOT_ZN_2,0
+Enclosure/Window Adjacency Daylighting Matrix, PERIMETER_BOT_ZN_3,0
+Enclosure/Window Adjacency Daylighting Matrix, PERIMETER_BOT_ZN_4,0
+Enclosure/Window Adjacency Daylighting Matrix, PERIMETER_MID_ZN_1,0
+Enclosure/Window Adjacency Daylighting Matrix, PERIMETER_MID_ZN_2,0
+Enclosure/Window Adjacency Daylighting Matrix, PERIMETER_MID_ZN_3,0
+Enclosure/Window Adjacency Daylighting Matrix, PERIMETER_MID_ZN_4,0
+Enclosure/Window Adjacency Daylighting Matrix, PERIMETER_TOP_ZN_1,0
+Enclosure/Window Adjacency Daylighting Matrix, PERIMETER_TOP_ZN_2,0
+Enclosure/Window Adjacency Daylighting Matrix, PERIMETER_TOP_ZN_3,0
+Enclosure/Window Adjacency Daylighting Matrix, PERIMETER_TOP_ZN_4,0
+! <Water Heater Information>,Type,Name,Volume {m3},Maximum Capacity {W},Standard Rated Recovery Efficiency, Standard Rated Energy Factor
+! <Surface Convection Parameters>, Surface Name, Outside Model Assignment, Outside Area [m2], Outside Perimeter [m], Outside Height [m], Inside Model Assignment, Inside Height [m], Inside Perimeter Envelope [m], Inside Hydraulic Diameter [m], Window Wall Ratio, Window Location, Near Radiant {Yes/No}, Has Active HVAC {Yes/No}
+Surface Convection Parameters,CORE_BOT_ZN_5_WALL_EAST,0,0.00,0.00,0.00,0,2.74,0.00,30.31,-999.00,0,No,No
+Surface Convection Parameters,CORE_BOT_ZN_5_WALL_NORTH,0,0.00,0.00,0.00,0,2.74,0.00,30.31,-999.00,0,No,No
+Surface Convection Parameters,CORE_BOT_ZN_5_WALL_SOUTH,0,0.00,0.00,0.00,0,2.74,0.00,30.31,-999.00,0,No,No
+Surface Convection Parameters,CORE_BOT_ZN_5_WALL_WEST,0,0.00,0.00,0.00,0,2.74,0.00,30.31,-999.00,0,No,No
+Surface Convection Parameters,CORE_BOT_ZN_5_FLOOR,0,0.00,0.00,0.00,0,2.74,0.00,30.31,-999.00,0,No,No
+Surface Convection Parameters,CORE_BOT_ZN_5_CEILING,0,0.00,0.00,0.00,0,2.74,0.00,30.31,-999.00,0,No,No
+Surface Convection Parameters,CORE_BOTTOM_INTERNALMASS_1,0,0.00,0.00,0.00,0,2.74,0.00,30.31,-999.00,0,No,No
+Surface Convection Parameters,CORE_MID_ZN_5_WALL_EAST,0,0.00,0.00,0.00,0,2.74,0.00,30.31,-999.00,0,No,No
+Surface Convection Parameters,CORE_MID_ZN_5_WALL_NORTH,0,0.00,0.00,0.00,0,2.74,0.00,30.31,-999.00,0,No,No
+Surface Convection Parameters,CORE_MID_ZN_5_WALL_SOUTH,0,0.00,0.00,0.00,0,2.74,0.00,30.31,-999.00,0,No,No
+Surface Convection Parameters,CORE_MID_ZN_5_WALL_WEST,0,0.00,0.00,0.00,0,2.74,0.00,30.31,-999.00,0,No,No
+Surface Convection Parameters,CORE_MID_ZN_5_FLOOR,0,0.00,0.00,0.00,0,2.74,0.00,30.31,-999.00,0,No,No
+Surface Convection Parameters,CORE_MID_ZN_5_CEILING,0,0.00,0.00,0.00,0,2.74,0.00,30.31,-999.00,0,No,No
+Surface Convection Parameters,CORE_MID_INTERNALMASS_1,0,0.00,0.00,0.00,0,2.74,0.00,30.31,-999.00,0,No,No
+Surface Convection Parameters,CORE_TOP_ZN_5_WALL_EAST,0,0.00,0.00,0.00,0,2.74,0.00,30.31,-999.00,0,No,No
+Surface Convection Parameters,CORE_TOP_ZN_5_WALL_NORTH,0,0.00,0.00,0.00,0,2.74,0.00,30.31,-999.00,0,No,No
+Surface Convection Parameters,CORE_TOP_ZN_5_WALL_SOUTH,0,0.00,0.00,0.00,0,2.74,0.00,30.31,-999.00,0,No,No
+Surface Convection Parameters,CORE_TOP_ZN_5_WALL_WEST,0,0.00,0.00,0.00,0,2.74,0.00,30.31,-999.00,0,No,No
+Surface Convection Parameters,CORE_TOP_ZN_5_FLOOR,0,0.00,0.00,0.00,0,2.74,0.00,30.31,-999.00,0,No,No
+Surface Convection Parameters,CORE_TOP_ZN_5_CEILING,0,0.00,0.00,0.00,0,2.74,0.00,30.31,-999.00,0,No,No
+Surface Convection Parameters,CORE_TOP_INTERNALMASS_1,0,0.00,0.00,0.00,0,2.74,0.00,30.31,-999.00,0,No,No
+Surface Convection Parameters,PERIMETER_BOT_PLENUM_WALL_EAST,0,395.53,143.75,11.89,0,1.22,166.37,39.93,0.00,0,No,No
+Surface Convection Parameters,PERIMETER_BOT_PLENUM_WALL_NORTH,0,593.30,143.75,11.89,0,1.22,166.37,39.93,0.00,0,No,No
+Surface Convection Parameters,PERIMETER_BOT_PLENUM_WALL_SOUTH,0,593.30,123.60,11.89,0,1.22,166.37,39.93,0.00,0,No,No
+Surface Convection Parameters,PERIMETER_BOT_PLENUM_WALL_WEST,0,395.53,90.32,11.89,0,1.22,166.37,39.93,0.00,0,No,No
+Surface Convection Parameters,iz-CORE_BOT_ZN_5_CEILING,0,0.00,0.00,0.00,0,1.22,166.37,39.93,0.00,0,No,No
+Surface Convection Parameters,iz-PERIMETER_BOT_ZN_1_CEILING,0,0.00,0.00,0.00,0,1.22,166.37,39.93,0.00,0,No,No
+Surface Convection Parameters,iz-PERIMETER_BOT_ZN_2_CEILING,0,0.00,0.00,0.00,0,1.22,166.37,39.93,0.00,0,No,No
+Surface Convection Parameters,iz-PERIMETER_BOT_ZN_3_CEILING,0,0.00,0.00,0.00,0,1.22,166.37,39.93,0.00,0,No,No
+Surface Convection Parameters,iz-PERIMETER_BOT_ZN_4_CEILING,0,0.00,0.00,0.00,0,1.22,166.37,39.93,0.00,0,No,No
+Surface Convection Parameters,iz-CORE_MID_ZN_5_FLOOR,0,0.00,0.00,0.00,0,1.22,166.37,39.93,0.00,0,No,No
+Surface Convection Parameters,iz-PERIMETER_MID_ZN_1_FLOOR,0,0.00,0.00,0.00,0,1.22,166.37,39.93,0.00,0,No,No
+Surface Convection Parameters,iz-PERIMETER_MID_ZN_2_FLOOR,0,0.00,0.00,0.00,0,1.22,166.37,39.93,0.00,0,No,No
+Surface Convection Parameters,iz-PERIMETER_MID_ZN_3_FLOOR,0,0.00,0.00,0.00,0,1.22,166.37,39.93,0.00,0,No,No
+Surface Convection Parameters,iz-PERIMETER_MID_ZN_4_FLOOR,0,0.00,0.00,0.00,0,1.22,166.37,39.93,0.00,0,No,No
+Surface Convection Parameters,PERIMETER_MID_PLENUM_WALL_EAST,0,395.53,143.75,11.89,0,1.22,166.37,39.93,0.00,0,No,No
+Surface Convection Parameters,PERIMETER_MID_PLENUM_WALL_NORTH,0,593.30,143.75,11.89,0,1.22,166.37,39.93,0.00,0,No,No
+Surface Convection Parameters,PERIMETER_MID_PLENUM_WALL_SOUTH,0,593.30,123.60,11.89,0,1.22,166.37,39.93,0.00,0,No,No
+Surface Convection Parameters,PERIMETER_MID_PLENUM_WALL_WEST,0,395.53,90.32,11.89,0,1.22,166.37,39.93,0.00,0,No,No
+Surface Convection Parameters,iz-CORE_MID_ZN_5_CEILING,0,0.00,0.00,0.00,0,1.22,166.37,39.93,0.00,0,No,No
+Surface Convection Parameters,iz-PERIMETER_MID_ZN_1_CEILING,0,0.00,0.00,0.00,0,1.22,166.37,39.93,0.00,0,No,No
+Surface Convection Parameters,iz-PERIMETER_MID_ZN_2_CEILING,0,0.00,0.00,0.00,0,1.22,166.37,39.93,0.00,0,No,No
+Surface Convection Parameters,iz-PERIMETER_MID_ZN_3_CEILING,0,0.00,0.00,0.00,0,1.22,166.37,39.93,0.00,0,No,No
+Surface Convection Parameters,iz-PERIMETER_MID_ZN_4_CEILING,0,0.00,0.00,0.00,0,1.22,166.37,39.93,0.00,0,No,No
+Surface Convection Parameters,iz-CORE_TOP_ZN_5_FLOOR,0,0.00,0.00,0.00,0,1.22,166.37,39.93,0.00,0,No,No
+Surface Convection Parameters,iz-PERIMETER_TOP_ZN_1_FLOOR,0,0.00,0.00,0.00,0,1.22,166.37,39.93,0.00,0,No,No
+Surface Convection Parameters,iz-PERIMETER_TOP_ZN_2_FLOOR,0,0.00,0.00,0.00,0,1.22,166.37,39.93,0.00,0,No,No
+Surface Convection Parameters,iz-PERIMETER_TOP_ZN_3_FLOOR,0,0.00,0.00,0.00,0,1.22,166.37,39.93,0.00,0,No,No
+Surface Convection Parameters,iz-PERIMETER_TOP_ZN_4_FLOOR,0,0.00,0.00,0.00,0,1.22,166.37,39.93,0.00,0,No,No
+Surface Convection Parameters,PERIMETER_BOT_ZN_1_WALL_EAST,0,0.00,0.00,0.00,0,2.74,49.91,7.61,0.48,0,No,No
+Surface Convection Parameters,PERIMETER_BOT_ZN_1_WALL_SOUTH,0,593.30,123.60,11.89,0,2.74,49.91,7.61,0.48,3,No,No
+Surface Convection Parameters,PERIMETER_BOT_ZN_1_WALL_SOUTH_DOOR1,0,593.30,123.60,11.89,0,2.74,49.91,7.61,0.48,0,No,No
+Surface Convection Parameters,PERIMETER_BOT_ZN_1_WALL_SOUTH_DOOR2,0,593.30,123.60,11.89,0,2.74,49.91,7.61,0.48,0,No,No
+Surface Convection Parameters,PERIMETER_BOT_ZN_1_WALL_SOUTH_WINDOW1,0,593.30,123.60,11.89,0,2.74,49.91,7.61,0.48,2,No,No
+Surface Convection Parameters,PERIMETER_BOT_ZN_1_WALL_SOUTH_WINDOW2,0,593.30,123.60,11.89,0,2.74,49.91,7.61,0.48,2,No,No
+Surface Convection Parameters,PERIMETER_BOT_ZN_1_WALL_SOUTH_WINDOW3,0,593.30,123.60,11.89,0,2.74,49.91,7.61,0.48,2,No,No
+Surface Convection Parameters,iz-CORE_BOT_ZN_5_WALL_SOUTH,0,0.00,0.00,0.00,0,2.74,49.91,7.61,0.48,0,No,No
+Surface Convection Parameters,iz-PERIMETER_BOT_ZN_4_WALL_SOUTH,0,0.00,0.00,0.00,0,2.74,49.91,7.61,0.48,0,No,No
+Surface Convection Parameters,PERIMETER_BOT_ZN_1_FLOOR,0,0.00,0.00,0.00,0,2.74,49.91,7.61,0.48,0,No,No
+Surface Convection Parameters,PERIMETER_BOT_ZN_1_CEILING,0,0.00,0.00,0.00,0,2.74,49.91,7.61,0.48,0,No,No
+Surface Convection Parameters,PERIMETER_BOT_ZN_1_INTERNALMASS_1,0,0.00,0.00,0.00,0,2.74,49.91,7.61,0.48,0,No,No
+Surface Convection Parameters,PERIMETER_BOT_ZN_2_WALL_EAST,0,395.53,143.75,11.89,0,2.74,33.27,6.94,0.48,3,No,No
+Surface Convection Parameters,PERIMETER_BOT_ZN_2_WALL_EAST_DOOR,0,395.53,143.75,11.89,0,2.74,33.27,6.94,0.48,0,No,No
+Surface Convection Parameters,PERIMETER_BOT_ZN_2_WALL_EAST_WINDOW1,0,395.53,143.75,11.89,0,2.74,33.27,6.94,0.48,2,No,No
+Surface Convection Parameters,PERIMETER_BOT_ZN_2_WALL_EAST_WINDOW2,0,395.53,143.75,11.89,0,2.74,33.27,6.94,0.48,2,No,No
+Surface Convection Parameters,PERIMETER_BOT_ZN_2_WALL_NORTH,0,0.00,0.00,0.00,0,2.74,33.27,6.94,0.48,0,No,No
+Surface Convection Parameters,iz-CORE_BOT_ZN_5_WALL_EAST,0,0.00,0.00,0.00,0,2.74,33.27,6.94,0.48,0,No,No
+Surface Convection Parameters,iz-PERIMETER_BOT_ZN_1_WALL_EAST,0,0.00,0.00,0.00,0,2.74,33.27,6.94,0.48,0,No,No
+Surface Convection Parameters,PERIMETER_BOT_ZN_2_FLOOR,0,0.00,0.00,0.00,0,2.74,33.27,6.94,0.48,0,No,No
+Surface Convection Parameters,PERIMETER_BOT_ZN_2_CEILING,0,0.00,0.00,0.00,0,2.74,33.27,6.94,0.48,0,No,No
+Surface Convection Parameters,PERIMETER_BOT_ZN_2_INTERNALMASS_1,0,0.00,0.00,0.00,0,2.74,33.27,6.94,0.48,0,No,No
+Surface Convection Parameters,PERIMETER_BOT_ZN_3_WALL_NORTH,0,593.30,143.75,11.89,0,2.74,49.91,7.61,0.48,3,No,No
+Surface Convection Parameters,PERIMETER_BOT_ZN_3_WALL_NORTH_DOOR1,0,593.30,143.75,11.89,0,2.74,49.91,7.61,0.48,0,No,No
+Surface Convection Parameters,PERIMETER_BOT_ZN_3_WALL_NORTH_DOOR2,0,593.30,143.75,11.89,0,2.74,49.91,7.61,0.48,0,No,No
+Surface Convection Parameters,PERIMETER_BOT_ZN_3_WALL_NORTH_WINDOW1,0,593.30,143.75,11.89,0,2.74,49.91,7.61,0.48,2,No,No
+Surface Convection Parameters,PERIMETER_BOT_ZN_3_WALL_NORTH_WINDOW2,0,593.30,143.75,11.89,0,2.74,49.91,7.61,0.48,2,No,No
+Surface Convection Parameters,PERIMETER_BOT_ZN_3_WALL_NORTH_WINDOW3,0,593.30,143.75,11.89,0,2.74,49.91,7.61,0.48,2,No,No
+Surface Convection Parameters,PERIMETER_BOT_ZN_3_WALL_WEST,0,0.00,0.00,0.00,0,2.74,49.91,7.61,0.48,0,No,No
+Surface Convection Parameters,iz-CORE_BOT_ZN_5_WALL_NORTH,0,0.00,0.00,0.00,0,2.74,49.91,7.61,0.48,0,No,No
+Surface Convection Parameters,iz-PERIMETER_BOT_ZN_2_WALL_NORTH,0,0.00,0.00,0.00,0,2.74,49.91,7.61,0.48,0,No,No
+Surface Convection Parameters,PERIMETER_BOT_ZN_3_FLOOR,0,0.00,0.00,0.00,0,2.74,49.91,7.61,0.48,0,No,No
+Surface Convection Parameters,PERIMETER_BOT_ZN_3_CEILING,0,0.00,0.00,0.00,0,2.74,49.91,7.61,0.48,0,No,No
+Surface Convection Parameters,PERIMETER_BOT_ZN_3_INTERNALMASS_1,0,0.00,0.00,0.00,0,2.74,49.91,7.61,0.48,0,No,No
+Surface Convection Parameters,PERIMETER_BOT_ZN_4_WALL_SOUTH,0,0.00,0.00,0.00,0,2.74,33.27,6.94,0.48,0,No,No
+Surface Convection Parameters,PERIMETER_BOT_ZN_4_WALL_WEST,0,395.53,90.32,11.89,0,2.74,33.27,6.94,0.48,3,No,No
+Surface Convection Parameters,PERIMETER_BOT_ZN_4_WALL_WEST_DOOR,0,395.53,90.32,11.89,0,2.74,33.27,6.94,0.48,0,No,No
+Surface Convection Parameters,PERIMETER_BOT_ZN_4_WALL_WEST_WINDOW1,0,395.53,90.32,11.89,0,2.74,33.27,6.94,0.48,2,No,No
+Surface Convection Parameters,PERIMETER_BOT_ZN_4_WALL_WEST_WINDOW2,0,395.53,90.32,11.89,0,2.74,33.27,6.94,0.48,2,No,No
+Surface Convection Parameters,iz-CORE_BOT_ZN_5_WALL_WEST,0,0.00,0.00,0.00,0,2.74,33.27,6.94,0.48,0,No,No
+Surface Convection Parameters,iz-PERIMETER_BOT_ZN_3_WALL_WEST,0,0.00,0.00,0.00,0,2.74,33.27,6.94,0.48,0,No,No
+Surface Convection Parameters,PERIMETER_BOT_ZN_4_FLOOR,0,0.00,0.00,0.00,0,2.74,33.27,6.94,0.48,0,No,No
+Surface Convection Parameters,PERIMETER_BOT_ZN_4_CEILING,0,0.00,0.00,0.00,0,2.74,33.27,6.94,0.48,0,No,No
+Surface Convection Parameters,PERIMETER_BOT_ZN_4_INTERNALMASS_1,0,0.00,0.00,0.00,0,2.74,33.27,6.94,0.48,0,No,No
+Surface Convection Parameters,PERIMETER_MID_ZN_1_WALL_EAST,0,0.00,0.00,0.00,0,2.74,49.91,7.61,0.48,0,No,No
+Surface Convection Parameters,PERIMETER_MID_ZN_1_WALL_SOUTH,0,593.30,123.60,11.89,0,2.74,49.91,7.61,0.48,3,No,No
+Surface Convection Parameters,PERIMETER_MID_ZN_1_WALL_SOUTH_WINDOW,0,593.30,123.60,11.89,0,2.74,49.91,7.61,0.48,2,No,No
+Surface Convection Parameters,iz-CORE_MID_ZN_5_WALL_SOUTH,0,0.00,0.00,0.00,0,2.74,49.91,7.61,0.48,0,No,No
+Surface Convection Parameters,iz-PERIMETER_MID_ZN_4_WALL_SOUTH,0,0.00,0.00,0.00,0,2.74,49.91,7.61,0.48,0,No,No
+Surface Convection Parameters,PERIMETER_MID_ZN_1_FLOOR,0,0.00,0.00,0.00,0,2.74,49.91,7.61,0.48,0,No,No
+Surface Convection Parameters,PERIMETER_MID_ZN_1_CEILING,0,0.00,0.00,0.00,0,2.74,49.91,7.61,0.48,0,No,No
+Surface Convection Parameters,PERIMETER_MID_ZN_1_INTERNALMASS_1,0,0.00,0.00,0.00,0,2.74,49.91,7.61,0.48,0,No,No
+Surface Convection Parameters,PERIMETER_MID_ZN_2_WALL_EAST,0,395.53,143.75,11.89,0,2.74,33.27,6.94,0.48,3,No,No
+Surface Convection Parameters,PERIMETER_MID_ZN_2_WALL_EAST_WINDOW,0,395.53,143.75,11.89,0,2.74,33.27,6.94,0.48,2,No,No
+Surface Convection Parameters,PERIMETER_MID_ZN_2_WALL_NORTH,0,0.00,0.00,0.00,0,2.74,33.27,6.94,0.48,0,No,No
+Surface Convection Parameters,iz-CORE_MID_ZN_5_WALL_EAST,0,0.00,0.00,0.00,0,2.74,33.27,6.94,0.48,0,No,No
+Surface Convection Parameters,iz-PERIMETER_MID_ZN_1_WALL_EAST,0,0.00,0.00,0.00,0,2.74,33.27,6.94,0.48,0,No,No
+Surface Convection Parameters,PERIMETER_MID_ZN_2_FLOOR,0,0.00,0.00,0.00,0,2.74,33.27,6.94,0.48,0,No,No
+Surface Convection Parameters,PERIMETER_MID_ZN_2_CEILING,0,0.00,0.00,0.00,0,2.74,33.27,6.94,0.48,0,No,No
+Surface Convection Parameters,PERIMETER_MID_ZN_2_INTERNALMASS_1,0,0.00,0.00,0.00,0,2.74,33.27,6.94,0.48,0,No,No
+Surface Convection Parameters,PERIMETER_MID_ZN_3_WALL_NORTH,0,593.30,143.75,11.89,0,2.74,49.91,7.61,0.48,3,No,No
+Surface Convection Parameters,PERIMETER_MID_ZN_3_WALL_NORTH_WINDOW,0,593.30,143.75,11.89,0,2.74,49.91,7.61,0.48,2,No,No
+Surface Convection Parameters,PERIMETER_MID_ZN_3_WALL_WEST,0,0.00,0.00,0.00,0,2.74,49.91,7.61,0.48,0,No,No
+Surface Convection Parameters,iz-CORE_MID_ZN_5_WALL_NORTH,0,0.00,0.00,0.00,0,2.74,49.91,7.61,0.48,0,No,No
+Surface Convection Parameters,iz-PERIMETER_MID_ZN_2_WALL_NORTH,0,0.00,0.00,0.00,0,2.74,49.91,7.61,0.48,0,No,No
+Surface Convection Parameters,PERIMETER_MID_ZN_3_FLOOR,0,0.00,0.00,0.00,0,2.74,49.91,7.61,0.48,0,No,No
+Surface Convection Parameters,PERIMETER_MID_ZN_3_CEILING,0,0.00,0.00,0.00,0,2.74,49.91,7.61,0.48,0,No,No
+Surface Convection Parameters,PERIMETER_MID_ZN_3_INTERNALMASS_1,0,0.00,0.00,0.00,0,2.74,49.91,7.61,0.48,0,No,No
+Surface Convection Parameters,PERIMETER_MID_ZN_4_WALL_SOUTH,0,0.00,0.00,0.00,0,2.74,33.27,6.94,0.48,0,No,No
+Surface Convection Parameters,PERIMETER_MID_ZN_4_WALL_WEST,0,395.53,90.32,11.89,0,2.74,33.27,6.94,0.48,3,No,No
+Surface Convection Parameters,PERIMETER_MID_ZN_4_WALL_WEST_WINDOW,0,395.53,90.32,11.89,0,2.74,33.27,6.94,0.48,2,No,No
+Surface Convection Parameters,iz-CORE_MID_ZN_5_WALL_WEST,0,0.00,0.00,0.00,0,2.74,33.27,6.94,0.48,0,No,No
+Surface Convection Parameters,iz-PERIMETER_MID_ZN_3_WALL_WEST,0,0.00,0.00,0.00,0,2.74,33.27,6.94,0.48,0,No,No
+Surface Convection Parameters,PERIMETER_MID_ZN_4_FLOOR,0,0.00,0.00,0.00,0,2.74,33.27,6.94,0.48,0,No,No
+Surface Convection Parameters,PERIMETER_MID_ZN_4_CEILING,0,0.00,0.00,0.00,0,2.74,33.27,6.94,0.48,0,No,No
+Surface Convection Parameters,PERIMETER_MID_ZN_4_INTERNALMASS_1,0,0.00,0.00,0.00,0,2.74,33.27,6.94,0.48,0,No,No
+Surface Convection Parameters,PERIMETER_TOP_ZN_1_WALL_EAST,0,0.00,0.00,0.00,0,2.74,49.91,7.61,0.48,0,No,No
+Surface Convection Parameters,PERIMETER_TOP_ZN_1_WALL_SOUTH,0,593.30,123.60,11.89,0,2.74,49.91,7.61,0.48,3,No,No
+Surface Convection Parameters,PERIMETER_TOP_ZN_1_WALL_SOUTH_WINDOW,0,593.30,123.60,11.89,0,2.74,49.91,7.61,0.48,2,No,No
+Surface Convection Parameters,iz-CORE_TOP_ZN_5_WALL_SOUTH,0,0.00,0.00,0.00,0,2.74,49.91,7.61,0.48,0,No,No
+Surface Convection Parameters,iz-PERIMETER_TOP_ZN_4_WALL_SOUTH,0,0.00,0.00,0.00,0,2.74,49.91,7.61,0.48,0,No,No
+Surface Convection Parameters,PERIMETER_TOP_ZN_1_FLOOR,0,0.00,0.00,0.00,0,2.74,49.91,7.61,0.48,0,No,No
+Surface Convection Parameters,PERIMETER_TOP_ZN_1_CEILING,0,0.00,0.00,0.00,0,2.74,49.91,7.61,0.48,0,No,No
+Surface Convection Parameters,PERIMETER_TOP_ZN_1_INTERNALMASS_1,0,0.00,0.00,0.00,0,2.74,49.91,7.61,0.48,0,No,No
+Surface Convection Parameters,PERIMETER_TOP_ZN_2_WALL_EAST,0,395.53,143.75,11.89,0,2.74,33.27,6.94,0.48,3,No,No
+Surface Convection Parameters,PERIMETER_TOP_ZN_2_WALL_EAST_WINDOW,0,395.53,143.75,11.89,0,2.74,33.27,6.94,0.48,2,No,No
+Surface Convection Parameters,PERIMETER_TOP_ZN_2_WALL_NORTH,0,0.00,0.00,0.00,0,2.74,33.27,6.94,0.48,0,No,No
+Surface Convection Parameters,iz-CORE_TOP_ZN_5_WALL_EAST,0,0.00,0.00,0.00,0,2.74,33.27,6.94,0.48,0,No,No
+Surface Convection Parameters,iz-PERIMETER_TOP_ZN_1_WALL_EAST,0,0.00,0.00,0.00,0,2.74,33.27,6.94,0.48,0,No,No
+Surface Convection Parameters,PERIMETER_TOP_ZN_2_FLOOR,0,0.00,0.00,0.00,0,2.74,33.27,6.94,0.48,0,No,No
+Surface Convection Parameters,PERIMETER_TOP_ZN_2_CEILING,0,0.00,0.00,0.00,0,2.74,33.27,6.94,0.48,0,No,No
+Surface Convection Parameters,PERIMETER_TOP_ZN_2_INTERNALMASS_1,0,0.00,0.00,0.00,0,2.74,33.27,6.94,0.48,0,No,No
+Surface Convection Parameters,PERIMETER_TOP_ZN_3_WALL_NORTH,0,593.30,143.75,11.89,0,2.74,49.91,7.61,0.48,3,No,No
+Surface Convection Parameters,PERIMETER_TOP_ZN_3_WALL_NORTH_WINDOW,0,593.30,143.75,11.89,0,2.74,49.91,7.61,0.48,2,No,No
+Surface Convection Parameters,PERIMETER_TOP_ZN_3_WALL_WEST,0,0.00,0.00,0.00,0,2.74,49.91,7.61,0.48,0,No,No
+Surface Convection Parameters,iz-CORE_TOP_ZN_5_WALL_NORTH,0,0.00,0.00,0.00,0,2.74,49.91,7.61,0.48,0,No,No
+Surface Convection Parameters,iz-PERIMETER_TOP_ZN_2_WALL_NORTH,0,0.00,0.00,0.00,0,2.74,49.91,7.61,0.48,0,No,No
+Surface Convection Parameters,PERIMETER_TOP_ZN_3_FLOOR,0,0.00,0.00,0.00,0,2.74,49.91,7.61,0.48,0,No,No
+Surface Convection Parameters,PERIMETER_TOP_ZN_3_CEILING,0,0.00,0.00,0.00,0,2.74,49.91,7.61,0.48,0,No,No
+Surface Convection Parameters,PERIMETER_TOP_ZN_3_INTERNALMASS_1,0,0.00,0.00,0.00,0,2.74,49.91,7.61,0.48,0,No,No
+Surface Convection Parameters,PERIMETER_TOP_ZN_4_WALL_SOUTH,0,0.00,0.00,0.00,0,2.74,33.27,6.94,0.48,0,No,No
+Surface Convection Parameters,PERIMETER_TOP_ZN_4_WALL_WEST,0,395.53,90.32,11.89,0,2.74,33.27,6.94,0.48,3,No,No
+Surface Convection Parameters,PERIMETER_TOP_ZN_4_WALL_WEST_WINDOW,0,395.53,90.32,11.89,0,2.74,33.27,6.94,0.48,2,No,No
+Surface Convection Parameters,iz-CORE_TOP_ZN_5_WALL_WEST,0,0.00,0.00,0.00,0,2.74,33.27,6.94,0.48,0,No,No
+Surface Convection Parameters,iz-PERIMETER_TOP_ZN_3_WALL_WEST,0,0.00,0.00,0.00,0,2.74,33.27,6.94,0.48,0,No,No
+Surface Convection Parameters,PERIMETER_TOP_ZN_4_FLOOR,0,0.00,0.00,0.00,0,2.74,33.27,6.94,0.48,0,No,No
+Surface Convection Parameters,PERIMETER_TOP_ZN_4_CEILING,0,0.00,0.00,0.00,0,2.74,33.27,6.94,0.48,0,No,No
+Surface Convection Parameters,PERIMETER_TOP_ZN_4_INTERNALMASS_1,0,0.00,0.00,0.00,0,2.74,33.27,6.94,0.48,0,No,No
+Surface Convection Parameters,PERIMETER_TOP_PLENUM_WALL_EAST,0,395.53,143.75,11.89,0,1.22,166.37,39.93,0.00,0,No,No
+Surface Convection Parameters,PERIMETER_TOP_PLENUM_WALL_NORTH,0,593.30,143.75,11.89,0,1.22,166.37,39.93,0.00,0,No,No
+Surface Convection Parameters,PERIMETER_TOP_PLENUM_WALL_SOUTH,0,593.30,123.60,11.89,0,1.22,166.37,39.93,0.00,0,No,No
+Surface Convection Parameters,PERIMETER_TOP_PLENUM_WALL_WEST,0,395.53,90.32,11.89,0,1.22,166.37,39.93,0.00,0,No,No
+Surface Convection Parameters,iz-CORE_TOP_ZN_5_CEILING,0,0.00,0.00,0.00,0,1.22,166.37,39.93,0.00,0,No,No
+Surface Convection Parameters,iz-PERIMETER_TOP_ZN_1_CEILING,0,0.00,0.00,0.00,0,1.22,166.37,39.93,0.00,0,No,No
+Surface Convection Parameters,iz-PERIMETER_TOP_ZN_2_CEILING,0,0.00,0.00,0.00,0,1.22,166.37,39.93,0.00,0,No,No
+Surface Convection Parameters,iz-PERIMETER_TOP_ZN_3_CEILING,0,0.00,0.00,0.00,0,1.22,166.37,39.93,0.00,0,No,No
+Surface Convection Parameters,iz-PERIMETER_TOP_ZN_4_CEILING,0,0.00,0.00,0.00,0,1.22,166.37,39.93,0.00,0,No,No
+Surface Convection Parameters,BUILDING_ROOF,0,1660.73,166.37,0.00,0,1.22,166.37,39.93,0.00,0,No,No
+! <ZoneInfiltration Airflow Stats Nominal>,Name,Schedule Name,Zone Name, Zone Floor Area {m2}, # Zone Occupants,Design Volume Flow Rate {m3/s},Volume Flow Rate/Floor Area {m3/s-m2},Volume Flow Rate/Exterior Surface Area {m3/s-m2},ACH - Air Changes per Hour,Equation A - Constant Term Coefficient {},Equation B - Temperature Term Coefficient {1/C},Equation C - Velocity Term Coefficient {s/m}, Equation D - Velocity Squared Term Coefficient {s2/m2}
+ ZoneInfiltration Airflow Stats Nominal, FIRSTFLOOR_PLENUM_INFILTRATION,INFIL_SCH_PNNL,FIRSTFLOOR_PLENUM,1660.73,0.0,0.116,6.957E-005,5.696E-004,0.205,0.000,0.000,0.224,0.000
+ ZoneInfiltration Airflow Stats Nominal, MIDFLOOR_PLENUM_INFILTRATION,INFIL_SCH_PNNL,MIDFLOOR_PLENUM,1660.73,0.0,0.116,6.957E-005,5.696E-004,0.205,0.000,0.000,0.224,0.000
+ ZoneInfiltration Airflow Stats Nominal, PERIMETER_BOT_ZN_1_DOOR_INFILTRATION,INFIL_DOOR_OPENING_SCH,PERIMETER_BOT_ZN_1,207.34,11.2,1.043,5.030E-003,7.407E-003,6.602,1.000,0.000,0.000,0.000
+ ZoneInfiltration Airflow Stats Nominal, PERIMETER_BOT_ZN_1_INFILTRATION,INFIL_SCH_PNNL,PERIMETER_BOT_ZN_1,207.34,11.2,7.798E-002,3.761E-004,5.538E-004,0.494,0.000,0.000,0.224,0.000
+ ZoneInfiltration Airflow Stats Nominal, PERIMETER_BOT_ZN_2_INFILTRATION,INFIL_SCH_PNNL,PERIMETER_BOT_ZN_2,131.26,7.1,5.199E-002,3.961E-004,5.577E-004,0.520,0.000,0.000,0.224,0.000
+ ZoneInfiltration Airflow Stats Nominal, PERIMETER_BOT_ZN_3_INFILTRATION,INFIL_SCH_PNNL,PERIMETER_BOT_ZN_3,207.34,11.2,7.798E-002,3.761E-004,5.538E-004,0.494,0.000,0.000,0.224,0.000
+ ZoneInfiltration Airflow Stats Nominal, PERIMETER_BOT_ZN_4_INFILTRATION,INFIL_SCH_PNNL,PERIMETER_BOT_ZN_4,131.25,7.1,5.199E-002,3.961E-004,5.577E-004,0.520,0.000,0.000,0.224,0.000
+ ZoneInfiltration Airflow Stats Nominal, PERIMETER_MID_ZN_1_INFILTRATION,INFIL_SCH_PNNL,PERIMETER_MID_ZN_1,207.34,11.2,7.798E-002,3.761E-004,5.696E-004,0.494,0.000,0.000,0.224,0.000
+ ZoneInfiltration Airflow Stats Nominal, PERIMETER_MID_ZN_2_INFILTRATION,INFIL_SCH_PNNL,PERIMETER_MID_ZN_2,131.26,7.1,5.199E-002,3.961E-004,5.696E-004,0.520,0.000,0.000,0.224,0.000
+ ZoneInfiltration Airflow Stats Nominal, PERIMETER_MID_ZN_3_INFILTRATION,INFIL_SCH_PNNL,PERIMETER_MID_ZN_3,207.34,11.2,7.798E-002,3.761E-004,5.696E-004,0.494,0.000,0.000,0.224,0.000
+ ZoneInfiltration Airflow Stats Nominal, PERIMETER_MID_ZN_4_INFILTRATION,INFIL_SCH_PNNL,PERIMETER_MID_ZN_4,131.25,7.1,5.199E-002,3.961E-004,5.696E-004,0.520,0.000,0.000,0.224,0.000
+ ZoneInfiltration Airflow Stats Nominal, PERIMETER_TOP_ZN_1_INFILTRATION,INFIL_SCH_PNNL,PERIMETER_TOP_ZN_1,207.34,11.2,7.798E-002,3.761E-004,5.696E-004,0.494,0.000,0.000,0.224,0.000
+ ZoneInfiltration Airflow Stats Nominal, PERIMETER_TOP_ZN_2_INFILTRATION,INFIL_SCH_PNNL,PERIMETER_TOP_ZN_2,131.26,7.1,5.199E-002,3.961E-004,5.696E-004,0.520,0.000,0.000,0.224,0.000
+ ZoneInfiltration Airflow Stats Nominal, PERIMETER_TOP_ZN_3_INFILTRATION,INFIL_SCH_PNNL,PERIMETER_TOP_ZN_3,207.34,11.2,7.798E-002,3.761E-004,5.696E-004,0.494,0.000,0.000,0.224,0.000
+ ZoneInfiltration Airflow Stats Nominal, PERIMETER_TOP_ZN_4_INFILTRATION,INFIL_SCH_PNNL,PERIMETER_TOP_ZN_4,131.25,7.1,5.199E-002,3.961E-004,5.696E-004,0.520,0.000,0.000,0.224,0.000
+ ZoneInfiltration Airflow Stats Nominal, TOPFLOOR_PLENUM_INFILTRATION,INFIL_SCH_PNNL,TOPFLOOR_PLENUM,1660.73,0.0,0.116,6.957E-005,6.199E-005,0.205,0.000,0.000,0.224,0.000
+! <AirFlow Model>, Simple
+ AirFlow Model, Simple
+! <RoomAir Model>, Zone Name, Mixing/Mundt/UCSDDV/UCSDCV/UCSDUFI/UCSDUFE/User Defined
+RoomAir Model,CORE_BOTTOM,Mixing/Well-Stirred
+RoomAir Model,CORE_MID,Mixing/Well-Stirred
+RoomAir Model,CORE_TOP,Mixing/Well-Stirred
+RoomAir Model,FIRSTFLOOR_PLENUM,Mixing/Well-Stirred
+RoomAir Model,MIDFLOOR_PLENUM,Mixing/Well-Stirred
+RoomAir Model,PERIMETER_BOT_ZN_1,Mixing/Well-Stirred
+RoomAir Model,PERIMETER_BOT_ZN_2,Mixing/Well-Stirred
+RoomAir Model,PERIMETER_BOT_ZN_3,Mixing/Well-Stirred
+RoomAir Model,PERIMETER_BOT_ZN_4,Mixing/Well-Stirred
+RoomAir Model,PERIMETER_MID_ZN_1,Mixing/Well-Stirred
+RoomAir Model,PERIMETER_MID_ZN_2,Mixing/Well-Stirred
+RoomAir Model,PERIMETER_MID_ZN_3,Mixing/Well-Stirred
+RoomAir Model,PERIMETER_MID_ZN_4,Mixing/Well-Stirred
+RoomAir Model,PERIMETER_TOP_ZN_1,Mixing/Well-Stirred
+RoomAir Model,PERIMETER_TOP_ZN_2,Mixing/Well-Stirred
+RoomAir Model,PERIMETER_TOP_ZN_3,Mixing/Well-Stirred
+RoomAir Model,PERIMETER_TOP_ZN_4,Mixing/Well-Stirred
+RoomAir Model,TOPFLOOR_PLENUM,Mixing/Well-Stirred
+! <AirflowNetwork Model:Control>, No Multizone or Distribution/Multizone with Distribution/Multizone without Distribution/Multizone with Distribution only during Fan Operation
+AirflowNetwork Model:Control,NoMultizoneOrDistribution
+! <Zone Volume Capacitance Multiplier>, Sensible Heat Capacity Multiplier, Moisture Capacity Multiplier, Carbon Dioxide Capacity Multiplier, Generic Contaminant Capacity Multiplier
+Zone Volume Capacitance Multiplier,   1.000 ,   1.000,   1.000,   1.000
+! <Load Timesteps in Zone Design Calculation Averaging Window>, Value
+ Load Timesteps in Zone Design Calculation Averaging Window,    6
+! <Heating Sizing Factor Information>, Sizing Factor ID, Value
+ Heating Sizing Factor Information, Global,   1.0000    
+! <Cooling Sizing Factor Information>, Sizing Factor ID, Value
+ Cooling Sizing Factor Information, Global,   1.0000    
+! <Sky Daylight Factors>, Sky Type, MonthAndDay, Daylighting Control Name, Enclosure Name, Window Name, Reference Point, Daylight Factor
+ Sky Daylight Factors,Clear Sky,07/21,PERIMETER_BOT_ZN_1_DAYLCTRL,PERIMETER_BOT_ZN_1,PERIMETER_BOT_ZN_1_WALL_SOUTH_WINDOW1,PERIMETER_BOT_ZN_1_DAYLREFPT1,3.3839E-003
+ Sky Daylight Factors,Clear Sky,07/21,PERIMETER_BOT_ZN_1_DAYLCTRL,PERIMETER_BOT_ZN_1,PERIMETER_BOT_ZN_1_WALL_SOUTH_WINDOW1,PERIMETER_BOT_ZN_1_DAYLREFPT2,3.4165E-003
+ Sky Daylight Factors,Clear Turbid Sky,07/21,PERIMETER_BOT_ZN_1_DAYLCTRL,PERIMETER_BOT_ZN_1,PERIMETER_BOT_ZN_1_WALL_SOUTH_WINDOW1,PERIMETER_BOT_ZN_1_DAYLREFPT1,3.2081E-003
+ Sky Daylight Factors,Clear Turbid Sky,07/21,PERIMETER_BOT_ZN_1_DAYLCTRL,PERIMETER_BOT_ZN_1,PERIMETER_BOT_ZN_1_WALL_SOUTH_WINDOW1,PERIMETER_BOT_ZN_1_DAYLREFPT2,3.2346E-003
+ Sky Daylight Factors,Intermediate Sky,07/21,PERIMETER_BOT_ZN_1_DAYLCTRL,PERIMETER_BOT_ZN_1,PERIMETER_BOT_ZN_1_WALL_SOUTH_WINDOW1,PERIMETER_BOT_ZN_1_DAYLREFPT1,2.5057E-003
+ Sky Daylight Factors,Intermediate Sky,07/21,PERIMETER_BOT_ZN_1_DAYLCTRL,PERIMETER_BOT_ZN_1,PERIMETER_BOT_ZN_1_WALL_SOUTH_WINDOW1,PERIMETER_BOT_ZN_1_DAYLREFPT2,2.5174E-003
+ Sky Daylight Factors,Overcast Sky,07/21,PERIMETER_BOT_ZN_1_DAYLCTRL,PERIMETER_BOT_ZN_1,PERIMETER_BOT_ZN_1_WALL_SOUTH_WINDOW1,PERIMETER_BOT_ZN_1_DAYLREFPT1,2.6735E-003
+ Sky Daylight Factors,Overcast Sky,07/21,PERIMETER_BOT_ZN_1_DAYLCTRL,PERIMETER_BOT_ZN_1,PERIMETER_BOT_ZN_1_WALL_SOUTH_WINDOW1,PERIMETER_BOT_ZN_1_DAYLREFPT2,2.6886E-003
+ Sky Daylight Factors,Clear Sky,07/21,PERIMETER_BOT_ZN_1_DAYLCTRL,PERIMETER_BOT_ZN_1,PERIMETER_BOT_ZN_1_WALL_SOUTH_WINDOW2,PERIMETER_BOT_ZN_1_DAYLREFPT1,3.6263E-002
+ Sky Daylight Factors,Clear Sky,07/21,PERIMETER_BOT_ZN_1_DAYLCTRL,PERIMETER_BOT_ZN_1,PERIMETER_BOT_ZN_1_WALL_SOUTH_WINDOW2,PERIMETER_BOT_ZN_1_DAYLREFPT2,1.6413E-002
+ Sky Daylight Factors,Clear Turbid Sky,07/21,PERIMETER_BOT_ZN_1_DAYLCTRL,PERIMETER_BOT_ZN_1,PERIMETER_BOT_ZN_1_WALL_SOUTH_WINDOW2,PERIMETER_BOT_ZN_1_DAYLREFPT1,3.3608E-002
+ Sky Daylight Factors,Clear Turbid Sky,07/21,PERIMETER_BOT_ZN_1_DAYLCTRL,PERIMETER_BOT_ZN_1,PERIMETER_BOT_ZN_1_WALL_SOUTH_WINDOW2,PERIMETER_BOT_ZN_1_DAYLREFPT2,1.4569E-002
+ Sky Daylight Factors,Intermediate Sky,07/21,PERIMETER_BOT_ZN_1_DAYLCTRL,PERIMETER_BOT_ZN_1,PERIMETER_BOT_ZN_1_WALL_SOUTH_WINDOW2,PERIMETER_BOT_ZN_1_DAYLREFPT1,2.2393E-002
+ Sky Daylight Factors,Intermediate Sky,07/21,PERIMETER_BOT_ZN_1_DAYLCTRL,PERIMETER_BOT_ZN_1,PERIMETER_BOT_ZN_1_WALL_SOUTH_WINDOW2,PERIMETER_BOT_ZN_1_DAYLREFPT2,8.4877E-003
+ Sky Daylight Factors,Overcast Sky,07/21,PERIMETER_BOT_ZN_1_DAYLCTRL,PERIMETER_BOT_ZN_1,PERIMETER_BOT_ZN_1_WALL_SOUTH_WINDOW2,PERIMETER_BOT_ZN_1_DAYLREFPT1,2.9381E-002
+ Sky Daylight Factors,Overcast Sky,07/21,PERIMETER_BOT_ZN_1_DAYLCTRL,PERIMETER_BOT_ZN_1,PERIMETER_BOT_ZN_1_WALL_SOUTH_WINDOW2,PERIMETER_BOT_ZN_1_DAYLREFPT2,1.0999E-002
+ Sky Daylight Factors,Clear Sky,07/21,PERIMETER_BOT_ZN_1_DAYLCTRL,PERIMETER_BOT_ZN_1,PERIMETER_BOT_ZN_1_WALL_SOUTH_WINDOW3,PERIMETER_BOT_ZN_1_DAYLREFPT1,3.3837E-003
+ Sky Daylight Factors,Clear Sky,07/21,PERIMETER_BOT_ZN_1_DAYLCTRL,PERIMETER_BOT_ZN_1,PERIMETER_BOT_ZN_1_WALL_SOUTH_WINDOW3,PERIMETER_BOT_ZN_1_DAYLREFPT2,3.4162E-003
+ Sky Daylight Factors,Clear Turbid Sky,07/21,PERIMETER_BOT_ZN_1_DAYLCTRL,PERIMETER_BOT_ZN_1,PERIMETER_BOT_ZN_1_WALL_SOUTH_WINDOW3,PERIMETER_BOT_ZN_1_DAYLREFPT1,3.2078E-003
+ Sky Daylight Factors,Clear Turbid Sky,07/21,PERIMETER_BOT_ZN_1_DAYLCTRL,PERIMETER_BOT_ZN_1,PERIMETER_BOT_ZN_1_WALL_SOUTH_WINDOW3,PERIMETER_BOT_ZN_1_DAYLREFPT2,3.2342E-003
+ Sky Daylight Factors,Intermediate Sky,07/21,PERIMETER_BOT_ZN_1_DAYLCTRL,PERIMETER_BOT_ZN_1,PERIMETER_BOT_ZN_1_WALL_SOUTH_WINDOW3,PERIMETER_BOT_ZN_1_DAYLREFPT1,2.5055E-003
+ Sky Daylight Factors,Intermediate Sky,07/21,PERIMETER_BOT_ZN_1_DAYLCTRL,PERIMETER_BOT_ZN_1,PERIMETER_BOT_ZN_1_WALL_SOUTH_WINDOW3,PERIMETER_BOT_ZN_1_DAYLREFPT2,2.5171E-003
+ Sky Daylight Factors,Overcast Sky,07/21,PERIMETER_BOT_ZN_1_DAYLCTRL,PERIMETER_BOT_ZN_1,PERIMETER_BOT_ZN_1_WALL_SOUTH_WINDOW3,PERIMETER_BOT_ZN_1_DAYLREFPT1,2.6734E-003
+ Sky Daylight Factors,Overcast Sky,07/21,PERIMETER_BOT_ZN_1_DAYLCTRL,PERIMETER_BOT_ZN_1,PERIMETER_BOT_ZN_1_WALL_SOUTH_WINDOW3,PERIMETER_BOT_ZN_1_DAYLREFPT2,2.6884E-003
+ Sky Daylight Factors,Clear Sky,07/21,PERIMETER_BOT_ZN_2_DAYLCTRL,PERIMETER_BOT_ZN_2,PERIMETER_BOT_ZN_2_WALL_EAST_WINDOW1,PERIMETER_BOT_ZN_2_DAYLREFPT1,3.4422E-002
+ Sky Daylight Factors,Clear Sky,07/21,PERIMETER_BOT_ZN_2_DAYLCTRL,PERIMETER_BOT_ZN_2,PERIMETER_BOT_ZN_2_WALL_EAST_WINDOW1,PERIMETER_BOT_ZN_2_DAYLREFPT2,1.9595E-002
+ Sky Daylight Factors,Clear Turbid Sky,07/21,PERIMETER_BOT_ZN_2_DAYLCTRL,PERIMETER_BOT_ZN_2,PERIMETER_BOT_ZN_2_WALL_EAST_WINDOW1,PERIMETER_BOT_ZN_2_DAYLREFPT1,3.0377E-002
+ Sky Daylight Factors,Clear Turbid Sky,07/21,PERIMETER_BOT_ZN_2_DAYLCTRL,PERIMETER_BOT_ZN_2,PERIMETER_BOT_ZN_2_WALL_EAST_WINDOW1,PERIMETER_BOT_ZN_2_DAYLREFPT2,1.7011E-002
+ Sky Daylight Factors,Intermediate Sky,07/21,PERIMETER_BOT_ZN_2_DAYLCTRL,PERIMETER_BOT_ZN_2,PERIMETER_BOT_ZN_2_WALL_EAST_WINDOW1,PERIMETER_BOT_ZN_2_DAYLREFPT1,2.0285E-002
+ Sky Daylight Factors,Intermediate Sky,07/21,PERIMETER_BOT_ZN_2_DAYLCTRL,PERIMETER_BOT_ZN_2,PERIMETER_BOT_ZN_2_WALL_EAST_WINDOW1,PERIMETER_BOT_ZN_2_DAYLREFPT2,1.0552E-002
+ Sky Daylight Factors,Overcast Sky,07/21,PERIMETER_BOT_ZN_2_DAYLCTRL,PERIMETER_BOT_ZN_2,PERIMETER_BOT_ZN_2_WALL_EAST_WINDOW1,PERIMETER_BOT_ZN_2_DAYLREFPT1,3.4526E-002
+ Sky Daylight Factors,Overcast Sky,07/21,PERIMETER_BOT_ZN_2_DAYLCTRL,PERIMETER_BOT_ZN_2,PERIMETER_BOT_ZN_2_WALL_EAST_WINDOW1,PERIMETER_BOT_ZN_2_DAYLREFPT2,1.6264E-002
+ Sky Daylight Factors,Clear Sky,07/21,PERIMETER_BOT_ZN_2_DAYLCTRL,PERIMETER_BOT_ZN_2,PERIMETER_BOT_ZN_2_WALL_EAST_WINDOW2,PERIMETER_BOT_ZN_2_DAYLREFPT1,3.3825E-004
+ Sky Daylight Factors,Clear Sky,07/21,PERIMETER_BOT_ZN_2_DAYLCTRL,PERIMETER_BOT_ZN_2,PERIMETER_BOT_ZN_2_WALL_EAST_WINDOW2,PERIMETER_BOT_ZN_2_DAYLREFPT2,3.3935E-004
+ Sky Daylight Factors,Clear Turbid Sky,07/21,PERIMETER_BOT_ZN_2_DAYLCTRL,PERIMETER_BOT_ZN_2,PERIMETER_BOT_ZN_2_WALL_EAST_WINDOW2,PERIMETER_BOT_ZN_2_DAYLREFPT1,3.0949E-004
+ Sky Daylight Factors,Clear Turbid Sky,07/21,PERIMETER_BOT_ZN_2_DAYLCTRL,PERIMETER_BOT_ZN_2,PERIMETER_BOT_ZN_2_WALL_EAST_WINDOW2,PERIMETER_BOT_ZN_2_DAYLREFPT2,3.1034E-004
+ Sky Daylight Factors,Intermediate Sky,07/21,PERIMETER_BOT_ZN_2_DAYLCTRL,PERIMETER_BOT_ZN_2,PERIMETER_BOT_ZN_2_WALL_EAST_WINDOW2,PERIMETER_BOT_ZN_2_DAYLREFPT1,2.3994E-004
+ Sky Daylight Factors,Intermediate Sky,07/21,PERIMETER_BOT_ZN_2_DAYLCTRL,PERIMETER_BOT_ZN_2,PERIMETER_BOT_ZN_2_WALL_EAST_WINDOW2,PERIMETER_BOT_ZN_2_DAYLREFPT2,2.4023E-004
+ Sky Daylight Factors,Overcast Sky,07/21,PERIMETER_BOT_ZN_2_DAYLCTRL,PERIMETER_BOT_ZN_2,PERIMETER_BOT_ZN_2_WALL_EAST_WINDOW2,PERIMETER_BOT_ZN_2_DAYLREFPT1,3.1204E-004
+ Sky Daylight Factors,Overcast Sky,07/21,PERIMETER_BOT_ZN_2_DAYLCTRL,PERIMETER_BOT_ZN_2,PERIMETER_BOT_ZN_2_WALL_EAST_WINDOW2,PERIMETER_BOT_ZN_2_DAYLREFPT2,3.1256E-004
+ Sky Daylight Factors,Clear Sky,07/21,PERIMETER_BOT_ZN_3_DAYLCTRL,PERIMETER_BOT_ZN_3,PERIMETER_BOT_ZN_3_WALL_NORTH_WINDOW1,PERIMETER_BOT_ZN_3_DAYLREFPT1,2.6090E-003
+ Sky Daylight Factors,Clear Sky,07/21,PERIMETER_BOT_ZN_3_DAYLCTRL,PERIMETER_BOT_ZN_3,PERIMETER_BOT_ZN_3_WALL_NORTH_WINDOW1,PERIMETER_BOT_ZN_3_DAYLREFPT2,2.6397E-003
+ Sky Daylight Factors,Clear Turbid Sky,07/21,PERIMETER_BOT_ZN_3_DAYLCTRL,PERIMETER_BOT_ZN_3,PERIMETER_BOT_ZN_3_WALL_NORTH_WINDOW1,PERIMETER_BOT_ZN_3_DAYLREFPT1,2.3232E-003
+ Sky Daylight Factors,Clear Turbid Sky,07/21,PERIMETER_BOT_ZN_3_DAYLCTRL,PERIMETER_BOT_ZN_3,PERIMETER_BOT_ZN_3_WALL_NORTH_WINDOW1,PERIMETER_BOT_ZN_3_DAYLREFPT2,2.3476E-003
+ Sky Daylight Factors,Intermediate Sky,07/21,PERIMETER_BOT_ZN_3_DAYLCTRL,PERIMETER_BOT_ZN_3,PERIMETER_BOT_ZN_3_WALL_NORTH_WINDOW1,PERIMETER_BOT_ZN_3_DAYLREFPT1,1.7501E-003
+ Sky Daylight Factors,Intermediate Sky,07/21,PERIMETER_BOT_ZN_3_DAYLCTRL,PERIMETER_BOT_ZN_3,PERIMETER_BOT_ZN_3_WALL_NORTH_WINDOW1,PERIMETER_BOT_ZN_3_DAYLREFPT2,1.7598E-003
+ Sky Daylight Factors,Overcast Sky,07/21,PERIMETER_BOT_ZN_3_DAYLCTRL,PERIMETER_BOT_ZN_3,PERIMETER_BOT_ZN_3_WALL_NORTH_WINDOW1,PERIMETER_BOT_ZN_3_DAYLREFPT1,2.6734E-003
+ Sky Daylight Factors,Overcast Sky,07/21,PERIMETER_BOT_ZN_3_DAYLCTRL,PERIMETER_BOT_ZN_3,PERIMETER_BOT_ZN_3_WALL_NORTH_WINDOW1,PERIMETER_BOT_ZN_3_DAYLREFPT2,2.6884E-003
+ Sky Daylight Factors,Clear Sky,07/21,PERIMETER_BOT_ZN_3_DAYLCTRL,PERIMETER_BOT_ZN_3,PERIMETER_BOT_ZN_3_WALL_NORTH_WINDOW2,PERIMETER_BOT_ZN_3_DAYLREFPT1,2.4460E-002
+ Sky Daylight Factors,Clear Sky,07/21,PERIMETER_BOT_ZN_3_DAYLCTRL,PERIMETER_BOT_ZN_3,PERIMETER_BOT_ZN_3_WALL_NORTH_WINDOW2,PERIMETER_BOT_ZN_3_DAYLREFPT2,1.2358E-002
+ Sky Daylight Factors,Clear Turbid Sky,07/21,PERIMETER_BOT_ZN_3_DAYLCTRL,PERIMETER_BOT_ZN_3,PERIMETER_BOT_ZN_3_WALL_NORTH_WINDOW2,PERIMETER_BOT_ZN_3_DAYLREFPT1,2.0430E-002
+ Sky Daylight Factors,Clear Turbid Sky,07/21,PERIMETER_BOT_ZN_3_DAYLCTRL,PERIMETER_BOT_ZN_3,PERIMETER_BOT_ZN_3_WALL_NORTH_WINDOW2,PERIMETER_BOT_ZN_3_DAYLREFPT2,1.0119E-002
+ Sky Daylight Factors,Intermediate Sky,07/21,PERIMETER_BOT_ZN_3_DAYLCTRL,PERIMETER_BOT_ZN_3,PERIMETER_BOT_ZN_3_WALL_NORTH_WINDOW2,PERIMETER_BOT_ZN_3_DAYLREFPT1,1.2118E-002
+ Sky Daylight Factors,Intermediate Sky,07/21,PERIMETER_BOT_ZN_3_DAYLCTRL,PERIMETER_BOT_ZN_3,PERIMETER_BOT_ZN_3_WALL_NORTH_WINDOW2,PERIMETER_BOT_ZN_3_DAYLREFPT2,5.0643E-003
+ Sky Daylight Factors,Overcast Sky,07/21,PERIMETER_BOT_ZN_3_DAYLCTRL,PERIMETER_BOT_ZN_3,PERIMETER_BOT_ZN_3_WALL_NORTH_WINDOW2,PERIMETER_BOT_ZN_3_DAYLREFPT1,2.9381E-002
+ Sky Daylight Factors,Overcast Sky,07/21,PERIMETER_BOT_ZN_3_DAYLCTRL,PERIMETER_BOT_ZN_3,PERIMETER_BOT_ZN_3_WALL_NORTH_WINDOW2,PERIMETER_BOT_ZN_3_DAYLREFPT2,1.0999E-002
+ Sky Daylight Factors,Clear Sky,07/21,PERIMETER_BOT_ZN_3_DAYLCTRL,PERIMETER_BOT_ZN_3,PERIMETER_BOT_ZN_3_WALL_NORTH_WINDOW3,PERIMETER_BOT_ZN_3_DAYLREFPT1,2.6091E-003
+ Sky Daylight Factors,Clear Sky,07/21,PERIMETER_BOT_ZN_3_DAYLCTRL,PERIMETER_BOT_ZN_3,PERIMETER_BOT_ZN_3_WALL_NORTH_WINDOW3,PERIMETER_BOT_ZN_3_DAYLREFPT2,2.6399E-003
+ Sky Daylight Factors,Clear Turbid Sky,07/21,PERIMETER_BOT_ZN_3_DAYLCTRL,PERIMETER_BOT_ZN_3,PERIMETER_BOT_ZN_3_WALL_NORTH_WINDOW3,PERIMETER_BOT_ZN_3_DAYLREFPT1,2.3234E-003
+ Sky Daylight Factors,Clear Turbid Sky,07/21,PERIMETER_BOT_ZN_3_DAYLCTRL,PERIMETER_BOT_ZN_3,PERIMETER_BOT_ZN_3_WALL_NORTH_WINDOW3,PERIMETER_BOT_ZN_3_DAYLREFPT2,2.3478E-003
+ Sky Daylight Factors,Intermediate Sky,07/21,PERIMETER_BOT_ZN_3_DAYLCTRL,PERIMETER_BOT_ZN_3,PERIMETER_BOT_ZN_3_WALL_NORTH_WINDOW3,PERIMETER_BOT_ZN_3_DAYLREFPT1,1.7503E-003
+ Sky Daylight Factors,Intermediate Sky,07/21,PERIMETER_BOT_ZN_3_DAYLCTRL,PERIMETER_BOT_ZN_3,PERIMETER_BOT_ZN_3_WALL_NORTH_WINDOW3,PERIMETER_BOT_ZN_3_DAYLREFPT2,1.7600E-003
+ Sky Daylight Factors,Overcast Sky,07/21,PERIMETER_BOT_ZN_3_DAYLCTRL,PERIMETER_BOT_ZN_3,PERIMETER_BOT_ZN_3_WALL_NORTH_WINDOW3,PERIMETER_BOT_ZN_3_DAYLREFPT1,2.6735E-003
+ Sky Daylight Factors,Overcast Sky,07/21,PERIMETER_BOT_ZN_3_DAYLCTRL,PERIMETER_BOT_ZN_3,PERIMETER_BOT_ZN_3_WALL_NORTH_WINDOW3,PERIMETER_BOT_ZN_3_DAYLREFPT2,2.6886E-003
+ Sky Daylight Factors,Clear Sky,07/21,PERIMETER_BOT_ZN_4_DAYLCTRL,PERIMETER_BOT_ZN_4,PERIMETER_BOT_ZN_4_WALL_WEST_WINDOW1,PERIMETER_BOT_ZN_4_DAYLREFPT1,3.4602E-002
+ Sky Daylight Factors,Clear Sky,07/21,PERIMETER_BOT_ZN_4_DAYLCTRL,PERIMETER_BOT_ZN_4,PERIMETER_BOT_ZN_4_WALL_WEST_WINDOW1,PERIMETER_BOT_ZN_4_DAYLREFPT2,1.9670E-002
+ Sky Daylight Factors,Clear Turbid Sky,07/21,PERIMETER_BOT_ZN_4_DAYLCTRL,PERIMETER_BOT_ZN_4,PERIMETER_BOT_ZN_4_WALL_WEST_WINDOW1,PERIMETER_BOT_ZN_4_DAYLREFPT1,3.0577E-002
+ Sky Daylight Factors,Clear Turbid Sky,07/21,PERIMETER_BOT_ZN_4_DAYLCTRL,PERIMETER_BOT_ZN_4,PERIMETER_BOT_ZN_4_WALL_WEST_WINDOW1,PERIMETER_BOT_ZN_4_DAYLREFPT2,1.7094E-002
+ Sky Daylight Factors,Intermediate Sky,07/21,PERIMETER_BOT_ZN_4_DAYLCTRL,PERIMETER_BOT_ZN_4,PERIMETER_BOT_ZN_4_WALL_WEST_WINDOW1,PERIMETER_BOT_ZN_4_DAYLREFPT1,2.0445E-002
+ Sky Daylight Factors,Intermediate Sky,07/21,PERIMETER_BOT_ZN_4_DAYLCTRL,PERIMETER_BOT_ZN_4,PERIMETER_BOT_ZN_4_WALL_WEST_WINDOW1,PERIMETER_BOT_ZN_4_DAYLREFPT2,1.0618E-002
+ Sky Daylight Factors,Overcast Sky,07/21,PERIMETER_BOT_ZN_4_DAYLCTRL,PERIMETER_BOT_ZN_4,PERIMETER_BOT_ZN_4_WALL_WEST_WINDOW1,PERIMETER_BOT_ZN_4_DAYLREFPT1,3.4526E-002
+ Sky Daylight Factors,Overcast Sky,07/21,PERIMETER_BOT_ZN_4_DAYLCTRL,PERIMETER_BOT_ZN_4,PERIMETER_BOT_ZN_4_WALL_WEST_WINDOW1,PERIMETER_BOT_ZN_4_DAYLREFPT2,1.6265E-002
+ Sky Daylight Factors,Clear Sky,07/21,PERIMETER_BOT_ZN_4_DAYLCTRL,PERIMETER_BOT_ZN_4,PERIMETER_BOT_ZN_4_WALL_WEST_WINDOW2,PERIMETER_BOT_ZN_4_DAYLREFPT1,3.3957E-004
+ Sky Daylight Factors,Clear Sky,07/21,PERIMETER_BOT_ZN_4_DAYLCTRL,PERIMETER_BOT_ZN_4,PERIMETER_BOT_ZN_4_WALL_WEST_WINDOW2,PERIMETER_BOT_ZN_4_DAYLREFPT2,3.4088E-004
+ Sky Daylight Factors,Clear Turbid Sky,07/21,PERIMETER_BOT_ZN_4_DAYLCTRL,PERIMETER_BOT_ZN_4,PERIMETER_BOT_ZN_4_WALL_WEST_WINDOW2,PERIMETER_BOT_ZN_4_DAYLREFPT1,3.1100E-004
+ Sky Daylight Factors,Clear Turbid Sky,07/21,PERIMETER_BOT_ZN_4_DAYLCTRL,PERIMETER_BOT_ZN_4,PERIMETER_BOT_ZN_4_WALL_WEST_WINDOW2,PERIMETER_BOT_ZN_4_DAYLREFPT2,3.1209E-004
+ Sky Daylight Factors,Intermediate Sky,07/21,PERIMETER_BOT_ZN_4_DAYLCTRL,PERIMETER_BOT_ZN_4,PERIMETER_BOT_ZN_4_WALL_WEST_WINDOW2,PERIMETER_BOT_ZN_4_DAYLREFPT1,2.4124E-004
+ Sky Daylight Factors,Intermediate Sky,07/21,PERIMETER_BOT_ZN_4_DAYLCTRL,PERIMETER_BOT_ZN_4,PERIMETER_BOT_ZN_4_WALL_WEST_WINDOW2,PERIMETER_BOT_ZN_4_DAYLREFPT2,2.4176E-004
+ Sky Daylight Factors,Overcast Sky,07/21,PERIMETER_BOT_ZN_4_DAYLCTRL,PERIMETER_BOT_ZN_4,PERIMETER_BOT_ZN_4_WALL_WEST_WINDOW2,PERIMETER_BOT_ZN_4_DAYLREFPT1,3.1205E-004
+ Sky Daylight Factors,Overcast Sky,07/21,PERIMETER_BOT_ZN_4_DAYLCTRL,PERIMETER_BOT_ZN_4,PERIMETER_BOT_ZN_4_WALL_WEST_WINDOW2,PERIMETER_BOT_ZN_4_DAYLREFPT2,3.1258E-004
+ Sky Daylight Factors,Clear Sky,07/21,PERIMETER_MID_ZN_1_DAYLCTRL,PERIMETER_MID_ZN_1,PERIMETER_MID_ZN_1_WALL_SOUTH_WINDOW,PERIMETER_MID_ZN_1_DAYLREFPT1,4.0912E-002
+ Sky Daylight Factors,Clear Sky,07/21,PERIMETER_MID_ZN_1_DAYLCTRL,PERIMETER_MID_ZN_1,PERIMETER_MID_ZN_1_WALL_SOUTH_WINDOW,PERIMETER_MID_ZN_1_DAYLREFPT2,2.2044E-002
+ Sky Daylight Factors,Clear Turbid Sky,07/21,PERIMETER_MID_ZN_1_DAYLCTRL,PERIMETER_MID_ZN_1,PERIMETER_MID_ZN_1_WALL_SOUTH_WINDOW,PERIMETER_MID_ZN_1_DAYLREFPT1,3.8107E-002
+ Sky Daylight Factors,Clear Turbid Sky,07/21,PERIMETER_MID_ZN_1_DAYLCTRL,PERIMETER_MID_ZN_1,PERIMETER_MID_ZN_1_WALL_SOUTH_WINDOW,PERIMETER_MID_ZN_1_DAYLREFPT2,1.9951E-002
+ Sky Daylight Factors,Intermediate Sky,07/21,PERIMETER_MID_ZN_1_DAYLCTRL,PERIMETER_MID_ZN_1,PERIMETER_MID_ZN_1_WALL_SOUTH_WINDOW,PERIMETER_MID_ZN_1_DAYLREFPT1,2.6252E-002
+ Sky Daylight Factors,Intermediate Sky,07/21,PERIMETER_MID_ZN_1_DAYLCTRL,PERIMETER_MID_ZN_1,PERIMETER_MID_ZN_1_WALL_SOUTH_WINDOW,PERIMETER_MID_ZN_1_DAYLREFPT2,1.2843E-002
+ Sky Daylight Factors,Overcast Sky,07/21,PERIMETER_MID_ZN_1_DAYLCTRL,PERIMETER_MID_ZN_1,PERIMETER_MID_ZN_1_WALL_SOUTH_WINDOW,PERIMETER_MID_ZN_1_DAYLREFPT1,3.3524E-002
+ Sky Daylight Factors,Overcast Sky,07/21,PERIMETER_MID_ZN_1_DAYLCTRL,PERIMETER_MID_ZN_1,PERIMETER_MID_ZN_1_WALL_SOUTH_WINDOW,PERIMETER_MID_ZN_1_DAYLREFPT2,1.5637E-002
+ Sky Daylight Factors,Clear Sky,07/21,PERIMETER_MID_ZN_2_DAYLCTRL,PERIMETER_MID_ZN_2,PERIMETER_MID_ZN_2_WALL_EAST_WINDOW,PERIMETER_MID_ZN_2_DAYLREFPT1,3.3412E-002
+ Sky Daylight Factors,Clear Sky,07/21,PERIMETER_MID_ZN_2_DAYLCTRL,PERIMETER_MID_ZN_2,PERIMETER_MID_ZN_2_WALL_EAST_WINDOW,PERIMETER_MID_ZN_2_DAYLREFPT2,1.9020E-002
+ Sky Daylight Factors,Clear Turbid Sky,07/21,PERIMETER_MID_ZN_2_DAYLCTRL,PERIMETER_MID_ZN_2,PERIMETER_MID_ZN_2_WALL_EAST_WINDOW,PERIMETER_MID_ZN_2_DAYLREFPT1,2.9561E-002
+ Sky Daylight Factors,Clear Turbid Sky,07/21,PERIMETER_MID_ZN_2_DAYLCTRL,PERIMETER_MID_ZN_2,PERIMETER_MID_ZN_2_WALL_EAST_WINDOW,PERIMETER_MID_ZN_2_DAYLREFPT2,1.6549E-002
+ Sky Daylight Factors,Intermediate Sky,07/21,PERIMETER_MID_ZN_2_DAYLCTRL,PERIMETER_MID_ZN_2,PERIMETER_MID_ZN_2_WALL_EAST_WINDOW,PERIMETER_MID_ZN_2_DAYLREFPT1,1.9944E-002
+ Sky Daylight Factors,Intermediate Sky,07/21,PERIMETER_MID_ZN_2_DAYLCTRL,PERIMETER_MID_ZN_2,PERIMETER_MID_ZN_2_WALL_EAST_WINDOW,PERIMETER_MID_ZN_2_DAYLREFPT2,1.0364E-002
+ Sky Daylight Factors,Overcast Sky,07/21,PERIMETER_MID_ZN_2_DAYLCTRL,PERIMETER_MID_ZN_2,PERIMETER_MID_ZN_2_WALL_EAST_WINDOW,PERIMETER_MID_ZN_2_DAYLREFPT1,3.3883E-002
+ Sky Daylight Factors,Overcast Sky,07/21,PERIMETER_MID_ZN_2_DAYLCTRL,PERIMETER_MID_ZN_2,PERIMETER_MID_ZN_2_WALL_EAST_WINDOW,PERIMETER_MID_ZN_2_DAYLREFPT2,1.5876E-002
+ Sky Daylight Factors,Clear Sky,07/21,PERIMETER_MID_ZN_3_DAYLCTRL,PERIMETER_MID_ZN_3,PERIMETER_MID_ZN_3_WALL_NORTH_WINDOW,PERIMETER_MID_ZN_3_DAYLREFPT1,2.8222E-002
+ Sky Daylight Factors,Clear Sky,07/21,PERIMETER_MID_ZN_3_DAYLCTRL,PERIMETER_MID_ZN_3,PERIMETER_MID_ZN_3_WALL_NORTH_WINDOW,PERIMETER_MID_ZN_3_DAYLREFPT2,1.6804E-002
+ Sky Daylight Factors,Clear Turbid Sky,07/21,PERIMETER_MID_ZN_3_DAYLCTRL,PERIMETER_MID_ZN_3,PERIMETER_MID_ZN_3_WALL_NORTH_WINDOW,PERIMETER_MID_ZN_3_DAYLREFPT1,2.3918E-002
+ Sky Daylight Factors,Clear Turbid Sky,07/21,PERIMETER_MID_ZN_3_DAYLCTRL,PERIMETER_MID_ZN_3,PERIMETER_MID_ZN_3_WALL_NORTH_WINDOW,PERIMETER_MID_ZN_3_DAYLREFPT2,1.4151E-002
+ Sky Daylight Factors,Intermediate Sky,07/21,PERIMETER_MID_ZN_3_DAYLCTRL,PERIMETER_MID_ZN_3,PERIMETER_MID_ZN_3_WALL_NORTH_WINDOW,PERIMETER_MID_ZN_3_DAYLREFPT1,1.5099E-002
+ Sky Daylight Factors,Intermediate Sky,07/21,PERIMETER_MID_ZN_3_DAYLCTRL,PERIMETER_MID_ZN_3,PERIMETER_MID_ZN_3_WALL_NORTH_WINDOW,PERIMETER_MID_ZN_3_DAYLREFPT2,8.2702E-003
+ Sky Daylight Factors,Overcast Sky,07/21,PERIMETER_MID_ZN_3_DAYLCTRL,PERIMETER_MID_ZN_3,PERIMETER_MID_ZN_3_WALL_NORTH_WINDOW,PERIMETER_MID_ZN_3_DAYLREFPT1,3.3524E-002
+ Sky Daylight Factors,Overcast Sky,07/21,PERIMETER_MID_ZN_3_DAYLCTRL,PERIMETER_MID_ZN_3,PERIMETER_MID_ZN_3_WALL_NORTH_WINDOW,PERIMETER_MID_ZN_3_DAYLREFPT2,1.5637E-002
+ Sky Daylight Factors,Clear Sky,07/21,PERIMETER_MID_ZN_4_DAYLCTRL,PERIMETER_MID_ZN_4,PERIMETER_MID_ZN_4_WALL_WEST_WINDOW,PERIMETER_MID_ZN_4_DAYLREFPT1,3.3587E-002
+ Sky Daylight Factors,Clear Sky,07/21,PERIMETER_MID_ZN_4_DAYLCTRL,PERIMETER_MID_ZN_4,PERIMETER_MID_ZN_4_WALL_WEST_WINDOW,PERIMETER_MID_ZN_4_DAYLREFPT2,1.9092E-002
+ Sky Daylight Factors,Clear Turbid Sky,07/21,PERIMETER_MID_ZN_4_DAYLCTRL,PERIMETER_MID_ZN_4,PERIMETER_MID_ZN_4_WALL_WEST_WINDOW,PERIMETER_MID_ZN_4_DAYLREFPT1,2.9756E-002
+ Sky Daylight Factors,Clear Turbid Sky,07/21,PERIMETER_MID_ZN_4_DAYLCTRL,PERIMETER_MID_ZN_4,PERIMETER_MID_ZN_4_WALL_WEST_WINDOW,PERIMETER_MID_ZN_4_DAYLREFPT2,1.6630E-002
+ Sky Daylight Factors,Intermediate Sky,07/21,PERIMETER_MID_ZN_4_DAYLCTRL,PERIMETER_MID_ZN_4,PERIMETER_MID_ZN_4_WALL_WEST_WINDOW,PERIMETER_MID_ZN_4_DAYLREFPT1,2.0099E-002
+ Sky Daylight Factors,Intermediate Sky,07/21,PERIMETER_MID_ZN_4_DAYLCTRL,PERIMETER_MID_ZN_4,PERIMETER_MID_ZN_4_WALL_WEST_WINDOW,PERIMETER_MID_ZN_4_DAYLREFPT2,1.0428E-002
+ Sky Daylight Factors,Overcast Sky,07/21,PERIMETER_MID_ZN_4_DAYLCTRL,PERIMETER_MID_ZN_4,PERIMETER_MID_ZN_4_WALL_WEST_WINDOW,PERIMETER_MID_ZN_4_DAYLREFPT1,3.3883E-002
+ Sky Daylight Factors,Overcast Sky,07/21,PERIMETER_MID_ZN_4_DAYLCTRL,PERIMETER_MID_ZN_4,PERIMETER_MID_ZN_4_WALL_WEST_WINDOW,PERIMETER_MID_ZN_4_DAYLREFPT2,1.5876E-002
+ Sky Daylight Factors,Clear Sky,07/21,PERIMETER_TOP_ZN_1_DAYLCTRL,PERIMETER_TOP_ZN_1,PERIMETER_TOP_ZN_1_WALL_SOUTH_WINDOW,PERIMETER_TOP_ZN_1_DAYLREFPT1,4.0910E-002
+ Sky Daylight Factors,Clear Sky,07/21,PERIMETER_TOP_ZN_1_DAYLCTRL,PERIMETER_TOP_ZN_1,PERIMETER_TOP_ZN_1_WALL_SOUTH_WINDOW,PERIMETER_TOP_ZN_1_DAYLREFPT2,2.2042E-002
+ Sky Daylight Factors,Clear Turbid Sky,07/21,PERIMETER_TOP_ZN_1_DAYLCTRL,PERIMETER_TOP_ZN_1,PERIMETER_TOP_ZN_1_WALL_SOUTH_WINDOW,PERIMETER_TOP_ZN_1_DAYLREFPT1,3.8105E-002
+ Sky Daylight Factors,Clear Turbid Sky,07/21,PERIMETER_TOP_ZN_1_DAYLCTRL,PERIMETER_TOP_ZN_1,PERIMETER_TOP_ZN_1_WALL_SOUTH_WINDOW,PERIMETER_TOP_ZN_1_DAYLREFPT2,1.9950E-002
+ Sky Daylight Factors,Intermediate Sky,07/21,PERIMETER_TOP_ZN_1_DAYLCTRL,PERIMETER_TOP_ZN_1,PERIMETER_TOP_ZN_1_WALL_SOUTH_WINDOW,PERIMETER_TOP_ZN_1_DAYLREFPT1,2.6249E-002
+ Sky Daylight Factors,Intermediate Sky,07/21,PERIMETER_TOP_ZN_1_DAYLCTRL,PERIMETER_TOP_ZN_1,PERIMETER_TOP_ZN_1_WALL_SOUTH_WINDOW,PERIMETER_TOP_ZN_1_DAYLREFPT2,1.2842E-002
+ Sky Daylight Factors,Overcast Sky,07/21,PERIMETER_TOP_ZN_1_DAYLCTRL,PERIMETER_TOP_ZN_1,PERIMETER_TOP_ZN_1_WALL_SOUTH_WINDOW,PERIMETER_TOP_ZN_1_DAYLREFPT1,3.3521E-002
+ Sky Daylight Factors,Overcast Sky,07/21,PERIMETER_TOP_ZN_1_DAYLCTRL,PERIMETER_TOP_ZN_1,PERIMETER_TOP_ZN_1_WALL_SOUTH_WINDOW,PERIMETER_TOP_ZN_1_DAYLREFPT2,1.5635E-002
+ Sky Daylight Factors,Clear Sky,07/21,PERIMETER_TOP_ZN_2_DAYLCTRL,PERIMETER_TOP_ZN_2,PERIMETER_TOP_ZN_2_WALL_EAST_WINDOW,PERIMETER_TOP_ZN_2_DAYLREFPT1,3.3411E-002
+ Sky Daylight Factors,Clear Sky,07/21,PERIMETER_TOP_ZN_2_DAYLCTRL,PERIMETER_TOP_ZN_2,PERIMETER_TOP_ZN_2_WALL_EAST_WINDOW,PERIMETER_TOP_ZN_2_DAYLREFPT2,1.9018E-002
+ Sky Daylight Factors,Clear Turbid Sky,07/21,PERIMETER_TOP_ZN_2_DAYLCTRL,PERIMETER_TOP_ZN_2,PERIMETER_TOP_ZN_2_WALL_EAST_WINDOW,PERIMETER_TOP_ZN_2_DAYLREFPT1,2.9559E-002
+ Sky Daylight Factors,Clear Turbid Sky,07/21,PERIMETER_TOP_ZN_2_DAYLCTRL,PERIMETER_TOP_ZN_2,PERIMETER_TOP_ZN_2_WALL_EAST_WINDOW,PERIMETER_TOP_ZN_2_DAYLREFPT2,1.6548E-002
+ Sky Daylight Factors,Intermediate Sky,07/21,PERIMETER_TOP_ZN_2_DAYLCTRL,PERIMETER_TOP_ZN_2,PERIMETER_TOP_ZN_2_WALL_EAST_WINDOW,PERIMETER_TOP_ZN_2_DAYLREFPT1,1.9942E-002
+ Sky Daylight Factors,Intermediate Sky,07/21,PERIMETER_TOP_ZN_2_DAYLCTRL,PERIMETER_TOP_ZN_2,PERIMETER_TOP_ZN_2_WALL_EAST_WINDOW,PERIMETER_TOP_ZN_2_DAYLREFPT2,1.0363E-002
+ Sky Daylight Factors,Overcast Sky,07/21,PERIMETER_TOP_ZN_2_DAYLCTRL,PERIMETER_TOP_ZN_2,PERIMETER_TOP_ZN_2_WALL_EAST_WINDOW,PERIMETER_TOP_ZN_2_DAYLREFPT1,3.3880E-002
+ Sky Daylight Factors,Overcast Sky,07/21,PERIMETER_TOP_ZN_2_DAYLCTRL,PERIMETER_TOP_ZN_2,PERIMETER_TOP_ZN_2_WALL_EAST_WINDOW,PERIMETER_TOP_ZN_2_DAYLREFPT2,1.5874E-002
+ Sky Daylight Factors,Clear Sky,07/21,PERIMETER_TOP_ZN_3_DAYLCTRL,PERIMETER_TOP_ZN_3,PERIMETER_TOP_ZN_3_WALL_NORTH_WINDOW,PERIMETER_TOP_ZN_3_DAYLREFPT1,2.8222E-002
+ Sky Daylight Factors,Clear Sky,07/21,PERIMETER_TOP_ZN_3_DAYLCTRL,PERIMETER_TOP_ZN_3,PERIMETER_TOP_ZN_3_WALL_NORTH_WINDOW,PERIMETER_TOP_ZN_3_DAYLREFPT2,1.6803E-002
+ Sky Daylight Factors,Clear Turbid Sky,07/21,PERIMETER_TOP_ZN_3_DAYLCTRL,PERIMETER_TOP_ZN_3,PERIMETER_TOP_ZN_3_WALL_NORTH_WINDOW,PERIMETER_TOP_ZN_3_DAYLREFPT1,2.3917E-002
+ Sky Daylight Factors,Clear Turbid Sky,07/21,PERIMETER_TOP_ZN_3_DAYLCTRL,PERIMETER_TOP_ZN_3,PERIMETER_TOP_ZN_3_WALL_NORTH_WINDOW,PERIMETER_TOP_ZN_3_DAYLREFPT2,1.4150E-002
+ Sky Daylight Factors,Intermediate Sky,07/21,PERIMETER_TOP_ZN_3_DAYLCTRL,PERIMETER_TOP_ZN_3,PERIMETER_TOP_ZN_3_WALL_NORTH_WINDOW,PERIMETER_TOP_ZN_3_DAYLREFPT1,1.5097E-002
+ Sky Daylight Factors,Intermediate Sky,07/21,PERIMETER_TOP_ZN_3_DAYLCTRL,PERIMETER_TOP_ZN_3,PERIMETER_TOP_ZN_3_WALL_NORTH_WINDOW,PERIMETER_TOP_ZN_3_DAYLREFPT2,8.2697E-003
+ Sky Daylight Factors,Overcast Sky,07/21,PERIMETER_TOP_ZN_3_DAYLCTRL,PERIMETER_TOP_ZN_3,PERIMETER_TOP_ZN_3_WALL_NORTH_WINDOW,PERIMETER_TOP_ZN_3_DAYLREFPT1,3.3521E-002
+ Sky Daylight Factors,Overcast Sky,07/21,PERIMETER_TOP_ZN_3_DAYLCTRL,PERIMETER_TOP_ZN_3,PERIMETER_TOP_ZN_3_WALL_NORTH_WINDOW,PERIMETER_TOP_ZN_3_DAYLREFPT2,1.5635E-002
+ Sky Daylight Factors,Clear Sky,07/21,PERIMETER_TOP_ZN_4_DAYLCTRL,PERIMETER_TOP_ZN_4,PERIMETER_TOP_ZN_4_WALL_WEST_WINDOW,PERIMETER_TOP_ZN_4_DAYLREFPT1,3.3586E-002
+ Sky Daylight Factors,Clear Sky,07/21,PERIMETER_TOP_ZN_4_DAYLCTRL,PERIMETER_TOP_ZN_4,PERIMETER_TOP_ZN_4_WALL_WEST_WINDOW,PERIMETER_TOP_ZN_4_DAYLREFPT2,1.9091E-002
+ Sky Daylight Factors,Clear Turbid Sky,07/21,PERIMETER_TOP_ZN_4_DAYLCTRL,PERIMETER_TOP_ZN_4,PERIMETER_TOP_ZN_4_WALL_WEST_WINDOW,PERIMETER_TOP_ZN_4_DAYLREFPT1,2.9755E-002
+ Sky Daylight Factors,Clear Turbid Sky,07/21,PERIMETER_TOP_ZN_4_DAYLCTRL,PERIMETER_TOP_ZN_4,PERIMETER_TOP_ZN_4_WALL_WEST_WINDOW,PERIMETER_TOP_ZN_4_DAYLREFPT2,1.6628E-002
+ Sky Daylight Factors,Intermediate Sky,07/21,PERIMETER_TOP_ZN_4_DAYLCTRL,PERIMETER_TOP_ZN_4,PERIMETER_TOP_ZN_4_WALL_WEST_WINDOW,PERIMETER_TOP_ZN_4_DAYLREFPT1,2.0097E-002
+ Sky Daylight Factors,Intermediate Sky,07/21,PERIMETER_TOP_ZN_4_DAYLCTRL,PERIMETER_TOP_ZN_4,PERIMETER_TOP_ZN_4_WALL_WEST_WINDOW,PERIMETER_TOP_ZN_4_DAYLREFPT2,1.0427E-002
+ Sky Daylight Factors,Overcast Sky,07/21,PERIMETER_TOP_ZN_4_DAYLCTRL,PERIMETER_TOP_ZN_4,PERIMETER_TOP_ZN_4_WALL_WEST_WINDOW,PERIMETER_TOP_ZN_4_DAYLREFPT1,3.3880E-002
+ Sky Daylight Factors,Overcast Sky,07/21,PERIMETER_TOP_ZN_4_DAYLCTRL,PERIMETER_TOP_ZN_4,PERIMETER_TOP_ZN_4_WALL_WEST_WINDOW,PERIMETER_TOP_ZN_4_DAYLREFPT2,1.5875E-002
+! <Zone Sizing Information>, Zone Name, Load Type, Calc Des Load {W}, User Des Load {W}, Calc Des Air Flow Rate {m3/s}, User Des Air Flow Rate {m3/s}, Design Day Name, Date/Time of Peak, Temperature at Peak {C}, Humidity Ratio at Peak {kgWater/kgDryAir}, Floor Area {m2}, # Occupants, Calc Outdoor Air Flow Rate {m3/s}, Calc DOAS Heat Addition Rate {W}
+ Zone Sizing Information, CORE_BOTTOM, Cooling, 37807.20252, 37807.20252, 2.72334, 2.72334, LOS ANGELES-USA ANN CLG 0.4% CONDNS DB=>MWB, 7/21 08:00:00, 24.80000, 4.84355E-005, 983.53657, 52.93867, 0.42469, 0.00000
+ Zone Sizing Information, CORE_BOTTOM, Heating, 4955.96007, 4955.96007, 0.20842, 0.42469, LOS ANGELES-USA ANN HTG 99.6% CONDNS DB, 1/21 08:00:00, 7.10000, 1.00000E-005, 983.53657, 52.93867, 0.42469, 0.00000
+ Zone Sizing Information, CORE_MID, Cooling, 26880.10139, 26880.10139, 1.93348, 1.93348, LOS ANGELES-USA ANN CLG 0.4% CONDNS DB=>MWB, 7/21 08:00:00, 24.80000, 4.84355E-005, 983.53657, 52.93867, 0.42469, 0.00000
+ Zone Sizing Information, CORE_MID, Heating, 11213.19020, 11213.19020, 0.47270, 0.47270, LOS ANGELES-USA ANN HTG 99.6% CONDNS DB, 1/21 08:00:00, 7.10000, 1.00000E-005, 983.53657, 52.93867, 0.42469, 0.00000
+ Zone Sizing Information, CORE_TOP, Cooling, 27555.00079, 27555.00079, 2.00180, 2.00180, LOS ANGELES-USA ANN CLG 0.4% CONDNS DB=>MWB, 7/21 15:20:00, 32.00000, 5.70946E-005, 983.53657, 52.93867, 0.42469, 0.00000
+ Zone Sizing Information, CORE_TOP, Heating, 22691.03270, 22691.03270, 0.88693, 0.88693, LOS ANGELES-USA ANN HTG 99.6% CONDNS DB, 1/21 07:10:00, 7.10000, 1.00000E-005, 983.53657, 52.93867, 0.42469, 0.00000
+ Zone Sizing Information, PERIMETER_BOT_ZN_1, Cooling, 7777.44590, 7777.44590, 0.56497, 0.56497, LOS ANGELES-USA ANN CLG 0.4% CONDNS DB=>MWB, 7/21 13:40:00, 32.03333, 5.71330E-005, 207.33814, 11.15994, 8.95286E-002, 0.00000
+ Zone Sizing Information, PERIMETER_BOT_ZN_1, Heating, 6477.05342, 6477.05342, 0.27552, 0.27552, LOS ANGELES-USA ANN HTG 99.6% CONDNS DB, 1/21 08:00:00, 7.10000, 1.00000E-005, 207.33814, 11.15994, 8.95286E-002, 0.00000
+ Zone Sizing Information, PERIMETER_BOT_ZN_2, Cooling, 7419.93865, 7419.93865, 0.53899, 0.53899, LOS ANGELES-USA ANN CLG 0.4% CONDNS DB=>MWB, 7/21 09:20:00, 27.26667, 5.13370E-005, 131.26219, 7.06516, 5.66790E-002, 0.00000
+ Zone Sizing Information, PERIMETER_BOT_ZN_2, Heating, 4287.33935, 4287.33935, 0.18241, 0.18241, LOS ANGELES-USA ANN HTG 99.6% CONDNS DB, 1/21 08:00:00, 7.10000, 1.00000E-005, 131.26219, 7.06516, 5.66790E-002, 0.00000
+ Zone Sizing Information, PERIMETER_BOT_ZN_3, Cooling, 6578.55124, 6578.55124, 0.47788, 0.47788, LOS ANGELES-USA ANN CLG 0.4% CONDNS DB=>MWB, 7/21 17:50:00, 29.96667, 5.45891E-005, 207.33814, 11.15994, 8.95286E-002, 0.00000
+ Zone Sizing Information, PERIMETER_BOT_ZN_3, Heating, 6439.43934, 6439.43934, 0.27392, 0.27392, LOS ANGELES-USA ANN HTG 99.6% CONDNS DB, 1/21 08:00:00, 7.10000, 1.00000E-005, 207.33814, 11.15994, 8.95286E-002, 0.00000
+ Zone Sizing Information, PERIMETER_BOT_ZN_4, Cooling, 8225.76268, 8225.76268, 0.59753, 0.59753, LOS ANGELES-USA ANN CLG 0.4% CONDNS DB=>MWB, 7/21 17:20:00, 30.46667, 5.52007E-005, 131.25358, 7.06470, 5.66753E-002, 0.00000
+ Zone Sizing Information, PERIMETER_BOT_ZN_4, Heating, 4287.31794, 4287.31794, 0.18241, 0.18241, LOS ANGELES-USA ANN HTG 99.6% CONDNS DB, 1/21 08:00:00, 7.10000, 1.00000E-005, 131.25358, 7.06470, 5.66753E-002, 0.00000
+ Zone Sizing Information, PERIMETER_MID_ZN_1, Cooling, 8361.37125, 8361.37125, 0.60736, 0.60736, LOS ANGELES-USA ANN CLG 0.4% CONDNS DB=>MWB, 7/21 13:30:00, 31.95000, 5.70313E-005, 207.33814, 11.15994, 8.95286E-002, 0.00000
+ Zone Sizing Information, PERIMETER_MID_ZN_1, Heating, 6752.17296, 6752.17296, 0.28723, 0.28723, LOS ANGELES-USA ANN HTG 99.6% CONDNS DB, 1/21 08:00:00, 7.10000, 1.00000E-005, 207.33814, 11.15994, 8.95286E-002, 0.00000
+ Zone Sizing Information, PERIMETER_MID_ZN_2, Cooling, 8321.92499, 8321.92499, 0.60449, 0.60449, LOS ANGELES-USA ANN CLG 0.4% CONDNS DB=>MWB, 7/21 09:00:00, 26.70000, 5.06650E-005, 131.26219, 7.06516, 5.66790E-002, 0.00000
+ Zone Sizing Information, PERIMETER_MID_ZN_2, Heating, 4440.84353, 4440.84353, 0.18893, 0.18893, LOS ANGELES-USA ANN HTG 99.6% CONDNS DB, 1/21 08:00:00, 7.10000, 1.00000E-005, 131.26219, 7.06516, 5.66790E-002, 0.00000
+ Zone Sizing Information, PERIMETER_MID_ZN_3, Cooling, 7038.23828, 7038.23828, 0.51125, 0.51125, LOS ANGELES-USA ANN CLG 0.4% CONDNS DB=>MWB, 7/21 18:00:00, 29.80000, 5.43839E-005, 207.33814, 11.15994, 8.95286E-002, 0.00000
+ Zone Sizing Information, PERIMETER_MID_ZN_3, Heating, 6721.62871, 6721.62871, 0.28593, 0.28593, LOS ANGELES-USA ANN HTG 99.6% CONDNS DB, 1/21 08:00:00, 7.10000, 1.00000E-005, 207.33814, 11.15994, 8.95286E-002, 0.00000
+ Zone Sizing Information, PERIMETER_MID_ZN_4, Cooling, 9155.02111, 9155.02111, 0.66501, 0.66501, LOS ANGELES-USA ANN CLG 0.4% CONDNS DB=>MWB, 7/21 17:00:00, 30.80000, 5.56075E-005, 131.25358, 7.06470, 5.66753E-002, 0.00000
+ Zone Sizing Information, PERIMETER_MID_ZN_4, Heating, 4440.80781, 4440.80781, 0.18893, 0.18893, LOS ANGELES-USA ANN HTG 99.6% CONDNS DB, 1/21 08:00:00, 7.10000, 1.00000E-005, 131.25358, 7.06470, 5.66753E-002, 0.00000
+ Zone Sizing Information, PERIMETER_TOP_ZN_1, Cooling, 9396.83942, 9396.83942, 0.68256, 0.68256, LOS ANGELES-USA ANN CLG 0.4% CONDNS DB=>MWB, 7/21 13:50:00, 32.11667, 5.72281E-005, 207.33814, 11.15994, 8.95286E-002, 0.00000
+ Zone Sizing Information, PERIMETER_TOP_ZN_1, Heating, 9468.40384, 9468.40384, 0.37140, 0.37140, LOS ANGELES-USA ANN HTG 99.6% CONDNS DB, 1/21 07:10:00, 7.10000, 1.00000E-005, 207.33814, 11.15994, 8.95286E-002, 0.00000
+ Zone Sizing Information, PERIMETER_TOP_ZN_2, Cooling, 8271.87211, 8271.87211, 0.60084, 0.60084, LOS ANGELES-USA ANN CLG 0.4% CONDNS DB=>MWB, 7/21 09:20:00, 27.26667, 5.13370E-005, 131.26219, 7.06516, 5.66790E-002, 0.00000
+ Zone Sizing Information, PERIMETER_TOP_ZN_2, Heating, 6155.76613, 6155.76613, 0.24161, 0.24161, LOS ANGELES-USA ANN HTG 99.6% CONDNS DB, 1/21 07:10:00, 7.10000, 1.00000E-005, 131.26219, 7.06516, 5.66790E-002, 0.00000
+ Zone Sizing Information, PERIMETER_TOP_ZN_3, Cooling, 7998.65288, 7998.65288, 0.58100, 0.58100, LOS ANGELES-USA ANN CLG 0.4% CONDNS DB=>MWB, 7/21 15:10:00, 32.10000, 5.72090E-005, 207.33814, 11.15994, 8.95286E-002, 0.00000
+ Zone Sizing Information, PERIMETER_TOP_ZN_3, Heating, 9422.75447, 9422.75447, 0.36957, 0.36957, LOS ANGELES-USA ANN HTG 99.6% CONDNS DB, 1/21 07:10:00, 7.10000, 1.00000E-005, 207.33814, 11.15994, 8.95286E-002, 0.00000
+ Zone Sizing Information, PERIMETER_TOP_ZN_4, Cooling, 9950.41220, 9950.41220, 0.72277, 0.72277, LOS ANGELES-USA ANN CLG 0.4% CONDNS DB=>MWB, 7/21 17:00:00, 30.80000, 5.56075E-005, 131.25358, 7.06470, 5.66753E-002, 0.00000
+ Zone Sizing Information, PERIMETER_TOP_ZN_4, Heating, 6155.61117, 6155.61117, 0.24160, 0.24160, LOS ANGELES-USA ANN HTG 99.6% CONDNS DB, 1/21 07:10:00, 7.10000, 1.00000E-005, 131.25358, 7.06470, 5.66753E-002, 0.00000
+! <System Sizing Information>, System Name, Load Type, Peak Load Kind, User Design Capacity [W], Calc Des Air Flow Rate [m3/s], User Des Air Flow Rate [m3/s], Design Day Name, Date/Time of Peak
+ System Sizing Information, PACU_VAV_BOT, Cooling, Sensible, 68561.47, 4.36821, 4.36821, LOS ANGELES-USA ANN CLG 0.4% CONDNS DB=>MWB, 7/21 15:00:00
+ System Sizing Information, PACU_VAV_BOT, Heating, Sensible, 6284.22, 1.33895, 1.33895, LOS ANGELES-USA ANN HTG 99.6% CONDNS DB, 1/21 06:50:00
+ System Sizing Information, PACU_VAV_MID, Cooling, Sensible, 59380.68, 3.70889, 3.70889, LOS ANGELES-USA ANN CLG 0.4% CONDNS DB=>MWB, 7/21 15:00:00
+ System Sizing Information, PACU_VAV_MID, Heating, Sensible, 6538.57, 1.42373, 1.42373, LOS ANGELES-USA ANN HTG 99.6% CONDNS DB, 1/21 22:10:00
+ System Sizing Information, PACU_VAV_TOP, Cooling, Sensible, 67162.32, 4.28327, 4.28327, LOS ANGELES-USA ANN CLG 0.4% CONDNS DB=>MWB, 7/21 15:20:00
+ System Sizing Information, PACU_VAV_TOP, Heating, Sensible, 6430.72, 2.24945, 2.24945, LOS ANGELES-USA ANN HTG 99.6% CONDNS DB, 1/21 06:30:00
+! <Component Sizing Information>, Component Type, Component Name, Input Field Description, Value
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, CORE_BOTTOM VAV BOX COMPONENT, Design Size Maximum Air Flow Rate [m3/s], 2.72334
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, CORE_BOTTOM VAV BOX COMPONENT, Design Size Constant Minimum Air Flow Fraction, 0.27520
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, CORE_BOTTOM VAV BOX COMPONENT, User-Specified Constant Minimum Air Flow Fraction, 0.23200
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, CORE_BOTTOM VAV BOX COMPONENT, Design Size Minimum Air Flow Rate [m3/s], 0.63182
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, CORE_BOTTOM VAV BOX COMPONENT, Design Size Maximum Flow Fraction during Reheat [], 0.23200
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, CORE_BOTTOM VAV BOX COMPONENT, User-Specified Maximum Flow Fraction during Reheat [], 0.50000
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, CORE_BOTTOM VAV BOX COMPONENT, Design Size Maximum Flow per Zone Floor Area during Reheat [m3/s-m2], 1.38446E-003
+ Component Sizing Information, Coil:Heating:Electric, CORE_BOTTOM VAV BOX REHEAT COIL, Design Size nominal_capacity [W], 45483.74543
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, CORE_MID VAV BOX COMPONENT, Design Size Maximum Air Flow Rate [m3/s], 1.93348
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, CORE_MID VAV BOX COMPONENT, Design Size Constant Minimum Air Flow Fraction, 0.38762
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, CORE_MID VAV BOX COMPONENT, User-Specified Constant Minimum Air Flow Fraction, 0.31900
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, CORE_MID VAV BOX COMPONENT, Design Size Minimum Air Flow Rate [m3/s], 0.61678
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, CORE_MID VAV BOX COMPONENT, Design Size Maximum Flow Fraction during Reheat [], 0.31900
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, CORE_MID VAV BOX COMPONENT, User-Specified Maximum Flow Fraction during Reheat [], 0.50000
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, CORE_MID VAV BOX COMPONENT, Design Size Maximum Flow per Zone Floor Area during Reheat [m3/s-m2], 9.82924E-004
+ Component Sizing Information, Coil:Heating:Electric, CORE_MID VAV BOX REHEAT COIL, Design Size nominal_capacity [W], 32291.97431
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, CORE_TOP VAV BOX COMPONENT, Design Size Maximum Air Flow Rate [m3/s], 2.00180
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, CORE_TOP VAV BOX COMPONENT, Design Size Constant Minimum Air Flow Fraction, 0.37439
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, CORE_TOP VAV BOX COMPONENT, User-Specified Constant Minimum Air Flow Fraction, 0.29200
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, CORE_TOP VAV BOX COMPONENT, Design Size Minimum Air Flow Rate [m3/s], 0.58453
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, CORE_TOP VAV BOX COMPONENT, Design Size Maximum Flow Fraction during Reheat [], 0.44306
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, CORE_TOP VAV BOX COMPONENT, User-Specified Maximum Flow Fraction during Reheat [], 0.50000
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, CORE_TOP VAV BOX COMPONENT, Design Size Maximum Flow per Zone Floor Area during Reheat [m3/s-m2], 1.01765E-003
+ Component Sizing Information, Coil:Heating:Electric, CORE_TOP VAV BOX REHEAT COIL, Design Size nominal_capacity [W], 33432.96122
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_BOT_ZN_1 VAV BOX COMPONENT, Design Size Maximum Air Flow Rate [m3/s], 0.56497
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_BOT_ZN_1 VAV BOX COMPONENT, Design Size Constant Minimum Air Flow Fraction, 0.27965
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_BOT_ZN_1 VAV BOX COMPONENT, User-Specified Constant Minimum Air Flow Fraction, 0.22700
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_BOT_ZN_1 VAV BOX COMPONENT, Design Size Minimum Air Flow Rate [m3/s], 0.12825
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_BOT_ZN_1 VAV BOX COMPONENT, Design Size Maximum Flow Fraction during Reheat [], 0.48768
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_BOT_ZN_1 VAV BOX COMPONENT, User-Specified Maximum Flow Fraction during Reheat [], 0.50000
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_BOT_ZN_1 VAV BOX COMPONENT, Design Size Maximum Flow per Zone Floor Area during Reheat [m3/s-m2], 1.36243E-003
+ Component Sizing Information, Coil:Heating:Electric, PERIMETER_BOT_ZN_1 VAV BOX REHEAT COIL, Design Size nominal_capacity [W], 9435.75309
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_BOT_ZN_2 VAV BOX COMPONENT, Design Size Maximum Air Flow Rate [m3/s], 0.53899
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_BOT_ZN_2 VAV BOX COMPONENT, Design Size Constant Minimum Air Flow Fraction, 0.18557
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_BOT_ZN_2 VAV BOX COMPONENT, User-Specified Constant Minimum Air Flow Fraction, 0.14600
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_BOT_ZN_2 VAV BOX COMPONENT, Design Size Minimum Air Flow Rate [m3/s], 7.86929E-002
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_BOT_ZN_2 VAV BOX COMPONENT, Design Size Maximum Flow Fraction during Reheat [], 0.33842
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_BOT_ZN_2 VAV BOX COMPONENT, User-Specified Maximum Flow Fraction during Reheat [], 0.50000
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_BOT_ZN_2 VAV BOX COMPONENT, Design Size Maximum Flow per Zone Floor Area during Reheat [m3/s-m2], 2.05311E-003
+ Component Sizing Information, Coil:Heating:Electric, PERIMETER_BOT_ZN_2 VAV BOX REHEAT COIL, Design Size nominal_capacity [W], 9001.95826
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_BOT_ZN_3 VAV BOX COMPONENT, Design Size Maximum Air Flow Rate [m3/s], 0.47788
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_BOT_ZN_3 VAV BOX COMPONENT, Design Size Constant Minimum Air Flow Fraction, 0.33061
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_BOT_ZN_3 VAV BOX COMPONENT, User-Specified Constant Minimum Air Flow Fraction, 0.23100
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_BOT_ZN_3 VAV BOX COMPONENT, Design Size Minimum Air Flow Rate [m3/s], 0.11039
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_BOT_ZN_3 VAV BOX COMPONENT, Design Size Maximum Flow Fraction during Reheat [], 0.57320
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_BOT_ZN_3 VAV BOX COMPONENT, User-Specified Maximum Flow Fraction during Reheat [], 0.50000
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_BOT_ZN_3 VAV BOX COMPONENT, Design Size Maximum Flow per Zone Floor Area during Reheat [m3/s-m2], 1.15241E-003
+ Component Sizing Information, Coil:Heating:Electric, PERIMETER_BOT_ZN_3 VAV BOX REHEAT COIL, Design Size nominal_capacity [W], 7981.23384
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_BOT_ZN_4 VAV BOX COMPONENT, Design Size Maximum Air Flow Rate [m3/s], 0.59753
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_BOT_ZN_4 VAV BOX COMPONENT, Design Size Constant Minimum Air Flow Fraction, 0.16738
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_BOT_ZN_4 VAV BOX COMPONENT, User-Specified Constant Minimum Air Flow Fraction, 0.13800
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_BOT_ZN_4 VAV BOX COMPONENT, Design Size Minimum Air Flow Rate [m3/s], 8.24591E-002
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_BOT_ZN_4 VAV BOX COMPONENT, Design Size Maximum Flow Fraction during Reheat [], 0.30527
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_BOT_ZN_4 VAV BOX COMPONENT, User-Specified Maximum Flow Fraction during Reheat [], 0.50000
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_BOT_ZN_4 VAV BOX COMPONENT, Design Size Maximum Flow per Zone Floor Area during Reheat [m3/s-m2], 2.27624E-003
+ Component Sizing Information, Coil:Heating:Electric, PERIMETER_BOT_ZN_4 VAV BOX REHEAT COIL, Design Size nominal_capacity [W], 9979.60661
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_MID_ZN_1 VAV BOX COMPONENT, Design Size Maximum Air Flow Rate [m3/s], 0.60736
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_MID_ZN_1 VAV BOX COMPONENT, Design Size Constant Minimum Air Flow Fraction, 0.26013
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_MID_ZN_1 VAV BOX COMPONENT, User-Specified Constant Minimum Air Flow Fraction, 0.22000
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_MID_ZN_1 VAV BOX COMPONENT, Design Size Minimum Air Flow Rate [m3/s], 0.13362
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_MID_ZN_1 VAV BOX COMPONENT, Design Size Maximum Flow Fraction during Reheat [], 0.47292
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_MID_ZN_1 VAV BOX COMPONENT, User-Specified Maximum Flow Fraction during Reheat [], 0.50000
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_MID_ZN_1 VAV BOX COMPONENT, Design Size Maximum Flow per Zone Floor Area during Reheat [m3/s-m2], 1.46466E-003
+ Component Sizing Information, Coil:Heating:Electric, PERIMETER_MID_ZN_1 VAV BOX REHEAT COIL, Design Size nominal_capacity [W], 10143.80347
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_MID_ZN_2 VAV BOX COMPONENT, Design Size Maximum Air Flow Rate [m3/s], 0.60449
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_MID_ZN_2 VAV BOX COMPONENT, Design Size Maximum Flow Fraction during Reheat [], 0.31255
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_MID_ZN_2 VAV BOX COMPONENT, User-Specified Maximum Flow Fraction during Reheat [], 0.50000
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_MID_ZN_2 VAV BOX COMPONENT, Design Size Maximum Flow per Zone Floor Area during Reheat [m3/s-m2], 2.30261E-003
+ Component Sizing Information, Coil:Heating:Electric, PERIMETER_MID_ZN_2 VAV BOX REHEAT COIL, Design Size nominal_capacity [W], 10095.87444
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_MID_ZN_3 VAV BOX COMPONENT, Design Size Maximum Air Flow Rate [m3/s], 0.51125
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_MID_ZN_3 VAV BOX COMPONENT, Design Size Constant Minimum Air Flow Fraction, 0.30903
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_MID_ZN_3 VAV BOX COMPONENT, User-Specified Constant Minimum Air Flow Fraction, 0.22400
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_MID_ZN_3 VAV BOX COMPONENT, Design Size Minimum Air Flow Rate [m3/s], 0.11452
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_MID_ZN_3 VAV BOX COMPONENT, Design Size Maximum Flow Fraction during Reheat [], 0.55927
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_MID_ZN_3 VAV BOX COMPONENT, User-Specified Maximum Flow Fraction during Reheat [], 0.50000
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_MID_ZN_3 VAV BOX COMPONENT, Design Size Maximum Flow per Zone Floor Area during Reheat [m3/s-m2], 1.23289E-003
+ Component Sizing Information, Coil:Heating:Electric, PERIMETER_MID_ZN_3 VAV BOX REHEAT COIL, Design Size nominal_capacity [W], 8538.61021
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_MID_ZN_4 VAV BOX COMPONENT, Design Size Maximum Air Flow Rate [m3/s], 0.66501
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_MID_ZN_4 VAV BOX COMPONENT, Design Size Constant Minimum Air Flow Fraction, 0.15040
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_MID_ZN_4 VAV BOX COMPONENT, User-Specified Constant Minimum Air Flow Fraction, 0.12600
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_MID_ZN_4 VAV BOX COMPONENT, Design Size Minimum Air Flow Rate [m3/s], 8.37909E-002
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_MID_ZN_4 VAV BOX COMPONENT, Design Size Maximum Flow Fraction during Reheat [], 0.28411
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_MID_ZN_4 VAV BOX COMPONENT, User-Specified Maximum Flow Fraction during Reheat [], 0.50000
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_MID_ZN_4 VAV BOX COMPONENT, Design Size Maximum Flow per Zone Floor Area during Reheat [m3/s-m2], 2.53329E-003
+ Component Sizing Information, Coil:Heating:Electric, PERIMETER_MID_ZN_4 VAV BOX REHEAT COIL, Design Size nominal_capacity [W], 11106.58721
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_TOP_ZN_1 VAV BOX COMPONENT, Design Size Maximum Air Flow Rate [m3/s], 0.68256
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_TOP_ZN_1 VAV BOX COMPONENT, Design Size Constant Minimum Air Flow Fraction, 0.23147
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_TOP_ZN_1 VAV BOX COMPONENT, User-Specified Constant Minimum Air Flow Fraction, 0.18800
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_TOP_ZN_1 VAV BOX COMPONENT, Design Size Minimum Air Flow Rate [m3/s], 0.12832
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_TOP_ZN_1 VAV BOX COMPONENT, Design Size Maximum Flow Fraction during Reheat [], 0.54412
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_TOP_ZN_1 VAV BOX COMPONENT, User-Specified Maximum Flow Fraction during Reheat [], 0.50000
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_TOP_ZN_1 VAV BOX COMPONENT, Design Size Maximum Flow per Zone Floor Area during Reheat [m3/s-m2], 1.64601E-003
+ Component Sizing Information, Coil:Heating:Electric, PERIMETER_TOP_ZN_1 VAV BOX REHEAT COIL, Design Size nominal_capacity [W], 11399.78193
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_TOP_ZN_2 VAV BOX COMPONENT, Design Size Maximum Air Flow Rate [m3/s], 0.60084
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_TOP_ZN_2 VAV BOX COMPONENT, Design Size Constant Minimum Air Flow Fraction, 0.16647
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_TOP_ZN_2 VAV BOX COMPONENT, User-Specified Constant Minimum Air Flow Fraction, 0.12900
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_TOP_ZN_2 VAV BOX COMPONENT, Design Size Minimum Air Flow Rate [m3/s], 7.75088E-002
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_TOP_ZN_2 VAV BOX COMPONENT, Design Size Maximum Flow Fraction during Reheat [], 0.40212
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_TOP_ZN_2 VAV BOX COMPONENT, User-Specified Maximum Flow Fraction during Reheat [], 0.50000
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_TOP_ZN_2 VAV BOX COMPONENT, Design Size Maximum Flow per Zone Floor Area during Reheat [m3/s-m2], 2.28871E-003
+ Component Sizing Information, Coil:Heating:Electric, PERIMETER_TOP_ZN_2 VAV BOX REHEAT COIL, Design Size nominal_capacity [W], 10034.94991
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_TOP_ZN_3 VAV BOX COMPONENT, Design Size Maximum Air Flow Rate [m3/s], 0.58100
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_TOP_ZN_3 VAV BOX COMPONENT, Design Size Constant Minimum Air Flow Fraction, 0.27193
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_TOP_ZN_3 VAV BOX COMPONENT, User-Specified Constant Minimum Air Flow Fraction, 0.19300
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_TOP_ZN_3 VAV BOX COMPONENT, Design Size Minimum Air Flow Rate [m3/s], 0.11213
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_TOP_ZN_3 VAV BOX COMPONENT, Design Size Maximum Flow Fraction during Reheat [], 0.63610
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_TOP_ZN_3 VAV BOX COMPONENT, User-Specified Maximum Flow Fraction during Reheat [], 0.50000
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_TOP_ZN_3 VAV BOX COMPONENT, Design Size Maximum Flow per Zone Floor Area during Reheat [m3/s-m2], 1.40110E-003
+ Component Sizing Information, Coil:Heating:Electric, PERIMETER_TOP_ZN_3 VAV BOX REHEAT COIL, Design Size nominal_capacity [W], 9703.57088
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_TOP_ZN_4 VAV BOX COMPONENT, Design Size Maximum Air Flow Rate [m3/s], 0.72277
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_TOP_ZN_4 VAV BOX COMPONENT, Design Size Constant Minimum Air Flow Fraction, 0.13838
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_TOP_ZN_4 VAV BOX COMPONENT, User-Specified Constant Minimum Air Flow Fraction, 0.11400
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_TOP_ZN_4 VAV BOX COMPONENT, Design Size Minimum Air Flow Rate [m3/s], 8.23957E-002
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_TOP_ZN_4 VAV BOX COMPONENT, Design Size Maximum Flow Fraction during Reheat [], 0.33427
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_TOP_ZN_4 VAV BOX COMPONENT, User-Specified Maximum Flow Fraction during Reheat [], 0.50000
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:Reheat, PERIMETER_TOP_ZN_4 VAV BOX COMPONENT, Design Size Maximum Flow per Zone Floor Area during Reheat [m3/s-m2], 2.75333E-003
+ Component Sizing Information, Coil:Heating:Electric, PERIMETER_TOP_ZN_4 VAV BOX REHEAT COIL, Design Size nominal_capacity [W], 12071.29479
+ Component Sizing Information, AirLoopHVAC, PACU_VAV_BOT, Sum of Air Terminal Maximum Heating Flow Rates [m3/s], 2.45135
+ Component Sizing Information, AirLoopHVAC, PACU_VAV_BOT, Sum of Air Terminal Minimum Heating Flow Rates [m3/s], 1.03160
+ Component Sizing Information, AirLoopHVAC, PACU_VAV_BOT, Sum of Air Terminal Maximum Flow Rates [m3/s], 4.90271
+ Component Sizing Information, AirLoopHVAC, PACU_VAV_BOT, Adjusted Heating Design Air Flow Rate [m3/s], 1.33895
+ Component Sizing Information, AirLoopHVAC, PACU_VAV_BOT, Adjusted Cooling Design Air Flow Rate [m3/s], 4.36821
+ Component Sizing Information, AirLoopHVAC, PACU_VAV_BOT, Adjusted Main Design Air Flow Rate [m3/s], 4.36821
+ Component Sizing Information, AirLoopHVAC, PACU_VAV_BOT, User Heating Air Flow Ratio [], 0.30000
+ Component Sizing Information, AirLoopHVAC, PACU_VAV_BOT, Calculated Heating Air Flow Ratio [], 0.30652
+ Component Sizing Information, AirLoopHVAC, PACU_VAV_MID, Sum of Air Terminal Maximum Heating Flow Rates [m3/s], 2.16080
+ Component Sizing Information, AirLoopHVAC, PACU_VAV_MID, Sum of Air Terminal Minimum Heating Flow Rates [m3/s], 1.03032
+ Component Sizing Information, AirLoopHVAC, PACU_VAV_MID, Sum of Air Terminal Maximum Flow Rates [m3/s], 4.32159
+ Component Sizing Information, AirLoopHVAC, PACU_VAV_MID, Adjusted Heating Design Air Flow Rate [m3/s], 1.42373
+ Component Sizing Information, AirLoopHVAC, PACU_VAV_MID, Adjusted Cooling Design Air Flow Rate [m3/s], 3.70889
+ Component Sizing Information, AirLoopHVAC, PACU_VAV_MID, Adjusted Main Design Air Flow Rate [m3/s], 3.70889
+ Component Sizing Information, AirLoopHVAC, PACU_VAV_MID, User Heating Air Flow Ratio [], 0.30000
+ Component Sizing Information, AirLoopHVAC, PACU_VAV_MID, Calculated Heating Air Flow Ratio [], 0.38387
+ Component Sizing Information, AirLoopHVAC, PACU_VAV_TOP, Sum of Air Terminal Maximum Heating Flow Rates [m3/s], 2.29449
+ Component Sizing Information, AirLoopHVAC, PACU_VAV_TOP, Sum of Air Terminal Minimum Heating Flow Rates [m3/s], 0.98489
+ Component Sizing Information, AirLoopHVAC, PACU_VAV_TOP, Sum of Air Terminal Maximum Flow Rates [m3/s], 4.58898
+ Component Sizing Information, AirLoopHVAC, PACU_VAV_TOP, Adjusted Heating Design Air Flow Rate [m3/s], 2.24945
+ Component Sizing Information, AirLoopHVAC, PACU_VAV_TOP, Adjusted Cooling Design Air Flow Rate [m3/s], 4.28327
+ Component Sizing Information, AirLoopHVAC, PACU_VAV_TOP, Adjusted Main Design Air Flow Rate [m3/s], 4.28327
+ Component Sizing Information, AirLoopHVAC, PACU_VAV_TOP, User Heating Air Flow Ratio [], 0.30000
+ Component Sizing Information, AirLoopHVAC, PACU_VAV_TOP, Calculated Heating Air Flow Ratio [], 0.52517
+ Component Sizing Information, AirLoopHVAC, PACU_VAV_BOT, Design Supply Air Flow Rate [m3/s], 4.36821
+ Component Sizing Information, AirLoopHVAC, PACU_VAV_MID, Design Supply Air Flow Rate [m3/s], 3.70889
+ Component Sizing Information, AirLoopHVAC, PACU_VAV_TOP, Design Supply Air Flow Rate [m3/s], 4.28327
+!<Controller:MechanicalVentilation>,Name,Availability Schedule Name,Demand Controlled Ventilation {Yes/No},System Outdoor Air Method,Zone Maximum Outdoor Air Fraction,Number of Zones,Zone Name,DSOA Name,DSZAD Name
+ Controller:MechanicalVentilation,PACU_VAV_BOT_DCV,MINOA_SCHED,Yes,Standard62.1VentilationRateProcedure,1.00,5,CORE_BOTTOM,SZ DSOA CORE_BOTTOM,CM DSZAD BUILDING,PERIMETER_BOT_ZN_1,SZ DSOA PERIMETER_BOT_ZN_1,CM DSZAD BUILDING,PERIMETER_BOT_ZN_2,SZ DSOA PERIMETER_BOT_ZN_2,CM DSZAD BUILDING,PERIMETER_BOT_ZN_3,SZ DSOA PERIMETER_BOT_ZN_3,CM DSZAD BUILDING,PERIMETER_BOT_ZN_4,SZ DSOA PERIMETER_BOT_ZN_4,CM DSZAD BUILDING
+ Controller:MechanicalVentilation,PACU_VAV_MID_DCV,MINOA_SCHED,Yes,Standard62.1VentilationRateProcedure,1.00,5,CORE_MID,SZ DSOA CORE_MID,CM DSZAD BUILDING,PERIMETER_MID_ZN_1,SZ DSOA PERIMETER_MID_ZN_1,CM DSZAD BUILDING,PERIMETER_MID_ZN_2,SZ DSOA PERIMETER_MID_ZN_2,CM DSZAD BUILDING,PERIMETER_MID_ZN_3,SZ DSOA PERIMETER_MID_ZN_3,CM DSZAD BUILDING,PERIMETER_MID_ZN_4,SZ DSOA PERIMETER_MID_ZN_4,CM DSZAD BUILDING
+ Controller:MechanicalVentilation,PACU_VAV_TOP_DCV,MINOA_SCHED,Yes,Standard62.1VentilationRateProcedure,1.00,5,CORE_TOP,SZ DSOA CORE_TOP,CM DSZAD BUILDING,PERIMETER_TOP_ZN_1,SZ DSOA PERIMETER_TOP_ZN_1,CM DSZAD BUILDING,PERIMETER_TOP_ZN_2,SZ DSOA PERIMETER_TOP_ZN_2,CM DSZAD BUILDING,PERIMETER_TOP_ZN_3,SZ DSOA PERIMETER_TOP_ZN_3,CM DSZAD BUILDING,PERIMETER_TOP_ZN_4,SZ DSOA PERIMETER_TOP_ZN_4,CM DSZAD BUILDING
+ Component Sizing Information, Controller:OutdoorAir, PACU_VAV_BOT_OA_CONTROLLER, Maximum Outdoor Air Flow Rate [m3/s], 4.36821
+ Component Sizing Information, Coil:Cooling:DX:TwoSpeed, PACU_VAV_BOT COOLING COIL, Design Size high_speed_rated_air_flow_rate [m3/s], 4.36821
+ Component Sizing Information, Coil:Cooling:DX:TwoSpeed, PACU_VAV_BOT COOLING COIL, Design Size high_speed_gross_rated_total_cooling_capacity [W], 80247.45158
+ Component Sizing Information, Coil:Cooling:DX:TwoSpeed, PACU_VAV_BOT COOLING COIL, Design Size high_speed_rated_sensible_heat_ratio, 0.80029
+ Component Sizing Information, Coil:Cooling:DX:TwoSpeed, PACU_VAV_BOT COOLING COIL, Design Size low_speed_rated_air_flow_rate [m3/s], 1.45592
+ Component Sizing Information, Coil:Cooling:DX:TwoSpeed, PACU_VAV_BOT COOLING COIL, Design Size low_speed_gross_rated_total_cooling_capacity [W], 26746.47561
+ Component Sizing Information, Coil:Cooling:DX:TwoSpeed, PACU_VAV_BOT COOLING COIL, Design Size low_speed_gross_rated_sensible_heat_ratio, 0.80029
+! <DX Cooling Coil AHRI 2023 Standard Rating Information>, Component Type, Component Name, Standard Rating (Net) Cooling Capacity {W}, Standard Rating Net COP2 {W/W}, EER2 {Btu/W-h}, SEER2 User {Btu/W-h}, SEER2 Standard {Btu/W-h}, IEER 2022 {Btu/W-h}
+ DX Cooling Coil AHRI 2023 Standard Rating Information, Coil:Cooling:DX:TwoSpeed, PACU_VAV_BOT COOLING COIL, 78623.4, 2.88, 9.81, 10.99, 11.02, 10.9
+! <VAV DX Cooling Coil Standard Rating Information>, DX Coil Type, DX Coil Name, Fan Type, Fan Name, Standard Net Cooling Capacity {W}, Standard Net Cooling Capacity {Btu/h}, IEER {Btu/W-h}, COP 100% Capacity {W/W}, COP 75% Capacity {W/W}, COP 50% Capacity {W/W}, COP 25% Capacity {W/W}, EER 100% Capacity {Btu/W-h}, EER 75% Capacity {Btu/W-h}, EER 50% Capacity {Btu/W-h}, EER 25% Capacity {Btu/W-h}, Supply Air Flow 100% {kg/s}, Supply Air Flow 75% {kg/s},Supply Air Flow 50% {kg/s},Supply Air Flow 25% {kg/s}
+ VAV DX Cooling Coil Standard Rating Information, Coil:Cooling:DX:TwoSpeed,PACU_VAV_BOT COOLING COIL,N/A,N/A,79237.42,270369.31,11.02,2.85,3.15,3.32,3.50,9.71,10.76,11.32,11.95,5.0529,4.0140,2.7009,1.0773,
+! <DX Cooling Coil Standard Rating Information>, Component Type, Component Name, Standard Rating (Net) Cooling Capacity {W}, Standard Rating Net COP {W/W}, EER {Btu/W-h}, SEER User {Btu/W-h}, SEER Standard {Btu/W-h}, IEER {Btu/W-h}
+ DX Cooling Coil Standard Rating Information, Coil:Cooling:DX:TwoSpeed, PACU_VAV_BOT COOLING COIL, 79237.4, 2.8468436110372854, 9.71383360786038, N/A, N/A, 11.020354566314388
+ Component Sizing Information, Coil:Heating:Fuel, PACU_VAV_BOT HEATING COIL, Design Size nominal_capacity [W], 3343.90461
+ Component Sizing Information, Fan:VariableVolume, PACU_VAV_BOT FAN, Design Size maximum_flow_rate [m3/s], 4.36821
+ Component Sizing Information, Fan:VariableVolume, PACU_VAV_BOT FAN, Design Electric Power Consumption [W], 9562.04909
+ Component Sizing Information, Controller:OutdoorAir, PACU_VAV_MID_OA_CONTROLLER, Maximum Outdoor Air Flow Rate [m3/s], 3.70889
+ Component Sizing Information, Coil:Cooling:DX:TwoSpeed, PACU_VAV_MID COOLING COIL, Design Size high_speed_rated_air_flow_rate [m3/s], 3.70889
+ Component Sizing Information, Coil:Cooling:DX:TwoSpeed, PACU_VAV_MID COOLING COIL, Design Size high_speed_gross_rated_total_cooling_capacity [W], 69621.48906
+ Component Sizing Information, Coil:Cooling:DX:TwoSpeed, PACU_VAV_MID COOLING COIL, Design Size high_speed_rated_sensible_heat_ratio, 0.80021
+ Component Sizing Information, Coil:Cooling:DX:TwoSpeed, PACU_VAV_MID COOLING COIL, Design Size low_speed_rated_air_flow_rate [m3/s], 1.23617
+ Component Sizing Information, Coil:Cooling:DX:TwoSpeed, PACU_VAV_MID COOLING COIL, Design Size low_speed_gross_rated_total_cooling_capacity [W], 23204.84230
+ Component Sizing Information, Coil:Cooling:DX:TwoSpeed, PACU_VAV_MID COOLING COIL, Design Size low_speed_gross_rated_sensible_heat_ratio, 0.80021
+ DX Cooling Coil AHRI 2023 Standard Rating Information, Coil:Cooling:DX:TwoSpeed, PACU_VAV_MID COOLING COIL, 68288.1, 2.89, 9.85, 11.03, 11.06, 10.9
+ VAV DX Cooling Coil Standard Rating Information, Coil:Cooling:DX:TwoSpeed,PACU_VAV_MID COOLING COIL,N/A,N/A,68807.76,234781.82,11.06,2.86,3.17,3.33,3.52,9.75,10.80,11.36,12.02,4.2903,3.4303,2.3095,0.9070,
+ DX Cooling Coil Standard Rating Information, Coil:Cooling:DX:TwoSpeed, PACU_VAV_MID COOLING COIL, 68807.8, 2.856834995582632, 9.74792562703887, N/A, N/A, 11.063397167746068
+ Component Sizing Information, Coil:Heating:Fuel, PACU_VAV_MID HEATING COIL, Design Size nominal_capacity [W], 5041.50200
+ Component Sizing Information, Fan:VariableVolume, PACU_VAV_MID FAN, Design Size maximum_flow_rate [m3/s], 3.70889
+ Component Sizing Information, Fan:VariableVolume, PACU_VAV_MID FAN, Design Electric Power Consumption [W], 8118.80925
+ Component Sizing Information, Controller:OutdoorAir, PACU_VAV_TOP_OA_CONTROLLER, Maximum Outdoor Air Flow Rate [m3/s], 4.28327
+ Component Sizing Information, Coil:Cooling:DX:TwoSpeed, PACU_VAV_TOP COOLING COIL, Design Size high_speed_rated_air_flow_rate [m3/s], 4.28327
+ Component Sizing Information, Coil:Cooling:DX:TwoSpeed, PACU_VAV_TOP COOLING COIL, Design Size high_speed_gross_rated_total_cooling_capacity [W], 78519.94210
+ Component Sizing Information, Coil:Cooling:DX:TwoSpeed, PACU_VAV_TOP COOLING COIL, Design Size high_speed_rated_sensible_heat_ratio, 0.80099
+ Component Sizing Information, Coil:Cooling:DX:TwoSpeed, PACU_VAV_TOP COOLING COIL, Design Size low_speed_rated_air_flow_rate [m3/s], 1.42761
+ Component Sizing Information, Coil:Cooling:DX:TwoSpeed, PACU_VAV_TOP COOLING COIL, Design Size low_speed_gross_rated_total_cooling_capacity [W], 26170.69670
+ Component Sizing Information, Coil:Cooling:DX:TwoSpeed, PACU_VAV_TOP COOLING COIL, Design Size low_speed_gross_rated_sensible_heat_ratio, 0.80099
+ DX Cooling Coil AHRI 2023 Standard Rating Information, Coil:Cooling:DX:TwoSpeed, PACU_VAV_TOP COOLING COIL, 76922.3, 2.88, 9.81, 10.98, 11.01, 10.9
+ VAV DX Cooling Coil Standard Rating Information, Coil:Cooling:DX:TwoSpeed,PACU_VAV_TOP COOLING COIL,N/A,N/A,77524.62,264524.98,11.02,2.85,3.15,3.32,3.50,9.71,10.75,11.31,11.95,4.9547,3.9362,2.6485,1.0564,
+ DX Cooling Coil Standard Rating Information, Coil:Cooling:DX:TwoSpeed, PACU_VAV_TOP COOLING COIL, 77524.6, 2.8458498534403502, 9.710442766190768, N/A, N/A, 11.015311514463754
+ Component Sizing Information, Coil:Heating:Fuel, PACU_VAV_TOP HEATING COIL, Design Size nominal_capacity [W], 4408.12010
+ Component Sizing Information, Fan:VariableVolume, PACU_VAV_TOP FAN, Design Size maximum_flow_rate [m3/s], 4.28327
+ Component Sizing Information, Fan:VariableVolume, PACU_VAV_TOP FAN, Design Electric Power Consumption [W], 9376.12482
+Water Heater Information,WaterHeater:Mixed,SWHSYS1 WATER HEATER,0.3785,29307.1,0.980,0.1802
+ Component Sizing Information, PlantLoop, SWHSYS1, Maximum Loop Flow Rate [m3/s], 5.36267E-005
+ Component Sizing Information, PlantLoop, SWHSYS1, Plant Loop Volume [m3], 6.43520E-003
+ Component Sizing Information, PlantLoop, SWHSYS1, Design Supply Temperature [C], 60.00000
+ Component Sizing Information, PlantLoop, SWHSYS1, Design Return Temperature [C], 55.00000
+ Component Sizing Information, PlantLoop, SWHSYS1, Sizing option (Coincident/NonCoincident), 1.00000
+ Component Sizing Information, PlantLoop, SWHSYS1, Minimum Loop Flow Rate [m3/s], 0.00000
+ Component Sizing Information, PlantLoop, SWHSYS1, Design Capacity [W], 1125.49012
+ Component Sizing Information, Pump:ConstantSpeed, SWHSYS1 PUMP, Design Flow Rate [m3/s], 5.36267E-005
+ Component Sizing Information, Pump:ConstantSpeed, SWHSYS1 PUMP, Design Power Consumption [W], 6.85023
+ Component Sizing Information, WaterHeater:Mixed, SWHSYS1 WATER HEATER, Use Side Design Flow Rate [m3/s], 5.36267E-005
+! <Zone Surfaces>,Zone Name,# Surfaces
+! <Shading Surfaces>,Number of Shading Surfaces,# Surfaces
+! <HeatTransfer Surface>,Surface Name,Surface Class,Base Surface,Heat Transfer Algorithm,Construction,Nominal U (w/o film coefs) {W/m2-K},Nominal U (with film coefs) {W/m2-K},Solar Diffusing,Area (Net) {m2},Area (Gross) {m2},Area (Sunlit Calc) {m2},Azimuth {deg},Tilt {deg},~Width {m},~Height {m},Reveal {m},ExtBoundCondition,ExtConvCoeffCalc,IntConvCoeffCalc,SunExposure,WindExposure,ViewFactorToGround,ViewFactorToSky,ViewFactorToGround-IR,ViewFactorToSky-IR,#Sides
+! <Shading Surface>,Surface Name,Surface Class,Base Surface,Heat Transfer Algorithm,Transmittance Schedule,Min Schedule Value,Max Schedule Value,Solar Diffusing,Area (Net) {m2},Area (Gross) {m2},Area (Sunlit Calc) {m2},Azimuth {deg},Tilt {deg},~Width {m},~Height {m},Reveal {m},ExtBoundCondition,ExtConvCoeffCalc,IntConvCoeffCalc,SunExposure,WindExposure,ViewFactorToGround,ViewFactorToSky,ViewFactorToGround-IR,ViewFactorToSky-IR,#Sides
+! <Frame/Divider Surface>,Surface Name,Surface Class,Base Surface,Heat Transfer Algorithm,Construction,Nominal U (w/o film coefs) {W/m2-K},Nominal U (with film coefs) {W/m2-K},Solar Diffusing,Area (Net) {m2},Area (Gross) {m2},Area (Sunlit Calc) {m2},Azimuth {deg},Tilt {deg},~Width {m},~Height {m},Reveal {m}
+Zone Surfaces,CORE_BOTTOM,7
+HeatTransfer Surface,CORE_BOT_ZN_5_WALL_EAST,Wall,,CTF - ConductionTransferFunction,INT_WALL,6.299,3.242,,66.19,66.19,66.19,90.00,90.00,24.13,2.74,0.00,iz-CORE_BOT_ZN_5_WALL_EAST,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,CORE_BOT_ZN_5_WALL_NORTH,Wall,,CTF - ConductionTransferFunction,INT_WALL,6.299,3.242,,111.82,111.82,111.82,0.00,90.00,40.76,2.74,0.00,iz-CORE_BOT_ZN_5_WALL_NORTH,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,CORE_BOT_ZN_5_WALL_SOUTH,Wall,,CTF - ConductionTransferFunction,INT_WALL,6.299,3.242,,111.82,111.82,111.82,180.00,90.00,40.76,2.74,0.00,iz-CORE_BOT_ZN_5_WALL_SOUTH,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,CORE_BOT_ZN_5_WALL_WEST,Wall,,CTF - ConductionTransferFunction,INT_WALL,6.299,3.242,,66.19,66.19,66.19,270.00,90.00,24.13,2.74,0.00,iz-CORE_BOT_ZN_5_WALL_WEST,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,CORE_BOT_ZN_5_FLOOR,Floor,,CTF - ConductionTransferFunction,CORE_BOT_ZN_5_FLOOR_FFACTOR,5.650E-003,5.642E-003,,983.54,983.54,983.54,0.00,180.00,40.76,24.13,0.00,CORE_BOT_ZN_5_FLOOR,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,1.00,0.00,1.00,0.00,4
+HeatTransfer Surface,CORE_BOT_ZN_5_CEILING,Roof,,CTF - ConductionTransferFunction,DROPCEILING,4.488,2.432,,983.54,983.54,983.54,180.00,0.00,40.76,24.13,0.00,iz-CORE_BOT_ZN_5_CEILING,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.00,1.00,0.00,1.00,4
+HeatTransfer Surface,CORE_BOTTOM_INTERNALMASS_1,Internal Mass,,CTF - ConductionTransferFunction,INTERIORFURNISHINGS,0.800,0.800,,1967.08,1967.08,1967.08,0.00,90.00,1967.08,1.00,0.00,CORE_BOTTOM_INTERNALMASS_1,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.00,0.50,1.00,0.00,0
+Zone Surfaces,CORE_MID,7
+HeatTransfer Surface,CORE_MID_ZN_5_WALL_EAST,Wall,,CTF - ConductionTransferFunction,INT_WALL,6.299,3.242,,66.19,66.19,66.19,90.00,90.00,24.13,2.74,0.00,iz-CORE_MID_ZN_5_WALL_EAST,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,CORE_MID_ZN_5_WALL_NORTH,Wall,,CTF - ConductionTransferFunction,INT_WALL,6.299,3.242,,111.82,111.82,111.82,0.00,90.00,40.76,2.74,0.00,iz-CORE_MID_ZN_5_WALL_NORTH,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,CORE_MID_ZN_5_WALL_SOUTH,Wall,,CTF - ConductionTransferFunction,INT_WALL,6.299,3.242,,111.82,111.82,111.82,180.00,90.00,40.76,2.74,0.00,iz-CORE_MID_ZN_5_WALL_SOUTH,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,CORE_MID_ZN_5_WALL_WEST,Wall,,CTF - ConductionTransferFunction,INT_WALL,6.299,3.242,,66.19,66.19,66.19,270.00,90.00,24.13,2.74,0.00,iz-CORE_MID_ZN_5_WALL_WEST,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,CORE_MID_ZN_5_FLOOR,Floor,,CTF - ConductionTransferFunction,INT_SLAB_FLOOR,3.839,1.986,,983.54,983.54,983.54,0.00,180.00,40.76,24.13,0.00,iz-CORE_MID_ZN_5_FLOOR,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,1.00,0.00,1.00,0.00,4
+HeatTransfer Surface,CORE_MID_ZN_5_CEILING,Roof,,CTF - ConductionTransferFunction,DROPCEILING,4.488,2.432,,983.54,983.54,983.54,180.00,0.00,40.76,24.13,0.00,iz-CORE_MID_ZN_5_CEILING,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.00,1.00,0.00,1.00,4
+HeatTransfer Surface,CORE_MID_INTERNALMASS_1,Internal Mass,,CTF - ConductionTransferFunction,INTERIORFURNISHINGS,0.800,0.800,,1967.08,1967.08,1967.08,0.00,90.00,1967.08,1.00,0.00,CORE_MID_INTERNALMASS_1,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.00,0.50,1.00,0.00,0
+Zone Surfaces,CORE_TOP,7
+HeatTransfer Surface,CORE_TOP_ZN_5_WALL_EAST,Wall,,CTF - ConductionTransferFunction,INT_WALL,6.299,3.242,,66.19,66.19,66.19,90.00,90.00,24.13,2.74,0.00,iz-CORE_TOP_ZN_5_WALL_EAST,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,CORE_TOP_ZN_5_WALL_NORTH,Wall,,CTF - ConductionTransferFunction,INT_WALL,6.299,3.242,,111.82,111.82,111.82,0.00,90.00,40.76,2.74,0.00,iz-CORE_TOP_ZN_5_WALL_NORTH,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,CORE_TOP_ZN_5_WALL_SOUTH,Wall,,CTF - ConductionTransferFunction,INT_WALL,6.299,3.242,,111.82,111.82,111.82,180.00,90.00,40.76,2.74,0.00,iz-CORE_TOP_ZN_5_WALL_SOUTH,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,CORE_TOP_ZN_5_WALL_WEST,Wall,,CTF - ConductionTransferFunction,INT_WALL,6.299,3.242,,66.19,66.19,66.19,270.00,90.00,24.13,2.74,0.00,iz-CORE_TOP_ZN_5_WALL_WEST,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,CORE_TOP_ZN_5_FLOOR,Floor,,CTF - ConductionTransferFunction,INT_SLAB_FLOOR,3.839,1.986,,983.54,983.54,983.54,0.00,180.00,40.76,24.13,0.00,iz-CORE_TOP_ZN_5_FLOOR,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,1.00,0.00,1.00,0.00,4
+HeatTransfer Surface,CORE_TOP_ZN_5_CEILING,Roof,,CTF - ConductionTransferFunction,DROPCEILING,4.488,2.432,,983.54,983.54,983.54,0.00,0.00,40.76,24.13,0.00,iz-CORE_TOP_ZN_5_CEILING,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.00,1.00,0.00,1.00,4
+HeatTransfer Surface,CORE_TOP_INTERNALMASS_1,Internal Mass,,CTF - ConductionTransferFunction,INTERIORFURNISHINGS,0.800,0.800,,1967.08,1967.08,1967.08,0.00,90.00,1967.08,1.00,0.00,CORE_TOP_INTERNALMASS_1,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.00,0.50,1.00,0.00,0
+Zone Surfaces,FIRSTFLOOR_PLENUM,14
+HeatTransfer Surface,PERIMETER_BOT_PLENUM_WALL_EAST,Wall,,CTF - ConductionTransferFunction,NONRES_EXT_WALL_GRD,1.328,1.108,,40.57,40.57,40.57,90.00,90.00,33.27,1.22,0.00,ExternalEnvironment,ASHRAETARP,ASHRAETARP,SunExposed,WindExposed,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,PERIMETER_BOT_PLENUM_WALL_NORTH,Wall,,CTF - ConductionTransferFunction,NONRES_EXT_WALL_GRD,1.328,1.108,,60.85,60.85,60.85,0.00,90.00,49.91,1.22,0.00,ExternalEnvironment,ASHRAETARP,ASHRAETARP,SunExposed,WindExposed,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,PERIMETER_BOT_PLENUM_WALL_SOUTH,Wall,,CTF - ConductionTransferFunction,NONRES_EXT_WALL_GRD,1.328,1.108,,60.85,60.85,60.85,180.00,90.00,49.91,1.22,0.00,ExternalEnvironment,ASHRAETARP,ASHRAETARP,SunExposed,WindExposed,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,PERIMETER_BOT_PLENUM_WALL_WEST,Wall,,CTF - ConductionTransferFunction,NONRES_EXT_WALL_GRD,1.328,1.108,,40.57,40.57,40.57,270.00,90.00,33.27,1.22,0.00,ExternalEnvironment,ASHRAETARP,ASHRAETARP,SunExposed,WindExposed,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,iz-CORE_BOT_ZN_5_CEILING,Floor,,CTF - ConductionTransferFunction,DROPCEILING,4.488,2.147,,983.54,983.54,983.54,0.00,180.00,40.76,24.13,0.00,CORE_BOT_ZN_5_CEILING,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,1.00,0.00,1.00,0.00,4
+HeatTransfer Surface,iz-PERIMETER_BOT_ZN_1_CEILING,Floor,,CTF - ConductionTransferFunction,DROPCEILING,4.488,2.147,,207.34,207.34,207.34,180.00,180.00,40.76,6.47,0.00,PERIMETER_BOT_ZN_1_CEILING,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,1.00,0.00,1.00,0.00,4
+HeatTransfer Surface,iz-PERIMETER_BOT_ZN_2_CEILING,Floor,,CTF - ConductionTransferFunction,DROPCEILING,4.488,2.147,,131.26,131.26,131.26,90.00,180.00,24.13,6.47,0.00,PERIMETER_BOT_ZN_2_CEILING,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,1.00,0.00,1.00,0.00,4
+HeatTransfer Surface,iz-PERIMETER_BOT_ZN_3_CEILING,Floor,,CTF - ConductionTransferFunction,DROPCEILING,4.488,2.147,,207.34,207.34,207.34,0.00,180.00,40.76,6.47,0.00,PERIMETER_BOT_ZN_3_CEILING,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,1.00,0.00,1.00,0.00,4
+HeatTransfer Surface,iz-PERIMETER_BOT_ZN_4_CEILING,Floor,,CTF - ConductionTransferFunction,DROPCEILING,4.488,2.147,,131.25,131.25,131.25,270.00,180.00,24.13,6.47,0.00,PERIMETER_BOT_ZN_4_CEILING,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,1.00,0.00,1.00,0.00,4
+HeatTransfer Surface,iz-CORE_MID_ZN_5_FLOOR,Roof,,CTF - ConductionTransferFunction,INT_SLAB_CEILING,3.839,2.228,,983.54,983.54,983.54,180.00,0.00,40.76,24.13,0.00,CORE_MID_ZN_5_FLOOR,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.00,1.00,0.00,1.00,4
+HeatTransfer Surface,iz-PERIMETER_MID_ZN_1_FLOOR,Roof,,CTF - ConductionTransferFunction,INT_SLAB_CEILING,3.839,2.228,,207.34,207.34,207.34,0.00,0.00,40.76,6.47,0.00,PERIMETER_MID_ZN_1_FLOOR,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.00,1.00,0.00,1.00,4
+HeatTransfer Surface,iz-PERIMETER_MID_ZN_2_FLOOR,Roof,,CTF - ConductionTransferFunction,INT_SLAB_CEILING,3.839,2.228,,131.26,131.26,131.26,270.00,0.00,24.13,6.47,0.00,PERIMETER_MID_ZN_2_FLOOR,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.00,1.00,0.00,1.00,4
+HeatTransfer Surface,iz-PERIMETER_MID_ZN_3_FLOOR,Roof,,CTF - ConductionTransferFunction,INT_SLAB_CEILING,3.839,2.228,,207.34,207.34,207.34,180.00,0.00,40.76,6.47,0.00,PERIMETER_MID_ZN_3_FLOOR,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.00,1.00,0.00,1.00,4
+HeatTransfer Surface,iz-PERIMETER_MID_ZN_4_FLOOR,Roof,,CTF - ConductionTransferFunction,INT_SLAB_CEILING,3.839,2.228,,131.25,131.25,131.25,90.00,0.00,24.13,6.47,0.00,PERIMETER_MID_ZN_4_FLOOR,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.00,1.00,0.00,1.00,4
+Zone Surfaces,MIDFLOOR_PLENUM,14
+HeatTransfer Surface,PERIMETER_MID_PLENUM_WALL_EAST,Wall,,CTF - ConductionTransferFunction,NONRES_EXT_WALL_MID,1.313,1.097,,40.57,40.57,40.57,90.00,90.00,33.27,1.22,0.00,ExternalEnvironment,ASHRAETARP,ASHRAETARP,SunExposed,WindExposed,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,PERIMETER_MID_PLENUM_WALL_NORTH,Wall,,CTF - ConductionTransferFunction,NONRES_EXT_WALL_MID,1.313,1.097,,60.85,60.85,60.85,0.00,90.00,49.91,1.22,0.00,ExternalEnvironment,ASHRAETARP,ASHRAETARP,SunExposed,WindExposed,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,PERIMETER_MID_PLENUM_WALL_SOUTH,Wall,,CTF - ConductionTransferFunction,NONRES_EXT_WALL_MID,1.313,1.097,,60.85,60.85,60.85,180.00,90.00,49.91,1.22,0.00,ExternalEnvironment,ASHRAETARP,ASHRAETARP,SunExposed,WindExposed,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,PERIMETER_MID_PLENUM_WALL_WEST,Wall,,CTF - ConductionTransferFunction,NONRES_EXT_WALL_MID,1.313,1.097,,40.57,40.57,40.57,270.00,90.00,33.27,1.22,0.00,ExternalEnvironment,ASHRAETARP,ASHRAETARP,SunExposed,WindExposed,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,iz-CORE_MID_ZN_5_CEILING,Floor,,CTF - ConductionTransferFunction,DROPCEILING,4.488,2.147,,983.54,983.54,983.54,0.00,180.00,40.76,24.13,0.00,CORE_MID_ZN_5_CEILING,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,1.00,0.00,1.00,0.00,4
+HeatTransfer Surface,iz-PERIMETER_MID_ZN_1_CEILING,Floor,,CTF - ConductionTransferFunction,DROPCEILING,4.488,2.147,,207.34,207.34,207.34,180.00,180.00,40.76,6.47,0.00,PERIMETER_MID_ZN_1_CEILING,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,1.00,0.00,1.00,0.00,4
+HeatTransfer Surface,iz-PERIMETER_MID_ZN_2_CEILING,Floor,,CTF - ConductionTransferFunction,DROPCEILING,4.488,2.147,,131.26,131.26,131.26,90.00,180.00,24.13,6.47,0.00,PERIMETER_MID_ZN_2_CEILING,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,1.00,0.00,1.00,0.00,4
+HeatTransfer Surface,iz-PERIMETER_MID_ZN_3_CEILING,Floor,,CTF - ConductionTransferFunction,DROPCEILING,4.488,2.147,,207.34,207.34,207.34,0.00,180.00,40.76,6.47,0.00,PERIMETER_MID_ZN_3_CEILING,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,1.00,0.00,1.00,0.00,4
+HeatTransfer Surface,iz-PERIMETER_MID_ZN_4_CEILING,Floor,,CTF - ConductionTransferFunction,DROPCEILING,4.488,2.147,,131.25,131.25,131.25,270.00,180.00,24.13,6.47,0.00,PERIMETER_MID_ZN_4_CEILING,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,1.00,0.00,1.00,0.00,4
+HeatTransfer Surface,iz-CORE_TOP_ZN_5_FLOOR,Roof,,CTF - ConductionTransferFunction,INT_SLAB_CEILING,3.839,2.228,,983.54,983.54,983.54,180.00,0.00,40.76,24.13,0.00,CORE_TOP_ZN_5_FLOOR,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.00,1.00,0.00,1.00,4
+HeatTransfer Surface,iz-PERIMETER_TOP_ZN_1_FLOOR,Roof,,CTF - ConductionTransferFunction,INT_SLAB_CEILING,3.839,2.228,,207.34,207.34,207.34,0.00,0.00,40.76,6.47,0.00,PERIMETER_TOP_ZN_1_FLOOR,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.00,1.00,0.00,1.00,4
+HeatTransfer Surface,iz-PERIMETER_TOP_ZN_2_FLOOR,Roof,,CTF - ConductionTransferFunction,INT_SLAB_CEILING,3.839,2.228,,131.26,131.26,131.26,270.00,0.00,24.13,6.47,0.00,PERIMETER_TOP_ZN_2_FLOOR,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.00,1.00,0.00,1.00,4
+HeatTransfer Surface,iz-PERIMETER_TOP_ZN_3_FLOOR,Roof,,CTF - ConductionTransferFunction,INT_SLAB_CEILING,3.839,2.228,,207.34,207.34,207.34,180.00,0.00,40.76,6.47,0.00,PERIMETER_TOP_ZN_3_FLOOR,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.00,1.00,0.00,1.00,4
+HeatTransfer Surface,iz-PERIMETER_TOP_ZN_4_FLOOR,Roof,,CTF - ConductionTransferFunction,INT_SLAB_CEILING,3.839,2.228,,131.25,131.25,131.25,90.00,0.00,24.13,6.47,0.00,PERIMETER_TOP_ZN_4_FLOOR,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.00,1.00,0.00,1.00,4
+Zone Surfaces,PERIMETER_BOT_ZN_1,12
+HeatTransfer Surface,PERIMETER_BOT_ZN_1_WALL_EAST,Wall,,CTF - ConductionTransferFunction,INT_WALL,6.299,3.242,,17.74,17.74,17.74,45.00,90.00,6.47,2.74,0.00,iz-PERIMETER_BOT_ZN_1_WALL_EAST,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,PERIMETER_BOT_ZN_1_WALL_SOUTH,Wall,,CTF - ConductionTransferFunction,NONRES_EXT_WALL_GRD,1.328,1.108,,67.75,136.92,67.75,180.00,90.00,49.91,2.74,0.00,ExternalEnvironment,ASHRAETARP,ASHRAETARP,SunExposed,WindExposed,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,PERIMETER_BOT_ZN_1_WALL_SOUTH_DOOR1,Door,PERIMETER_BOT_ZN_1_WALL_SOUTH,CTF - ConductionTransferFunction,SWINGING DOOR_CON,2.101,2.101,,1.95,1.95,1.95,180.00,90.00,0.91,2.13,0.00,ExternalEnvironment,ASHRAETARP,ASHRAETARP,SunExposed,WindExposed,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,PERIMETER_BOT_ZN_1_WALL_SOUTH_DOOR2,Door,PERIMETER_BOT_ZN_1_WALL_SOUTH,CTF - ConductionTransferFunction,SWINGING DOOR_CON,2.101,2.101,,1.95,1.95,1.95,180.00,90.00,0.91,2.13,0.00,ExternalEnvironment,ASHRAETARP,ASHRAETARP,SunExposed,WindExposed,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,PERIMETER_BOT_ZN_1_WALL_SOUTH_WINDOW1,Window,PERIMETER_BOT_ZN_1_WALL_SOUTH,Window5 Detailed Fenestration,WINDOW_U_0.504_SHGC_SOUTH_0.229,N/A,2.865,No,21.75,21.75,21.75,180.00,90.00,15.82,1.37,0.00,ExternalEnvironment,ASHRAETARP,ASHRAETARP,SunExposed,WindExposed,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,PERIMETER_BOT_ZN_1_WALL_SOUTH_WINDOW2,Window,PERIMETER_BOT_ZN_1_WALL_SOUTH,Window5 Detailed Fenestration,WINDOW_U_0.504_SHGC_SOUTH_0.229,N/A,2.865,No,21.75,21.75,21.75,180.00,90.00,15.82,1.37,0.00,ExternalEnvironment,ASHRAETARP,ASHRAETARP,SunExposed,WindExposed,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,PERIMETER_BOT_ZN_1_WALL_SOUTH_WINDOW3,Window,PERIMETER_BOT_ZN_1_WALL_SOUTH,Window5 Detailed Fenestration,WINDOW_U_0.504_SHGC_SOUTH_0.229,N/A,2.865,No,21.75,21.75,21.75,180.00,90.00,15.82,1.37,0.00,ExternalEnvironment,ASHRAETARP,ASHRAETARP,SunExposed,WindExposed,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,iz-CORE_BOT_ZN_5_WALL_SOUTH,Wall,,CTF - ConductionTransferFunction,INT_WALL,6.299,3.242,,111.82,111.82,111.82,0.00,90.00,40.76,2.74,0.00,CORE_BOT_ZN_5_WALL_SOUTH,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,iz-PERIMETER_BOT_ZN_4_WALL_SOUTH,Wall,,CTF - ConductionTransferFunction,INT_WALL,6.299,3.242,,17.74,17.74,17.74,315.00,90.00,6.47,2.74,0.00,PERIMETER_BOT_ZN_4_WALL_SOUTH,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,PERIMETER_BOT_ZN_1_FLOOR,Floor,,CTF - ConductionTransferFunction,PERIMETER_BOT_ZN_1_FLOOR_FFACTOR,0.320,0.297,,207.34,207.34,207.34,180.00,180.00,40.76,6.47,0.00,FCGround,N/A-FCGround,ASHRAETARP,NoSun,NoWind,1.00,0.00,1.00,0.00,4
+HeatTransfer Surface,PERIMETER_BOT_ZN_1_CEILING,Roof,,CTF - ConductionTransferFunction,DROPCEILING,4.488,2.432,,207.34,207.34,207.34,0.00,0.00,40.76,6.47,0.00,iz-PERIMETER_BOT_ZN_1_CEILING,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.00,1.00,0.00,1.00,4
+HeatTransfer Surface,PERIMETER_BOT_ZN_1_INTERNALMASS_1,Internal Mass,,CTF - ConductionTransferFunction,INTERIORFURNISHINGS,0.800,0.800,,414.67,414.67,414.67,0.00,90.00,414.67,1.00,0.00,PERIMETER_BOT_ZN_1_INTERNALMASS_1,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.00,0.50,1.00,0.00,0
+Zone Surfaces,PERIMETER_BOT_ZN_2,10
+HeatTransfer Surface,PERIMETER_BOT_ZN_2_WALL_EAST,Wall,,CTF - ConductionTransferFunction,NONRES_EXT_WALL_GRD,1.328,1.108,,45.82,91.28,45.82,90.00,90.00,33.27,2.74,0.00,ExternalEnvironment,ASHRAETARP,ASHRAETARP,SunExposed,WindExposed,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,PERIMETER_BOT_ZN_2_WALL_EAST_DOOR,Door,PERIMETER_BOT_ZN_2_WALL_EAST,CTF - ConductionTransferFunction,SWINGING DOOR_CON,2.101,2.101,,1.95,1.95,1.95,90.00,90.00,0.91,2.13,0.00,ExternalEnvironment,ASHRAETARP,ASHRAETARP,SunExposed,WindExposed,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,PERIMETER_BOT_ZN_2_WALL_EAST_WINDOW1,Window,PERIMETER_BOT_ZN_2_WALL_EAST,Window5 Detailed Fenestration,WINDOW_U_0.504_SHGC_EAST_0.229,N/A,2.865,No,41.85,41.85,41.85,90.00,90.00,30.84,1.36,0.00,ExternalEnvironment,ASHRAETARP,ASHRAETARP,SunExposed,WindExposed,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,PERIMETER_BOT_ZN_2_WALL_EAST_WINDOW2,Window,PERIMETER_BOT_ZN_2_WALL_EAST,Window5 Detailed Fenestration,WINDOW_U_0.504_SHGC_EAST_0.229,N/A,2.865,No,1.65,1.65,1.65,90.00,90.00,1.22,1.36,0.00,ExternalEnvironment,ASHRAETARP,ASHRAETARP,SunExposed,WindExposed,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,PERIMETER_BOT_ZN_2_WALL_NORTH,Wall,,CTF - ConductionTransferFunction,INT_WALL,6.299,3.242,,17.74,17.74,17.74,315.00,90.00,6.47,2.74,0.00,iz-PERIMETER_BOT_ZN_2_WALL_NORTH,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,iz-CORE_BOT_ZN_5_WALL_EAST,Wall,,CTF - ConductionTransferFunction,INT_WALL,6.299,3.242,,66.19,66.19,66.19,270.00,90.00,24.13,2.74,0.00,CORE_BOT_ZN_5_WALL_EAST,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,iz-PERIMETER_BOT_ZN_1_WALL_EAST,Wall,,CTF - ConductionTransferFunction,INT_WALL,6.299,3.242,,17.74,17.74,17.74,225.00,90.00,6.47,2.74,0.00,PERIMETER_BOT_ZN_1_WALL_EAST,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,PERIMETER_BOT_ZN_2_FLOOR,Floor,,CTF - ConductionTransferFunction,PERIMETER_BOT_ZN_2_FLOOR_FFACTOR,0.338,0.313,,131.26,131.26,131.26,90.00,180.00,24.13,6.47,0.00,FCGround,N/A-FCGround,ASHRAETARP,NoSun,NoWind,1.00,0.00,1.00,0.00,4
+HeatTransfer Surface,PERIMETER_BOT_ZN_2_CEILING,Roof,,CTF - ConductionTransferFunction,DROPCEILING,4.488,2.432,,131.26,131.26,131.26,270.00,0.00,24.13,6.47,0.00,iz-PERIMETER_BOT_ZN_2_CEILING,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.00,1.00,0.00,1.00,4
+HeatTransfer Surface,PERIMETER_BOT_ZN_2_INTERNALMASS_1,Internal Mass,,CTF - ConductionTransferFunction,INTERIORFURNISHINGS,0.800,0.800,,262.51,262.51,262.51,0.00,90.00,262.51,1.00,0.00,PERIMETER_BOT_ZN_2_INTERNALMASS_1,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.00,0.50,1.00,0.00,0
+Zone Surfaces,PERIMETER_BOT_ZN_3,12
+HeatTransfer Surface,PERIMETER_BOT_ZN_3_WALL_NORTH,Wall,,CTF - ConductionTransferFunction,NONRES_EXT_WALL_GRD,1.328,1.108,,67.75,136.92,67.75,0.00,90.00,49.91,2.74,0.00,ExternalEnvironment,ASHRAETARP,ASHRAETARP,SunExposed,WindExposed,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,PERIMETER_BOT_ZN_3_WALL_NORTH_DOOR1,Door,PERIMETER_BOT_ZN_3_WALL_NORTH,CTF - ConductionTransferFunction,SWINGING DOOR_CON,2.101,2.101,,1.95,1.95,1.95,0.00,90.00,0.91,2.13,0.00,ExternalEnvironment,ASHRAETARP,ASHRAETARP,SunExposed,WindExposed,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,PERIMETER_BOT_ZN_3_WALL_NORTH_DOOR2,Door,PERIMETER_BOT_ZN_3_WALL_NORTH,CTF - ConductionTransferFunction,SWINGING DOOR_CON,2.101,2.101,,1.95,1.95,1.95,0.00,90.00,0.91,2.13,0.00,ExternalEnvironment,ASHRAETARP,ASHRAETARP,SunExposed,WindExposed,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,PERIMETER_BOT_ZN_3_WALL_NORTH_WINDOW1,Window,PERIMETER_BOT_ZN_3_WALL_NORTH,Window5 Detailed Fenestration,WINDOW_U_0.504_SHGC_NORTH_0.229,N/A,2.865,No,21.75,21.75,21.75,0.00,90.00,15.82,1.37,0.00,ExternalEnvironment,ASHRAETARP,ASHRAETARP,SunExposed,WindExposed,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,PERIMETER_BOT_ZN_3_WALL_NORTH_WINDOW2,Window,PERIMETER_BOT_ZN_3_WALL_NORTH,Window5 Detailed Fenestration,WINDOW_U_0.504_SHGC_NORTH_0.229,N/A,2.865,No,21.75,21.75,21.75,0.00,90.00,15.82,1.37,0.00,ExternalEnvironment,ASHRAETARP,ASHRAETARP,SunExposed,WindExposed,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,PERIMETER_BOT_ZN_3_WALL_NORTH_WINDOW3,Window,PERIMETER_BOT_ZN_3_WALL_NORTH,Window5 Detailed Fenestration,WINDOW_U_0.504_SHGC_NORTH_0.229,N/A,2.865,No,21.75,21.75,21.75,0.00,90.00,15.82,1.37,0.00,ExternalEnvironment,ASHRAETARP,ASHRAETARP,SunExposed,WindExposed,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,PERIMETER_BOT_ZN_3_WALL_WEST,Wall,,CTF - ConductionTransferFunction,INT_WALL,6.299,3.242,,17.74,17.74,17.74,225.00,90.00,6.47,2.74,0.00,iz-PERIMETER_BOT_ZN_3_WALL_WEST,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,iz-CORE_BOT_ZN_5_WALL_NORTH,Wall,,CTF - ConductionTransferFunction,INT_WALL,6.299,3.242,,111.82,111.82,111.82,180.00,90.00,40.76,2.74,0.00,CORE_BOT_ZN_5_WALL_NORTH,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,iz-PERIMETER_BOT_ZN_2_WALL_NORTH,Wall,,CTF - ConductionTransferFunction,INT_WALL,6.299,3.242,,17.74,17.74,17.74,135.00,90.00,6.47,2.74,0.00,PERIMETER_BOT_ZN_2_WALL_NORTH,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,PERIMETER_BOT_ZN_3_FLOOR,Floor,,CTF - ConductionTransferFunction,PERIMETER_BOT_ZN_3_FLOOR_FFACTOR,0.320,0.297,,207.34,207.34,207.34,0.00,180.00,40.76,6.47,0.00,FCGround,N/A-FCGround,ASHRAETARP,NoSun,NoWind,1.00,0.00,1.00,0.00,4
+HeatTransfer Surface,PERIMETER_BOT_ZN_3_CEILING,Roof,,CTF - ConductionTransferFunction,DROPCEILING,4.488,2.432,,207.34,207.34,207.34,180.00,0.00,40.76,6.47,0.00,iz-PERIMETER_BOT_ZN_3_CEILING,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.00,1.00,0.00,1.00,4
+HeatTransfer Surface,PERIMETER_BOT_ZN_3_INTERNALMASS_1,Internal Mass,,CTF - ConductionTransferFunction,INTERIORFURNISHINGS,0.800,0.800,,414.68,414.68,414.68,0.00,90.00,414.68,1.00,0.00,PERIMETER_BOT_ZN_3_INTERNALMASS_1,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.00,0.50,1.00,0.00,0
+Zone Surfaces,PERIMETER_BOT_ZN_4,10
+HeatTransfer Surface,PERIMETER_BOT_ZN_4_WALL_SOUTH,Wall,,CTF - ConductionTransferFunction,INT_WALL,6.299,3.242,,17.74,17.74,17.74,135.00,90.00,6.47,2.74,0.00,iz-PERIMETER_BOT_ZN_4_WALL_SOUTH,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,PERIMETER_BOT_ZN_4_WALL_WEST,Wall,,CTF - ConductionTransferFunction,NONRES_EXT_WALL_GRD,1.328,1.108,,45.82,91.28,45.82,270.00,90.00,33.27,2.74,0.00,ExternalEnvironment,ASHRAETARP,ASHRAETARP,SunExposed,WindExposed,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,PERIMETER_BOT_ZN_4_WALL_WEST_DOOR,Door,PERIMETER_BOT_ZN_4_WALL_WEST,CTF - ConductionTransferFunction,SWINGING DOOR_CON,2.101,2.101,,1.95,1.95,1.95,270.00,90.00,0.91,2.13,0.00,ExternalEnvironment,ASHRAETARP,ASHRAETARP,SunExposed,WindExposed,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,PERIMETER_BOT_ZN_4_WALL_WEST_WINDOW1,Window,PERIMETER_BOT_ZN_4_WALL_WEST,Window5 Detailed Fenestration,WINDOW_U_0.504_SHGC_WEST_0.229,N/A,2.865,No,41.85,41.85,41.85,270.00,90.00,30.84,1.36,0.00,ExternalEnvironment,ASHRAETARP,ASHRAETARP,SunExposed,WindExposed,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,PERIMETER_BOT_ZN_4_WALL_WEST_WINDOW2,Window,PERIMETER_BOT_ZN_4_WALL_WEST,Window5 Detailed Fenestration,WINDOW_U_0.504_SHGC_WEST_0.229,N/A,2.865,No,1.65,1.65,1.65,270.00,90.00,1.22,1.36,0.00,ExternalEnvironment,ASHRAETARP,ASHRAETARP,SunExposed,WindExposed,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,iz-CORE_BOT_ZN_5_WALL_WEST,Wall,,CTF - ConductionTransferFunction,INT_WALL,6.299,3.242,,66.19,66.19,66.19,90.00,90.00,24.13,2.74,0.00,CORE_BOT_ZN_5_WALL_WEST,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,iz-PERIMETER_BOT_ZN_3_WALL_WEST,Wall,,CTF - ConductionTransferFunction,INT_WALL,6.299,3.242,,17.74,17.74,17.74,45.00,90.00,6.47,2.74,0.00,PERIMETER_BOT_ZN_3_WALL_WEST,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,PERIMETER_BOT_ZN_4_FLOOR,Floor,,CTF - ConductionTransferFunction,PERIMETER_BOT_ZN_4_FLOOR_FFACTOR,0.338,0.313,,131.25,131.25,131.25,270.00,180.00,24.13,6.47,0.00,FCGround,N/A-FCGround,ASHRAETARP,NoSun,NoWind,1.00,0.00,1.00,0.00,4
+HeatTransfer Surface,PERIMETER_BOT_ZN_4_CEILING,Roof,,CTF - ConductionTransferFunction,DROPCEILING,4.488,2.432,,131.25,131.25,131.25,90.00,0.00,24.13,6.47,0.00,iz-PERIMETER_BOT_ZN_4_CEILING,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.00,1.00,0.00,1.00,4
+HeatTransfer Surface,PERIMETER_BOT_ZN_4_INTERNALMASS_1,Internal Mass,,CTF - ConductionTransferFunction,INTERIORFURNISHINGS,0.800,0.800,,262.51,262.51,262.51,0.00,90.00,262.51,1.00,0.00,PERIMETER_BOT_ZN_4_INTERNALMASS_1,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.00,0.50,1.00,0.00,0
+Zone Surfaces,PERIMETER_MID_ZN_1,8
+HeatTransfer Surface,PERIMETER_MID_ZN_1_WALL_EAST,Wall,,CTF - ConductionTransferFunction,INT_WALL,6.299,3.242,,17.74,17.74,17.74,45.00,90.00,6.47,2.74,0.00,iz-PERIMETER_MID_ZN_1_WALL_EAST,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,PERIMETER_MID_ZN_1_WALL_SOUTH,Wall,,CTF - ConductionTransferFunction,NONRES_EXT_WALL_MID,1.313,1.097,,71.65,136.92,71.65,180.00,90.00,49.91,2.74,0.00,ExternalEnvironment,ASHRAETARP,ASHRAETARP,SunExposed,WindExposed,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,PERIMETER_MID_ZN_1_WALL_SOUTH_WINDOW,Window,PERIMETER_MID_ZN_1_WALL_SOUTH,Window5 Detailed Fenestration,WINDOW_U_0.504_SHGC_SOUTH_0.229,N/A,2.865,No,65.26,65.26,65.26,180.00,90.00,49.91,1.31,0.00,ExternalEnvironment,ASHRAETARP,ASHRAETARP,SunExposed,WindExposed,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,iz-CORE_MID_ZN_5_WALL_SOUTH,Wall,,CTF - ConductionTransferFunction,INT_WALL,6.299,3.242,,111.82,111.82,111.82,0.00,90.00,40.76,2.74,0.00,CORE_MID_ZN_5_WALL_SOUTH,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,iz-PERIMETER_MID_ZN_4_WALL_SOUTH,Wall,,CTF - ConductionTransferFunction,INT_WALL,6.299,3.242,,17.74,17.74,17.74,315.00,90.00,6.47,2.74,0.00,PERIMETER_MID_ZN_4_WALL_SOUTH,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,PERIMETER_MID_ZN_1_FLOOR,Floor,,CTF - ConductionTransferFunction,INT_SLAB_FLOOR,3.839,1.986,,207.34,207.34,207.34,180.00,180.00,40.76,6.47,0.00,iz-PERIMETER_MID_ZN_1_FLOOR,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,1.00,0.00,1.00,0.00,4
+HeatTransfer Surface,PERIMETER_MID_ZN_1_CEILING,Roof,,CTF - ConductionTransferFunction,DROPCEILING,4.488,2.432,,207.34,207.34,207.34,0.00,0.00,40.76,6.47,0.00,iz-PERIMETER_MID_ZN_1_CEILING,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.00,1.00,0.00,1.00,4
+HeatTransfer Surface,PERIMETER_MID_ZN_1_INTERNALMASS_1,Internal Mass,,CTF - ConductionTransferFunction,INTERIORFURNISHINGS,0.800,0.800,,414.67,414.67,414.67,0.00,90.00,414.67,1.00,0.00,PERIMETER_MID_ZN_1_INTERNALMASS_1,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.00,0.50,1.00,0.00,0
+Zone Surfaces,PERIMETER_MID_ZN_2,8
+HeatTransfer Surface,PERIMETER_MID_ZN_2_WALL_EAST,Wall,,CTF - ConductionTransferFunction,NONRES_EXT_WALL_MID,1.313,1.097,,47.77,91.28,47.77,90.00,90.00,33.27,2.74,0.00,ExternalEnvironment,ASHRAETARP,ASHRAETARP,SunExposed,WindExposed,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,PERIMETER_MID_ZN_2_WALL_EAST_WINDOW,Window,PERIMETER_MID_ZN_2_WALL_EAST,Window5 Detailed Fenestration,WINDOW_U_0.504_SHGC_EAST_0.229,N/A,2.865,No,43.51,43.51,43.51,90.00,90.00,33.27,1.31,0.00,ExternalEnvironment,ASHRAETARP,ASHRAETARP,SunExposed,WindExposed,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,PERIMETER_MID_ZN_2_WALL_NORTH,Wall,,CTF - ConductionTransferFunction,INT_WALL,6.299,3.242,,17.74,17.74,17.74,315.00,90.00,6.47,2.74,0.00,iz-PERIMETER_MID_ZN_2_WALL_NORTH,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,iz-CORE_MID_ZN_5_WALL_EAST,Wall,,CTF - ConductionTransferFunction,INT_WALL,6.299,3.242,,66.19,66.19,66.19,270.00,90.00,24.13,2.74,0.00,CORE_MID_ZN_5_WALL_EAST,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,iz-PERIMETER_MID_ZN_1_WALL_EAST,Wall,,CTF - ConductionTransferFunction,INT_WALL,6.299,3.242,,17.74,17.74,17.74,225.00,90.00,6.47,2.74,0.00,PERIMETER_MID_ZN_1_WALL_EAST,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,PERIMETER_MID_ZN_2_FLOOR,Floor,,CTF - ConductionTransferFunction,INT_SLAB_FLOOR,3.839,1.986,,131.26,131.26,131.26,90.00,180.00,24.13,6.47,0.00,iz-PERIMETER_MID_ZN_2_FLOOR,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,1.00,0.00,1.00,0.00,4
+HeatTransfer Surface,PERIMETER_MID_ZN_2_CEILING,Roof,,CTF - ConductionTransferFunction,DROPCEILING,4.488,2.432,,131.26,131.26,131.26,270.00,0.00,24.13,6.47,0.00,iz-PERIMETER_MID_ZN_2_CEILING,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.00,1.00,0.00,1.00,4
+HeatTransfer Surface,PERIMETER_MID_ZN_2_INTERNALMASS_1,Internal Mass,,CTF - ConductionTransferFunction,INTERIORFURNISHINGS,0.800,0.800,,262.51,262.51,262.51,0.00,90.00,262.51,1.00,0.00,PERIMETER_MID_ZN_2_INTERNALMASS_1,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.00,0.50,1.00,0.00,0
+Zone Surfaces,PERIMETER_MID_ZN_3,8
+HeatTransfer Surface,PERIMETER_MID_ZN_3_WALL_NORTH,Wall,,CTF - ConductionTransferFunction,NONRES_EXT_WALL_MID,1.313,1.097,,71.65,136.92,71.65,0.00,90.00,49.91,2.74,0.00,ExternalEnvironment,ASHRAETARP,ASHRAETARP,SunExposed,WindExposed,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,PERIMETER_MID_ZN_3_WALL_NORTH_WINDOW,Window,PERIMETER_MID_ZN_3_WALL_NORTH,Window5 Detailed Fenestration,WINDOW_U_0.504_SHGC_NORTH_0.229,N/A,2.865,No,65.26,65.26,65.26,0.00,90.00,49.91,1.31,0.00,ExternalEnvironment,ASHRAETARP,ASHRAETARP,SunExposed,WindExposed,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,PERIMETER_MID_ZN_3_WALL_WEST,Wall,,CTF - ConductionTransferFunction,INT_WALL,6.299,3.242,,17.74,17.74,17.74,225.00,90.00,6.47,2.74,0.00,iz-PERIMETER_MID_ZN_3_WALL_WEST,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,iz-CORE_MID_ZN_5_WALL_NORTH,Wall,,CTF - ConductionTransferFunction,INT_WALL,6.299,3.242,,111.82,111.82,111.82,180.00,90.00,40.76,2.74,0.00,CORE_MID_ZN_5_WALL_NORTH,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,iz-PERIMETER_MID_ZN_2_WALL_NORTH,Wall,,CTF - ConductionTransferFunction,INT_WALL,6.299,3.242,,17.74,17.74,17.74,135.00,90.00,6.47,2.74,0.00,PERIMETER_MID_ZN_2_WALL_NORTH,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,PERIMETER_MID_ZN_3_FLOOR,Floor,,CTF - ConductionTransferFunction,INT_SLAB_FLOOR,3.839,1.986,,207.34,207.34,207.34,0.00,180.00,40.76,6.47,0.00,iz-PERIMETER_MID_ZN_3_FLOOR,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,1.00,0.00,1.00,0.00,4
+HeatTransfer Surface,PERIMETER_MID_ZN_3_CEILING,Roof,,CTF - ConductionTransferFunction,DROPCEILING,4.488,2.432,,207.34,207.34,207.34,180.00,0.00,40.76,6.47,0.00,iz-PERIMETER_MID_ZN_3_CEILING,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.00,1.00,0.00,1.00,4
+HeatTransfer Surface,PERIMETER_MID_ZN_3_INTERNALMASS_1,Internal Mass,,CTF - ConductionTransferFunction,INTERIORFURNISHINGS,0.800,0.800,,414.68,414.68,414.68,0.00,90.00,414.68,1.00,0.00,PERIMETER_MID_ZN_3_INTERNALMASS_1,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.00,0.50,1.00,0.00,0
+Zone Surfaces,PERIMETER_MID_ZN_4,8
+HeatTransfer Surface,PERIMETER_MID_ZN_4_WALL_SOUTH,Wall,,CTF - ConductionTransferFunction,INT_WALL,6.299,3.242,,17.74,17.74,17.74,135.00,90.00,6.47,2.74,0.00,iz-PERIMETER_MID_ZN_4_WALL_SOUTH,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,PERIMETER_MID_ZN_4_WALL_WEST,Wall,,CTF - ConductionTransferFunction,NONRES_EXT_WALL_MID,1.313,1.097,,47.77,91.28,47.77,270.00,90.00,33.27,2.74,0.00,ExternalEnvironment,ASHRAETARP,ASHRAETARP,SunExposed,WindExposed,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,PERIMETER_MID_ZN_4_WALL_WEST_WINDOW,Window,PERIMETER_MID_ZN_4_WALL_WEST,Window5 Detailed Fenestration,WINDOW_U_0.504_SHGC_WEST_0.229,N/A,2.865,No,43.51,43.51,43.51,270.00,90.00,33.27,1.31,0.00,ExternalEnvironment,ASHRAETARP,ASHRAETARP,SunExposed,WindExposed,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,iz-CORE_MID_ZN_5_WALL_WEST,Wall,,CTF - ConductionTransferFunction,INT_WALL,6.299,3.242,,66.19,66.19,66.19,90.00,90.00,24.13,2.74,0.00,CORE_MID_ZN_5_WALL_WEST,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,iz-PERIMETER_MID_ZN_3_WALL_WEST,Wall,,CTF - ConductionTransferFunction,INT_WALL,6.299,3.242,,17.74,17.74,17.74,45.00,90.00,6.47,2.74,0.00,PERIMETER_MID_ZN_3_WALL_WEST,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,PERIMETER_MID_ZN_4_FLOOR,Floor,,CTF - ConductionTransferFunction,INT_SLAB_FLOOR,3.839,1.986,,131.25,131.25,131.25,270.00,180.00,24.13,6.47,0.00,iz-PERIMETER_MID_ZN_4_FLOOR,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,1.00,0.00,1.00,0.00,4
+HeatTransfer Surface,PERIMETER_MID_ZN_4_CEILING,Roof,,CTF - ConductionTransferFunction,DROPCEILING,4.488,2.432,,131.25,131.25,131.25,90.00,0.00,24.13,6.47,0.00,iz-PERIMETER_MID_ZN_4_CEILING,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.00,1.00,0.00,1.00,4
+HeatTransfer Surface,PERIMETER_MID_ZN_4_INTERNALMASS_1,Internal Mass,,CTF - ConductionTransferFunction,INTERIORFURNISHINGS,0.800,0.800,,262.51,262.51,262.51,0.00,90.00,262.51,1.00,0.00,PERIMETER_MID_ZN_4_INTERNALMASS_1,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.00,0.50,1.00,0.00,0
+Zone Surfaces,PERIMETER_TOP_ZN_1,8
+HeatTransfer Surface,PERIMETER_TOP_ZN_1_WALL_EAST,Wall,,CTF - ConductionTransferFunction,INT_WALL,6.299,3.242,,17.74,17.74,17.74,45.00,90.00,6.47,2.74,0.00,iz-PERIMETER_TOP_ZN_1_WALL_EAST,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,PERIMETER_TOP_ZN_1_WALL_SOUTH,Wall,,CTF - ConductionTransferFunction,NONRES_EXT_WALL_TOP,1.592,1.286,,71.65,136.92,71.65,180.00,90.00,49.91,2.74,0.00,ExternalEnvironment,ASHRAETARP,ASHRAETARP,SunExposed,WindExposed,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,PERIMETER_TOP_ZN_1_WALL_SOUTH_WINDOW,Window,PERIMETER_TOP_ZN_1_WALL_SOUTH,Window5 Detailed Fenestration,WINDOW_U_0.504_SHGC_SOUTH_0.229,N/A,2.865,No,65.26,65.26,65.26,180.00,90.00,49.91,1.31,0.00,ExternalEnvironment,ASHRAETARP,ASHRAETARP,SunExposed,WindExposed,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,iz-CORE_TOP_ZN_5_WALL_SOUTH,Wall,,CTF - ConductionTransferFunction,INT_WALL,6.299,3.242,,111.82,111.82,111.82,0.00,90.00,40.76,2.74,0.00,CORE_TOP_ZN_5_WALL_SOUTH,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,iz-PERIMETER_TOP_ZN_4_WALL_SOUTH,Wall,,CTF - ConductionTransferFunction,INT_WALL,6.299,3.242,,17.74,17.74,17.74,315.00,90.00,6.47,2.74,0.00,PERIMETER_TOP_ZN_4_WALL_SOUTH,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,PERIMETER_TOP_ZN_1_FLOOR,Floor,,CTF - ConductionTransferFunction,INT_SLAB_FLOOR,3.839,1.986,,207.34,207.34,207.34,180.00,180.00,40.76,6.47,0.00,iz-PERIMETER_TOP_ZN_1_FLOOR,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,1.00,0.00,1.00,0.00,4
+HeatTransfer Surface,PERIMETER_TOP_ZN_1_CEILING,Roof,,CTF - ConductionTransferFunction,DROPCEILING,4.488,2.432,,207.34,207.34,207.34,45.00,0.00,6.47,49.91,0.00,iz-PERIMETER_TOP_ZN_1_CEILING,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.00,1.00,0.00,1.00,4
+HeatTransfer Surface,PERIMETER_TOP_ZN_1_INTERNALMASS_1,Internal Mass,,CTF - ConductionTransferFunction,INTERIORFURNISHINGS,0.800,0.800,,414.67,414.67,414.67,0.00,90.00,414.67,1.00,0.00,PERIMETER_TOP_ZN_1_INTERNALMASS_1,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.00,0.50,1.00,0.00,0
+Zone Surfaces,PERIMETER_TOP_ZN_2,8
+HeatTransfer Surface,PERIMETER_TOP_ZN_2_WALL_EAST,Wall,,CTF - ConductionTransferFunction,NONRES_EXT_WALL_TOP,1.592,1.286,,47.77,91.28,47.77,90.00,90.00,33.27,2.74,0.00,ExternalEnvironment,ASHRAETARP,ASHRAETARP,SunExposed,WindExposed,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,PERIMETER_TOP_ZN_2_WALL_EAST_WINDOW,Window,PERIMETER_TOP_ZN_2_WALL_EAST,Window5 Detailed Fenestration,WINDOW_U_0.504_SHGC_EAST_0.229,N/A,2.865,No,43.51,43.51,43.51,90.00,90.00,33.27,1.31,0.00,ExternalEnvironment,ASHRAETARP,ASHRAETARP,SunExposed,WindExposed,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,PERIMETER_TOP_ZN_2_WALL_NORTH,Wall,,CTF - ConductionTransferFunction,INT_WALL,6.299,3.242,,17.74,17.74,17.74,315.00,90.00,6.47,2.74,0.00,iz-PERIMETER_TOP_ZN_2_WALL_NORTH,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,iz-CORE_TOP_ZN_5_WALL_EAST,Wall,,CTF - ConductionTransferFunction,INT_WALL,6.299,3.242,,66.19,66.19,66.19,270.00,90.00,24.13,2.74,0.00,CORE_TOP_ZN_5_WALL_EAST,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,iz-PERIMETER_TOP_ZN_1_WALL_EAST,Wall,,CTF - ConductionTransferFunction,INT_WALL,6.299,3.242,,17.74,17.74,17.74,225.00,90.00,6.47,2.74,0.00,PERIMETER_TOP_ZN_1_WALL_EAST,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,PERIMETER_TOP_ZN_2_FLOOR,Floor,,CTF - ConductionTransferFunction,INT_SLAB_FLOOR,3.839,1.986,,131.26,131.26,131.26,90.00,180.00,24.13,6.47,0.00,iz-PERIMETER_TOP_ZN_2_FLOOR,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,1.00,0.00,1.00,0.00,4
+HeatTransfer Surface,PERIMETER_TOP_ZN_2_CEILING,Roof,,CTF - ConductionTransferFunction,DROPCEILING,4.488,2.432,,131.26,131.26,131.26,315.00,0.00,6.47,33.27,0.00,iz-PERIMETER_TOP_ZN_2_CEILING,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.00,1.00,0.00,1.00,4
+HeatTransfer Surface,PERIMETER_TOP_ZN_2_INTERNALMASS_1,Internal Mass,,CTF - ConductionTransferFunction,INTERIORFURNISHINGS,0.800,0.800,,262.51,262.51,262.51,0.00,90.00,262.51,1.00,0.00,PERIMETER_TOP_ZN_2_INTERNALMASS_1,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.00,0.50,1.00,0.00,0
+Zone Surfaces,PERIMETER_TOP_ZN_3,8
+HeatTransfer Surface,PERIMETER_TOP_ZN_3_WALL_NORTH,Wall,,CTF - ConductionTransferFunction,NONRES_EXT_WALL_TOP,1.592,1.286,,71.65,136.92,71.65,0.00,90.00,49.91,2.74,0.00,ExternalEnvironment,ASHRAETARP,ASHRAETARP,SunExposed,WindExposed,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,PERIMETER_TOP_ZN_3_WALL_NORTH_WINDOW,Window,PERIMETER_TOP_ZN_3_WALL_NORTH,Window5 Detailed Fenestration,WINDOW_U_0.504_SHGC_NORTH_0.229,N/A,2.865,No,65.26,65.26,65.26,0.00,90.00,49.91,1.31,0.00,ExternalEnvironment,ASHRAETARP,ASHRAETARP,SunExposed,WindExposed,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,PERIMETER_TOP_ZN_3_WALL_WEST,Wall,,CTF - ConductionTransferFunction,INT_WALL,6.299,3.242,,17.74,17.74,17.74,225.00,90.00,6.47,2.74,0.00,iz-PERIMETER_TOP_ZN_3_WALL_WEST,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,iz-CORE_TOP_ZN_5_WALL_NORTH,Wall,,CTF - ConductionTransferFunction,INT_WALL,6.299,3.242,,111.82,111.82,111.82,180.00,90.00,40.76,2.74,0.00,CORE_TOP_ZN_5_WALL_NORTH,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,iz-PERIMETER_TOP_ZN_2_WALL_NORTH,Wall,,CTF - ConductionTransferFunction,INT_WALL,6.299,3.242,,17.74,17.74,17.74,135.00,90.00,6.47,2.74,0.00,PERIMETER_TOP_ZN_2_WALL_NORTH,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,PERIMETER_TOP_ZN_3_FLOOR,Floor,,CTF - ConductionTransferFunction,INT_SLAB_FLOOR,3.839,1.986,,207.34,207.34,207.34,0.00,180.00,40.76,6.47,0.00,iz-PERIMETER_TOP_ZN_3_FLOOR,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,1.00,0.00,1.00,0.00,4
+HeatTransfer Surface,PERIMETER_TOP_ZN_3_CEILING,Roof,,CTF - ConductionTransferFunction,DROPCEILING,4.488,2.432,,207.34,207.34,207.34,225.00,0.00,6.47,49.91,0.00,iz-PERIMETER_TOP_ZN_3_CEILING,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.00,1.00,0.00,1.00,4
+HeatTransfer Surface,PERIMETER_TOP_ZN_3_INTERNALMASS_1,Internal Mass,,CTF - ConductionTransferFunction,INTERIORFURNISHINGS,0.800,0.800,,414.68,414.68,414.68,0.00,90.00,414.68,1.00,0.00,PERIMETER_TOP_ZN_3_INTERNALMASS_1,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.00,0.50,1.00,0.00,0
+Zone Surfaces,PERIMETER_TOP_ZN_4,8
+HeatTransfer Surface,PERIMETER_TOP_ZN_4_WALL_SOUTH,Wall,,CTF - ConductionTransferFunction,INT_WALL,6.299,3.242,,17.74,17.74,17.74,135.00,90.00,6.47,2.74,0.00,iz-PERIMETER_TOP_ZN_4_WALL_SOUTH,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,PERIMETER_TOP_ZN_4_WALL_WEST,Wall,,CTF - ConductionTransferFunction,NONRES_EXT_WALL_TOP,1.592,1.286,,47.77,91.28,47.77,270.00,90.00,33.27,2.74,0.00,ExternalEnvironment,ASHRAETARP,ASHRAETARP,SunExposed,WindExposed,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,PERIMETER_TOP_ZN_4_WALL_WEST_WINDOW,Window,PERIMETER_TOP_ZN_4_WALL_WEST,Window5 Detailed Fenestration,WINDOW_U_0.504_SHGC_WEST_0.229,N/A,2.865,No,43.51,43.51,43.51,270.00,90.00,33.27,1.31,0.00,ExternalEnvironment,ASHRAETARP,ASHRAETARP,SunExposed,WindExposed,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,iz-CORE_TOP_ZN_5_WALL_WEST,Wall,,CTF - ConductionTransferFunction,INT_WALL,6.299,3.242,,66.19,66.19,66.19,90.00,90.00,24.13,2.74,0.00,CORE_TOP_ZN_5_WALL_WEST,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,iz-PERIMETER_TOP_ZN_3_WALL_WEST,Wall,,CTF - ConductionTransferFunction,INT_WALL,6.299,3.242,,17.74,17.74,17.74,45.00,90.00,6.47,2.74,0.00,PERIMETER_TOP_ZN_3_WALL_WEST,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,PERIMETER_TOP_ZN_4_FLOOR,Floor,,CTF - ConductionTransferFunction,INT_SLAB_FLOOR,3.839,1.986,,131.25,131.25,131.25,270.00,180.00,24.13,6.47,0.00,iz-PERIMETER_TOP_ZN_4_FLOOR,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,1.00,0.00,1.00,0.00,4
+HeatTransfer Surface,PERIMETER_TOP_ZN_4_CEILING,Roof,,CTF - ConductionTransferFunction,DROPCEILING,4.488,2.432,,131.25,131.25,131.25,135.00,0.00,6.47,33.27,0.00,iz-PERIMETER_TOP_ZN_4_CEILING,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.00,1.00,0.00,1.00,4
+HeatTransfer Surface,PERIMETER_TOP_ZN_4_INTERNALMASS_1,Internal Mass,,CTF - ConductionTransferFunction,INTERIORFURNISHINGS,0.800,0.800,,262.51,262.51,262.51,0.00,90.00,262.51,1.00,0.00,PERIMETER_TOP_ZN_4_INTERNALMASS_1,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.00,0.50,1.00,0.00,0
+Zone Surfaces,TOPFLOOR_PLENUM,10
+HeatTransfer Surface,PERIMETER_TOP_PLENUM_WALL_EAST,Wall,,CTF - ConductionTransferFunction,NONRES_EXT_WALL_TOP,1.592,1.286,,40.57,40.57,40.57,90.00,90.00,33.27,1.22,0.00,ExternalEnvironment,ASHRAETARP,ASHRAETARP,SunExposed,WindExposed,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,PERIMETER_TOP_PLENUM_WALL_NORTH,Wall,,CTF - ConductionTransferFunction,NONRES_EXT_WALL_TOP,1.592,1.286,,60.85,60.85,60.85,0.00,90.00,49.91,1.22,0.00,ExternalEnvironment,ASHRAETARP,ASHRAETARP,SunExposed,WindExposed,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,PERIMETER_TOP_PLENUM_WALL_SOUTH,Wall,,CTF - ConductionTransferFunction,NONRES_EXT_WALL_TOP,1.592,1.286,,60.85,60.85,60.85,180.00,90.00,49.91,1.22,0.00,ExternalEnvironment,ASHRAETARP,ASHRAETARP,SunExposed,WindExposed,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,PERIMETER_TOP_PLENUM_WALL_WEST,Wall,,CTF - ConductionTransferFunction,NONRES_EXT_WALL_TOP,1.592,1.286,,40.57,40.57,40.57,270.00,90.00,33.27,1.22,0.00,ExternalEnvironment,ASHRAETARP,ASHRAETARP,SunExposed,WindExposed,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,iz-CORE_TOP_ZN_5_CEILING,Floor,,CTF - ConductionTransferFunction,DROPCEILING,4.488,2.147,,983.54,983.54,983.54,180.00,180.00,40.76,24.13,0.00,CORE_TOP_ZN_5_CEILING,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,1.00,0.00,1.00,0.00,4
+HeatTransfer Surface,iz-PERIMETER_TOP_ZN_1_CEILING,Floor,,CTF - ConductionTransferFunction,DROPCEILING,4.488,2.147,,207.34,207.34,207.34,225.00,180.00,6.47,40.76,0.00,PERIMETER_TOP_ZN_1_CEILING,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,1.00,0.00,1.00,0.00,4
+HeatTransfer Surface,iz-PERIMETER_TOP_ZN_2_CEILING,Floor,,CTF - ConductionTransferFunction,DROPCEILING,4.488,2.147,,131.26,131.26,131.26,135.00,180.00,6.47,24.13,0.00,PERIMETER_TOP_ZN_2_CEILING,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,1.00,0.00,1.00,0.00,4
+HeatTransfer Surface,iz-PERIMETER_TOP_ZN_3_CEILING,Floor,,CTF - ConductionTransferFunction,DROPCEILING,4.488,2.147,,207.34,207.34,207.34,45.00,180.00,6.47,40.76,0.00,PERIMETER_TOP_ZN_3_CEILING,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,1.00,0.00,1.00,0.00,4
+HeatTransfer Surface,iz-PERIMETER_TOP_ZN_4_CEILING,Floor,,CTF - ConductionTransferFunction,DROPCEILING,4.488,2.147,,131.25,131.25,131.25,315.00,180.00,6.47,24.13,0.00,PERIMETER_TOP_ZN_4_CEILING,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,1.00,0.00,1.00,0.00,4
+HeatTransfer Surface,BUILDING_ROOF,Roof,,CTF - ConductionTransferFunction,NONRES_ROOF,0.283,0.269,,1660.73,1660.73,1660.73,0.00,0.00,49.91,33.27,0.00,ExternalEnvironment,ASHRAETARP,ASHRAETARP,SunExposed,WindExposed,0.00,1.00,0.00,1.00,4
+! <Environment>,Environment Name,Environment Type, Start Date, End Date, Start DayOfWeek, Duration {#days}, Source:Start DayOfWeek,  Use Daylight Saving, Use Holidays, Apply Weekend Holiday Rule,  Use Rain Values, Use Snow Values, Sky Temperature Model
+! <Environment:Special Days>, Special Day Name, Special Day Type, Source, Start Date, Duration {#days}
+! <Environment:Daylight Saving>, Daylight Saving Indicator, Source, Start Date, End Date
+! <Environment:WarmupDays>, NumberofWarmupDays
+Environment,LOS ANGELES-USA ANN CLG 0.4% CONDNS DB=>MWB,SizingPeriod:DesignDay,07/21,07/21,SummerDesignDay,1,N/A,N/A,N/A,N/A,N/A,N/A,Clark and Allen
+Environment:Daylight Saving,No,SizingPeriod:DesignDay
+! <Environment:Design Day Data>, Max Dry-Bulb Temp {C}, Temp Range {dC}, Temp Range Ind Type, Hum Ind Type, Hum Ind Value at Max Temp, Hum Ind Units, Pressure {Pa}, Wind Direction {deg CW from N}, Wind Speed {m/s}, Clearness, Rain, Snow
+! <Environment:Design Day Misc>,DayOfYear,ASHRAE A Coeff,ASHRAE B Coeff,ASHRAE C Coeff,Solar Constant-Annual Variation,Eq of Time {minutes}, Solar Declination Angle {deg}, Solar Model
+Environment:Design Day Data,32.20,10.00,DefaultMultipliers,Wetbulb,10.10,{C},101540,0,3.7,1.00,No,No
+Environment:Design Day Misc,202,1084.4,0.2082,0.1365,1.0,-6.23,20.6,ASHRAEClearSky
+Environment:WarmupDays,  6
+! <Tabular Report>,Style,Unit Conversion
+Tabular Report,Commaandhtml,commaandhtml
+! <Warmup Convergence Information>,Zone Name,Environment Type/Name,Average Warmup Temperature Difference {deltaC},Std Dev Warmup Temperature Difference {deltaC},Max Temperature Pass/Fail Convergence,Min Temperature Pass/Fail Convergence,Average Warmup Load Difference {W},Std Dev Warmup Load Difference {W},Heating Load Pass/Fail Convergence,Cooling Load Pass/Fail Convergence
+ Warmup Convergence Information,CORE_BOTTOM,SizingPeriod: LOS ANGELES-USA ANN CLG 0.4% CONDNS DB=>MWB,0.2116379588,0.4106333118,Pass,Pass,0.2068577859,0.4441795729,Pass,Pass
+ Warmup Convergence Information,CORE_MID,SizingPeriod: LOS ANGELES-USA ANN CLG 0.4% CONDNS DB=>MWB,0.1565428614,0.2466286736,Pass,Pass,0.1006728991,0.2888974789,Pass,Pass
+ Warmup Convergence Information,CORE_TOP,SizingPeriod: LOS ANGELES-USA ANN CLG 0.4% CONDNS DB=>MWB,0.1659507683,0.2512530669,Pass,Pass,9.9337394576E-002,0.3455659860,Pass,Pass
+ Warmup Convergence Information,FIRSTFLOOR_PLENUM,SizingPeriod: LOS ANGELES-USA ANN CLG 0.4% CONDNS DB=>MWB,4.5711644163E-002,7.5966013445E-002,Pass,Pass,0.4834334069,1.2692738618,Pass,Pass
+ Warmup Convergence Information,MIDFLOOR_PLENUM,SizingPeriod: LOS ANGELES-USA ANN CLG 0.4% CONDNS DB=>MWB,2.7739164763E-002,4.7944177438E-002,Pass,Pass,0.1648785343,0.4664249540,Pass,Pass
+ Warmup Convergence Information,PERIMETER_BOT_ZN_1,SizingPeriod: LOS ANGELES-USA ANN CLG 0.4% CONDNS DB=>MWB,0.1144577522,0.2009573812,Pass,Pass,0.1862862898,0.3880604087,Pass,Pass
+ Warmup Convergence Information,PERIMETER_BOT_ZN_2,SizingPeriod: LOS ANGELES-USA ANN CLG 0.4% CONDNS DB=>MWB,0.1244033585,0.2375713915,Pass,Pass,0.1857447136,0.3946678944,Pass,Pass
+ Warmup Convergence Information,PERIMETER_BOT_ZN_3,SizingPeriod: LOS ANGELES-USA ANN CLG 0.4% CONDNS DB=>MWB,0.1046396585,0.1924788380,Pass,Pass,0.1853083699,0.3997625193,Pass,Pass
+ Warmup Convergence Information,PERIMETER_BOT_ZN_4,SizingPeriod: LOS ANGELES-USA ANN CLG 0.4% CONDNS DB=>MWB,0.1235669406,0.2266606858,Pass,Pass,0.1951316397,0.4026811343,Pass,Pass
+ Warmup Convergence Information,PERIMETER_MID_ZN_1,SizingPeriod: LOS ANGELES-USA ANN CLG 0.4% CONDNS DB=>MWB,0.1373753504,0.2110914258,Pass,Pass,0.1060228455,0.2845229435,Pass,Pass
+ Warmup Convergence Information,PERIMETER_MID_ZN_2,SizingPeriod: LOS ANGELES-USA ANN CLG 0.4% CONDNS DB=>MWB,0.1451752276,0.2341780331,Pass,Pass,0.1074311994,0.2836675383,Pass,Pass
+ Warmup Convergence Information,PERIMETER_MID_ZN_3,SizingPeriod: LOS ANGELES-USA ANN CLG 0.4% CONDNS DB=>MWB,0.1301506088,0.2010377383,Pass,Pass,0.1037077039,0.2872627369,Pass,Pass
+ Warmup Convergence Information,PERIMETER_MID_ZN_4,SizingPeriod: LOS ANGELES-USA ANN CLG 0.4% CONDNS DB=>MWB,0.1412410011,0.2226267651,Pass,Pass,0.1137539422,0.2831464601,Pass,Pass
+ Warmup Convergence Information,PERIMETER_TOP_ZN_1,SizingPeriod: LOS ANGELES-USA ANN CLG 0.4% CONDNS DB=>MWB,0.1333424534,0.2095489212,Pass,Pass,7.3539998395E-002,0.2305813276,Pass,Pass
+ Warmup Convergence Information,PERIMETER_TOP_ZN_2,SizingPeriod: LOS ANGELES-USA ANN CLG 0.4% CONDNS DB=>MWB,0.1405198364,0.2399465147,Pass,Pass,7.1658678548E-002,0.2235596843,Pass,Pass
+ Warmup Convergence Information,PERIMETER_TOP_ZN_3,SizingPeriod: LOS ANGELES-USA ANN CLG 0.4% CONDNS DB=>MWB,0.1264374302,0.2020958220,Pass,Pass,7.0649727684E-002,0.2311589122,Pass,Pass
+ Warmup Convergence Information,PERIMETER_TOP_ZN_4,SizingPeriod: LOS ANGELES-USA ANN CLG 0.4% CONDNS DB=>MWB,0.1386291670,0.2217795494,Pass,Pass,8.0799369317E-002,0.2292584702,Pass,Pass
+ Warmup Convergence Information,TOPFLOOR_PLENUM,SizingPeriod: LOS ANGELES-USA ANN CLG 0.4% CONDNS DB=>MWB,6.0178584827E-002,5.3822867794E-002,Pass,Pass,0.3358072662,1.3486621641,Pass,Pass
+Environment,LOS ANGELES-USA ANN HTG 99.6% CONDNS DB,SizingPeriod:DesignDay,01/21,01/21,WinterDesignDay,1,N/A,N/A,N/A,N/A,N/A,N/A,Clark and Allen
+Environment:Daylight Saving,No,SizingPeriod:DesignDay
+Environment:Design Day Data,7.10,0.00,DefaultMultipliers,Wetbulb,-1.00,{C},101540,0,1.4,0.00,No,No
+Environment:Design Day Misc, 21,1229.0,0.1415,5.7310E-002,1.0,-11.15,-20.1,ASHRAEClearSky
+Environment:WarmupDays,  8
+ Warmup Convergence Information,CORE_BOTTOM,SizingPeriod: LOS ANGELES-USA ANN HTG 99.6% CONDNS DB,3.2595318051E-002,0.1187231743,Pass,Pass,0.1410101832,0.3981664443,Pass,Pass
+ Warmup Convergence Information,CORE_MID,SizingPeriod: LOS ANGELES-USA ANN HTG 99.6% CONDNS DB,6.6095456566E-002,0.1613567376,Pass,Pass,0.1038102914,0.2819455071,Pass,Pass
+ Warmup Convergence Information,CORE_TOP,SizingPeriod: LOS ANGELES-USA ANN HTG 99.6% CONDNS DB,0.1272613146,0.2505118896,Pass,Pass,0.1491049204,0.3262177763,Pass,Pass
+ Warmup Convergence Information,FIRSTFLOOR_PLENUM,SizingPeriod: LOS ANGELES-USA ANN HTG 99.6% CONDNS DB,3.4674922059E-002,5.0911036235E-002,Pass,Pass,8.9764231968E-002,0.2631582471,Pass,Pass
+ Warmup Convergence Information,MIDFLOOR_PLENUM,SizingPeriod: LOS ANGELES-USA ANN HTG 99.6% CONDNS DB,4.1219900923E-002,5.6834495048E-002,Pass,Pass,8.9113507196E-002,0.2600230442,Pass,Pass
+ Warmup Convergence Information,PERIMETER_BOT_ZN_1,SizingPeriod: LOS ANGELES-USA ANN HTG 99.6% CONDNS DB,0.1643961122,0.3688421751,Pass,Pass,0.1005811550,0.2866222034,Pass,Pass
+ Warmup Convergence Information,PERIMETER_BOT_ZN_2,SizingPeriod: LOS ANGELES-USA ANN HTG 99.6% CONDNS DB,0.1666907204,0.4098590423,Pass,Pass,0.1114367507,0.3130116388,Pass,Pass
+ Warmup Convergence Information,PERIMETER_BOT_ZN_3,SizingPeriod: LOS ANGELES-USA ANN HTG 99.6% CONDNS DB,0.1653034224,0.3491058173,Pass,Pass,0.1953989956,0.8072224028,Pass,Pass
+ Warmup Convergence Information,PERIMETER_BOT_ZN_4,SizingPeriod: LOS ANGELES-USA ANN HTG 99.6% CONDNS DB,0.1665516447,0.4182014560,Pass,Pass,0.1007980746,0.2832291446,Pass,Pass
+ Warmup Convergence Information,PERIMETER_MID_ZN_1,SizingPeriod: LOS ANGELES-USA ANN HTG 99.6% CONDNS DB,0.1623779872,0.3676140336,Pass,Pass,9.7330425817E-002,0.2685334516,Pass,Pass
+ Warmup Convergence Information,PERIMETER_MID_ZN_2,SizingPeriod: LOS ANGELES-USA ANN HTG 99.6% CONDNS DB,0.1645101513,0.4122328719,Pass,Pass,0.1040215214,0.2931327334,Pass,Pass
+ Warmup Convergence Information,PERIMETER_MID_ZN_3,SizingPeriod: LOS ANGELES-USA ANN HTG 99.6% CONDNS DB,0.1625299880,0.3453302974,Pass,Pass,0.1092570310,0.3204301937,Pass,Pass
+ Warmup Convergence Information,PERIMETER_MID_ZN_4,SizingPeriod: LOS ANGELES-USA ANN HTG 99.6% CONDNS DB,0.1643138602,0.4165861249,Pass,Pass,0.1081834868,0.3163150762,Pass,Pass
+ Warmup Convergence Information,PERIMETER_TOP_ZN_1,SizingPeriod: LOS ANGELES-USA ANN HTG 99.6% CONDNS DB,0.2118602361,0.4180989441,Pass,Pass,0.2087742074,0.5750936042,Pass,Pass
+ Warmup Convergence Information,PERIMETER_TOP_ZN_2,SizingPeriod: LOS ANGELES-USA ANN HTG 99.6% CONDNS DB,0.2148358474,0.4630967938,Pass,Pass,0.2249581137,0.5969088279,Pass,Pass
+ Warmup Convergence Information,PERIMETER_TOP_ZN_3,SizingPeriod: LOS ANGELES-USA ANN HTG 99.6% CONDNS DB,0.2126794156,0.3923095116,Pass,Pass,0.2420316196,0.6860505039,Pass,Pass
+ Warmup Convergence Information,PERIMETER_TOP_ZN_4,SizingPeriod: LOS ANGELES-USA ANN HTG 99.6% CONDNS DB,0.2142493382,0.4787446394,Pass,Pass,0.2176324346,0.5840726309,Pass,Pass
+ Warmup Convergence Information,TOPFLOOR_PLENUM,SizingPeriod: LOS ANGELES-USA ANN HTG 99.6% CONDNS DB,0.1117529710,0.1328271578,Pass,Pass,0.1356797535,0.3153800564,Pass,Pass
+! <Program Control Information:Threads/Parallel Sims>, Threading Supported,Maximum Number of Threads, Env Set Threads (OMP_NUM_THREADS), EP Env Set Threads (EP_OMP_NUM_THREADS), IDF Set Threads, Number of Threads Used (Interior Radiant Exchange), Number Nominal Surfaces, Number Parallel Sims
+Program Control:Threads/Parallel Sims, No,1, N/A, N/A, N/A, N/A, N/A, N/A
+End of Data

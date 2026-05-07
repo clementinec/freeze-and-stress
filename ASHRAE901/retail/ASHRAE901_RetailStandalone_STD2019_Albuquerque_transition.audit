@@ -1,0 +1,67 @@
+
+Conversion 22.1 => 22.2
+ Starting new Transition.audit
+ Will create new full IDFs
+ Will create new IDF lines with units where applicable
+ Will create new IDF lines leaving blank incoming fields as blank (no default fill)
+ Processing IDF -- E:\00_research\03_freezethenstress\ASHRAE901\retail\ASHRAE901_RetailStandalone_STD2019_Albuquerque.idf
+   ** Warning ** Object=Sizing:Zone, name=Back_Space, entered with less than minimum number of fields.
+   **   ~~~   ** Attempting fill to minimum.
+   ** Warning ** Object=Sizing:Zone, name=Core_Retail, entered with less than minimum number of fields.
+   **   ~~~   ** Attempting fill to minimum.
+   ** Warning ** Object=Sizing:Zone, name=Point_Of_Sale, entered with less than minimum number of fields.
+   **   ~~~   ** Attempting fill to minimum.
+   ** Warning ** Object=Sizing:Zone, name=Front_Retail, entered with less than minimum number of fields.
+   **   ~~~   ** Attempting fill to minimum.
+   ** Warning ** Object=Sizing:Zone, name=Front_Entry, entered with less than minimum number of fields.
+   **   ~~~   ** Attempting fill to minimum.
+
+Conversion 22.2 => 23.1
+ Starting new Transition.audit
+ Will create new full IDFs
+ Will create new IDF lines with units where applicable
+ Will create new IDF lines leaving blank incoming fields as blank (no default fill)
+ Processing IDF -- E:\00_research\03_freezethenstress\ASHRAE901\retail\ASHRAE901_RetailStandalone_STD2019_Albuquerque.idf
+   ** Warning ** Object=Coil:Cooling:DX:MultiSpeed, name=PSZ-AC:1 Cooling Coil, entered with less than minimum number of fields.
+   **   ~~~   ** Attempting fill to minimum.
+   ** Warning ** Object=Coil:Cooling:DX:MultiSpeed, name=PSZ-AC:2 Cooling Coil, entered with less than minimum number of fields.
+   **   ~~~   ** Attempting fill to minimum.
+   ** Warning ** Object=Coil:Cooling:DX:MultiSpeed, name=PSZ-AC:3 Cooling Coil, entered with less than minimum number of fields.
+   **   ~~~   ** Attempting fill to minimum.
+   ** Warning ** Object=Coil:Cooling:DX:MultiSpeed, name=PSZ-AC:4 Cooling Coil, entered with less than minimum number of fields.
+   **   ~~~   ** Attempting fill to minimum.
+
+Conversion 23.1 => 23.2
+ Starting new Transition.audit
+ Will create new full IDFs
+ Will create new IDF lines with units where applicable
+ Will create new IDF lines leaving blank incoming fields as blank (no default fill)
+ Processing IDF -- E:\00_research\03_freezethenstress\ASHRAE901\retail\ASHRAE901_RetailStandalone_STD2019_Albuquerque.idf
+
+Conversion 23.2 => 24.1
+ Starting new Transition.audit
+ Will create new full IDFs
+ Will create new IDF lines with units where applicable
+ Will create new IDF lines leaving blank incoming fields as blank (no default fill)
+ Processing IDF -- E:\00_research\03_freezethenstress\ASHRAE901\retail\ASHRAE901_RetailStandalone_STD2019_Albuquerque.idf
+
+Conversion 24.1 => 24.2
+ Starting new Transition.audit
+ Will create new full IDFs
+ Will create new IDF lines with units where applicable
+ Will create new IDF lines leaving blank incoming fields as blank (no default fill)
+ Processing IDF -- E:\00_research\03_freezethenstress\ASHRAE901\retail\ASHRAE901_RetailStandalone_STD2019_Albuquerque.idf
+
+Conversion 24.2 => 25.1
+ Starting new Transition.audit
+ Will create new full IDFs
+ Will create new IDF lines with units where applicable
+ Will create new IDF lines leaving blank incoming fields as blank (no default fill)
+ Processing IDF -- E:\00_research\03_freezethenstress\ASHRAE901\retail\ASHRAE901_RetailStandalone_STD2019_Albuquerque.idf
+
+Conversion 25.1 => 25.2
+ Starting new Transition.audit
+ Will create new full IDFs
+ Will create new IDF lines with units where applicable
+ Will create new IDF lines leaving blank incoming fields as blank (no default fill)
+ Processing IDF -- E:\00_research\03_freezethenstress\ASHRAE901\retail\ASHRAE901_RetailStandalone_STD2019_Albuquerque.idf

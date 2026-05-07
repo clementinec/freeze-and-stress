@@ -1,0 +1,2 @@
+scenario,building,city,start_year,end_year,baseline_year,break_threshold_ratio,break_threshold_percent,break_year,years_to_failure,baseline_peak_kw,last_year_ulh_percent,last_year_stress_per_1000kwh,last_year_peak_ratio,failure_mode
+CORDEX_CMIP5_REMO2015_rcp85,office,Los_Angeles,2025,2100,2025,0.1,10.0,2027,2,214.10830628208268,23.80445579679349,1.2795413228918293,0.7557339195547306,control_limited
