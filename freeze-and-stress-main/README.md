@@ -53,6 +53,21 @@ cd epw_pipeline/energyplus_runner
 python freeze_model.py --local-eplus /path/to/energyplus
 ```
 
+Compute paper-facing multi-metric break years, metric screening tables, and driver-block summaries after annual metrics have been extracted:
+
+```bash
+cd epw_pipeline/energyplus_runner
+python compute_break_years_multi_metric.py
+```
+
+Default outputs include:
+
+- `paper_metrics_summary.csv`
+- `paper_metric_screening.csv`
+- `paper_metric_registry.csv`
+- `paper_screening_by_climate_type.csv`
+- `paper_block_decomposition.csv`
+
 ## Notes
 
 - The weather side uses local relative paths only.

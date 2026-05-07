@@ -214,18 +214,59 @@ Files:
 - `epw_pipeline/energyplus_runner/extract_sqlite_metrics.py`
 - `epw_pipeline/energyplus_runner/extract_unmet_hours_fast.py`
 - `epw_pipeline/energyplus_runner/compute_quick_breakyears.py`
+- `epw_pipeline/energyplus_runner/compute_break_years_multi_metric.py`
 - `epw_pipeline/energyplus_runner/summarize_unmet_relative.py`
 
 Purpose:
 
 - extract annual metrics from EnergyPlus SQLite outputs
 - build quick unmet-hours based break-year tables
+- build paper-facing multi-metric break-year summaries, metric registry tables, climate-type screening outputs, and driver-block decomposition tables
 - summarize unmet hours relative to the 2025 baseline
 
 Status:
 
 - these scripts are in place and were used during this campaign
 - their generated outputs are local artifacts and are gitignored
+
+### Paper-facing multi-metric summary
+
+File: `epw_pipeline/energyplus_runner/compute_break_years_multi_metric.py`
+
+Purpose:
+
+- computes break years and sustained failure years across registered climate-driver and building-response metrics
+- writes a wide paper summary table for scenario / building / city combinations
+- writes a metric registry with thresholds, aliases, standards and retention notes
+- writes global and per-Köppen-type screening tables for the NCC sentinel-metric analysis
+- writes driver-block decomposition output for the NCC attribution figure
+
+Typical use:
+
+```bash
+cd epw_pipeline/energyplus_runner
+python compute_break_years_multi_metric.py
+```
+
+Default input:
+
+- `metric_exports/annual_metrics_extended.csv`
+- falls back to `metric_exports/annual_metrics.csv` if the extended export is absent
+
+Default outputs:
+
+- `paper_metrics_summary.csv`
+- `paper_metric_screening.csv`
+- `paper_metric_registry.csv`
+- `paper_screening_by_climate_type.csv`
+- `paper_block_decomposition.csv`
+
+Important notes:
+
+- the built-in Köppen mapping currently covers `Phoenix`, `Miami`, `Los_Angeles`, `Toronto`, `Montreal`, and `Vancouver`
+- threshold values are severe transition screens, not first-exceedance comfort or compliance limits
+- `paper_screening_by_climate_type.csv` is intended for the NCC sentinel-metric figure
+- `paper_block_decomposition.csv` is intended for the NCC driver-attribution figure
 
 ## Current Reporting Preset
 
