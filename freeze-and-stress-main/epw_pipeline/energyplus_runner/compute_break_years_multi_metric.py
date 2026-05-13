@@ -25,9 +25,12 @@ if not DEFAULT_INPUT.exists():
     DEFAULT_INPUT = SCRIPT_DIR / "metric_exports" / "annual_metrics.csv"
 DEFAULT_OUTPUT = SCRIPT_DIR / "paper_metrics_summary.csv"
 DEFAULT_SCREENING_OUTPUT = SCRIPT_DIR / "paper_metric_screening.csv"
+DEFAULT_SCREENING_SENSITIVITY_OUTPUT = SCRIPT_DIR / "paper_metric_screening_sensitivity.csv"
 DEFAULT_REGISTRY_OUTPUT = SCRIPT_DIR / "paper_metric_registry.csv"
 DEFAULT_CLIMATE_TYPE_SCREENING_OUTPUT = SCRIPT_DIR / "paper_screening_by_climate_type.csv"
+DEFAULT_CLIMATE_TYPE_SCREENING_SENSITIVITY_OUTPUT = SCRIPT_DIR / "paper_screening_by_climate_type_sensitivity.csv"
 DEFAULT_BLOCK_DECOMPOSITION_OUTPUT = SCRIPT_DIR / "paper_block_decomposition.csv"
+DEFAULT_DRIVER_RESPONSE_REGRESSION_OUTPUT = SCRIPT_DIR / "paper_driver_response_regression.csv"
 
 DEFAULT_BASELINE_YEAR = 2025
 
@@ -48,6 +51,24 @@ REDUNDANCY_THRESHOLD = 0.90
 KEEP_SCORE_THRESHOLD = 0.60
 REVIEW_SCORE_THRESHOLD = 0.40
 STRESS_EMERGENCE_DELTA = 0.25
+SCREENING_BASE_WEIGHTS = {
+    "slope": 0.24,
+    "breach": 0.18,
+    "discrimination": 0.22,
+    "coverage": 0.16,
+    "volatility": 0.10,
+    "uniqueness": 0.10,
+}
+SCREENING_TOP_K_BY_ROLE = {
+    "driver": 5,
+    "response": 6,
+}
+SCREENING_REVIEW_K_BY_ROLE = {
+    "driver": 3,
+    "response": 4,
+}
+SCREENING_ANALYSIS_DECISIONS = {"Keep", "Priority Review"}
+SCREENING_WEIGHT_PERTURBATION = 0.20
 
 # Break-year thresholds are intentionally set as severe transition screens,
 # not as first-exceedance comfort or compliance limits. Lower first-exceedance
@@ -392,6 +413,11 @@ def parse_args() -> argparse.Namespace:
         help="Output long-form metric screening CSV.",
     )
     parser.add_argument(
+        "--screening-sensitivity-output",
+        default=str(DEFAULT_SCREENING_SENSITIVITY_OUTPUT),
+        help="Output pooled metric-screening weight sensitivity CSV.",
+    )
+    parser.add_argument(
         "--registry-output",
         default=str(DEFAULT_REGISTRY_OUTPUT),
         help="Output metric registry CSV with roles, thresholds, and retention notes.",
@@ -402,9 +428,19 @@ def parse_args() -> argparse.Namespace:
         help="Output per-climate-type screening CSV (NCC Fig 2).",
     )
     parser.add_argument(
+        "--climate-type-screening-sensitivity-output",
+        default=str(DEFAULT_CLIMATE_TYPE_SCREENING_SENSITIVITY_OUTPUT),
+        help="Output per-climate-type metric-screening weight sensitivity CSV.",
+    )
+    parser.add_argument(
         "--block-decomposition-output",
         default=str(DEFAULT_BLOCK_DECOMPOSITION_OUTPUT),
         help="Output driver-block variance decomposition CSV (NCC Fig 3).",
+    )
+    parser.add_argument(
+        "--driver-response-regression-output",
+        default=str(DEFAULT_DRIVER_RESPONSE_REGRESSION_OUTPUT),
+        help="Output screened annual driver-response regressions, including per-climate and pooled baseline fits.",
     )
     parser.add_argument(
         "--baseline-year",
@@ -704,13 +740,20 @@ def rolling_failure_occurrence_count(
     )
 
 
-def failure_probability(records: list[dict[str, object]]) -> float | None:
+def failure_probability(
+    records: list[dict[str, object]],
+    metrics: tuple[MetricSpec, ...] = FAILURE_METRICS,
+) -> float | None:
     if not records:
         return None
-    return 100.0 * sum(1 for record in records if any_failure(record)) / len(records)
+    return 100.0 * sum(1 for record in records if any_failure(record, metrics)) / len(records)
 
 
-def first_trigger_metric(records: list[dict[str, object]], target_year: int | str | None = None) -> str:
+def first_trigger_metric(
+    records: list[dict[str, object]],
+    target_year: int | str | None = None,
+    metrics: tuple[MetricSpec, ...] = FAILURE_METRICS,
+) -> str:
     if target_year == "Never":
         return "Never"
     for record in sorted(records, key=lambda row: row["year"]):
@@ -718,7 +761,7 @@ def first_trigger_metric(records: list[dict[str, object]], target_year: int | st
             continue
         triggered = [
             metric.label
-            for metric in FAILURE_METRICS
+            for metric in metrics
             if breaches(to_float(record.get(metric.key)), metric)
         ]
         if triggered:
@@ -745,8 +788,13 @@ def sustained_trigger_year_for_subfamily(records: list[dict[str, object]], subfa
     return "Never"
 
 
-def adjusted_trigger_year_for_subfamily(records: list[dict[str, object]], subfamily: str, baseline_year: int) -> int | str:
-    metrics = tuple(metric for metric in THRESHOLD_METRICS if metric.subfamily == subfamily)
+def adjusted_trigger_year_for_subfamily(
+    records: list[dict[str, object]],
+    subfamily: str,
+    baseline_year: int,
+    threshold_metrics: tuple[MetricSpec, ...] = THRESHOLD_METRICS,
+) -> int | str:
+    metrics = tuple(metric for metric in threshold_metrics if metric.subfamily == subfamily)
     if not metrics:
         return ""
     return break_year(records, baseline_year, metrics)
@@ -757,8 +805,9 @@ def adjusted_sustained_trigger_year_for_subfamily(
     subfamily: str,
     baseline_year: int,
     sustained_years: int,
+    threshold_metrics: tuple[MetricSpec, ...] = THRESHOLD_METRICS,
 ) -> int | str:
-    metrics = tuple(metric for metric in THRESHOLD_METRICS if metric.subfamily == subfamily)
+    metrics = tuple(metric for metric in threshold_metrics if metric.subfamily == subfamily)
     if not metrics:
         return ""
     return sustained_failure_year(records, sustained_years, baseline_year, metrics)
@@ -834,35 +883,50 @@ def summarize(
     baseline_year: int,
     sustained_years: int,
     occurrence_ratio_threshold: float = FAILURE_OCCURRENCE_RATIO_THRESHOLD,
+    failure_metrics: tuple[MetricSpec, ...] = FAILURE_METRICS,
 ) -> tuple[dict[str, object], dict[str, dict[str, object]]]:
     records = sorted(records, key=lambda row: row["year"])
-    absolute_standard_break_year = absolute_break_year(records)
-    main_break_year = break_year(records, baseline_year)
-    main_sustained_failure_year = sustained_failure_year(records, sustained_years, baseline_year)
+    absolute_standard_break_year = absolute_break_year(records, failure_metrics)
+    main_break_year = break_year(records, baseline_year, failure_metrics)
+    main_sustained_failure_year = sustained_failure_year(records, sustained_years, baseline_year, failure_metrics)
 
     result: dict[str, object] = {
         "baseline_year": baseline_year,
         "first_available_year": records[0]["year"] if records else None,
         "final_available_year": records[-1]["year"] if records else None,
         "absolute_standard_break_year": absolute_standard_break_year,
-        "baseline_failure_severity": failure_severity(next((record for record in records if record["year"] == baseline_year), records[0])) if records else None,
+        "baseline_failure_severity": (
+            failure_severity(next((record for record in records if record["year"] == baseline_year), records[0]), failure_metrics)
+            if records
+            else None
+        ),
         "main_break_year": main_break_year,
         "main_stress_emergence_year": main_break_year,
         "stress_emergence_delta": STRESS_EMERGENCE_DELTA,
         "main_sustained_failure_year": main_sustained_failure_year,
         "break_year": main_break_year,
         "sustained_failure_year": main_sustained_failure_year,
-        "first_trigger_metric": first_trigger_metric(records, main_break_year),
-        "failure_probability_pct": failure_probability(records),
-        "failure_occurrence_count": failure_occurrence_count(records),
-        "failure_occurrence_ratio_pct": (failure_occurrence_ratio(records) or 0.0) * 100.0 if records else None,
+        "first_trigger_metric": first_trigger_metric(records, main_break_year, failure_metrics),
+        "failure_probability_pct": failure_probability(records, failure_metrics),
+        "failure_occurrence_count": failure_occurrence_count(records, failure_metrics),
+        "failure_occurrence_ratio_pct": (failure_occurrence_ratio(records, failure_metrics) or 0.0) * 100.0 if records else None,
         "failure_occurrence_ratio_threshold_pct": occurrence_ratio_threshold * 100.0,
-        "operational_adequacy_break_year": adjusted_trigger_year_for_subfamily(records, "operational_adequacy", baseline_year),
-        "operational_adequacy_sustained_failure_year": adjusted_sustained_trigger_year_for_subfamily(records, "operational_adequacy", baseline_year, sustained_years),
-        "habitability_break_year": adjusted_trigger_year_for_subfamily(records, "habitability", baseline_year),
-        "habitability_sustained_failure_year": adjusted_sustained_trigger_year_for_subfamily(records, "habitability", baseline_year, sustained_years),
-        "operational_adequacy__first_trigger_year": adjusted_trigger_year_for_subfamily(records, "operational_adequacy", baseline_year),
-        "habitability__first_trigger_year": adjusted_trigger_year_for_subfamily(records, "habitability", baseline_year),
+        "operational_adequacy_break_year": adjusted_trigger_year_for_subfamily(
+            records, "operational_adequacy", baseline_year, failure_metrics
+        ),
+        "operational_adequacy_sustained_failure_year": adjusted_sustained_trigger_year_for_subfamily(
+            records, "operational_adequacy", baseline_year, sustained_years, failure_metrics
+        ),
+        "habitability_break_year": adjusted_trigger_year_for_subfamily(records, "habitability", baseline_year, failure_metrics),
+        "habitability_sustained_failure_year": adjusted_sustained_trigger_year_for_subfamily(
+            records, "habitability", baseline_year, sustained_years, failure_metrics
+        ),
+        "operational_adequacy__first_trigger_year": adjusted_trigger_year_for_subfamily(
+            records, "operational_adequacy", baseline_year, failure_metrics
+        ),
+        "habitability__first_trigger_year": adjusted_trigger_year_for_subfamily(
+            records, "habitability", baseline_year, failure_metrics
+        ),
     }
     for window_years in FAILURE_OCCURRENCE_WINDOWS:
         result[f"failure_occurrence_{window_years}y_year"] = rolling_failure_occurrence_year(
@@ -870,12 +934,14 @@ def summarize(
             window_years,
             baseline_year,
             occurrence_ratio_threshold,
+            failure_metrics,
         )
         result[f"failure_occurrence_{window_years}y_window_count"] = rolling_failure_occurrence_count(
             records,
             window_years,
             baseline_year,
             occurrence_ratio_threshold,
+            failure_metrics,
         )
 
     stats_by_metric: dict[str, dict[str, object]] = {}
@@ -1025,7 +1091,11 @@ def relative_stress_stats(values: list[float], metric: MetricSpec) -> tuple[floa
     return percentile, threshold, frequency_pct
 
 
-def driver_response_attribution(records: list[dict[str, object]], metric: MetricSpec) -> dict[str, object]:
+def driver_response_attribution(
+    records: list[dict[str, object]],
+    metric: MetricSpec,
+    driver_keys: tuple[str, ...] = ATTRIBUTION_DRIVER_KEYS,
+) -> dict[str, object]:
     result: dict[str, object] = {
         "driver_response_n": "",
         "driver_response_r2": None,
@@ -1033,23 +1103,23 @@ def driver_response_attribution(records: list[dict[str, object]], metric: Metric
         "driver_response_dominant_driver": "",
         "driver_response_dominant_abs_beta": None,
     }
-    for driver_key in ATTRIBUTION_DRIVER_KEYS:
+    for driver_key in driver_keys:
         result[f"driver_response_beta_{driver_key}"] = None
 
-    if metric.role != "response":
+    if metric.role != "response" or not driver_keys:
         return result
 
     y_values: list[float] = []
     x_values: list[list[float]] = []
     for record in records:
         y_value = to_float(record.get(metric.key))
-        driver_values = [to_float(record.get(driver_key)) for driver_key in ATTRIBUTION_DRIVER_KEYS]
+        driver_values = [to_float(record.get(driver_key)) for driver_key in driver_keys]
         if y_value is None or any(value is None for value in driver_values):
             continue
         y_values.append(y_value)
         x_values.append([float(value) for value in driver_values if value is not None])
 
-    if len(y_values) < len(ATTRIBUTION_DRIVER_KEYS) + 5:
+    if len(y_values) < len(driver_keys) + 5:
         return result
 
     y_array = np.asarray(y_values, dtype=float)
@@ -1073,7 +1143,7 @@ def driver_response_attribution(records: list[dict[str, object]], metric: Metric
     r2 = None if total_sum_squares <= 1e-12 else max(0.0, min(1.0, 1.0 - residual_sum_squares / total_sum_squares))
 
     beta_by_driver = {
-        ATTRIBUTION_DRIVER_KEYS[predictor_index]: float(beta)
+        driver_keys[predictor_index]: float(beta)
         for predictor_index, beta in zip(valid_predictors, coefficients)
     }
     if beta_by_driver:
@@ -1091,6 +1161,7 @@ def driver_response_attribution(records: list[dict[str, object]], metric: Metric
 def driver_block_variance_share(
     records: list[dict[str, object]],
     metric: MetricSpec,
+    driver_keys: tuple[str, ...] = ATTRIBUTION_DRIVER_KEYS,
 ) -> dict[str, object]:
     """Compute driver-block-level variance share for a response metric.
 
@@ -1109,15 +1180,18 @@ def driver_block_variance_share(
         return result
 
     # Reuse the per-key attribution to get betas
-    attribution = driver_response_attribution(records, metric)
+    attribution = driver_response_attribution(records, metric, driver_keys)
     if not attribution.get("driver_response_n"):
         return result
 
     # Collect betas per driver block
+    driver_key_set = set(driver_keys)
     block_beta2: dict[str, float] = {}
     for block_name, block_keys in DRIVER_BLOCK_REPRESENTATIVES.items():
         beta2_sum = 0.0
         for key in block_keys:
+            if key not in driver_key_set:
+                continue
             beta = attribution.get(f"driver_response_beta_{key}")
             if beta is not None:
                 beta2_sum += float(beta) ** 2
@@ -1139,10 +1213,208 @@ def driver_block_variance_share(
     return result
 
 
+def normalized_screening_weights(weights: dict[str, float] | None = None) -> dict[str, float]:
+    source = SCREENING_BASE_WEIGHTS if weights is None else weights
+    total = sum(max(0.0, float(value)) for value in source.values())
+    if total <= 1e-12:
+        return dict(SCREENING_BASE_WEIGHTS)
+    return {key: max(0.0, float(source.get(key, 0.0))) / total for key in SCREENING_BASE_WEIGHTS}
+
+
+def assign_screening_scores(
+    rows: list[dict[str, object]],
+    weights: dict[str, float] | None = None,
+    weight_set: str = "base",
+) -> None:
+    norm_weights = normalized_screening_weights(weights)
+    for row in rows:
+        row["screening_weight_set"] = weight_set
+        row["screening_normalization_group"] = row.get("role", "")
+        row["screening_rank_within_role"] = ""
+        row["screening_top_k"] = ""
+        row["screening_review_k"] = ""
+        row["screening_selected_for_analysis"] = "No"
+        row["screening_component_coverage"] = None
+        row["screening_component_slope"] = None
+        row["screening_component_breach"] = None
+        row["screening_component_discrimination"] = None
+        row["screening_component_volatility"] = None
+        row["screening_component_uniqueness"] = None
+
+    roles = sorted({str(row.get("role", "")) for row in rows})
+    for role in roles:
+        indices = [index for index, row in enumerate(rows) if str(row.get("role", "")) == role]
+        role_rows = [rows[index] for index in indices]
+        coverage_scores = scale_scores([to_float(row["coverage_pct"]) for row in role_rows], higher_is_better=True)
+        slope_scores = scale_scores([to_float(row["mean_abs_temporal_slope"]) for row in role_rows], higher_is_better=True)
+        breach_signal_scores = scale_scores(
+            [
+                to_float(row["breach_frequency_pct"])
+                if row["breach_frequency_pct"] is not None
+                else to_float(row["mean_abs_standardized_change"])
+                for row in role_rows
+            ],
+            higher_is_better=True,
+        )
+        discrimination_scores = scale_scores(
+            [to_float(row["climate_discrimination_score"]) for row in role_rows],
+            higher_is_better=True,
+        )
+        volatility_scores = scale_scores([to_float(row["mean_volatility_change"]) for row in role_rows], higher_is_better=False)
+        uniqueness_scores = scale_scores([to_float(row["redundancy_max_abs_r"]) for row in role_rows], higher_is_better=False)
+
+        local_scores: list[tuple[int, float]] = []
+        for local_index, row in enumerate(role_rows):
+            score_value = (
+                norm_weights["slope"] * slope_scores[local_index]
+                + norm_weights["breach"] * breach_signal_scores[local_index]
+                + norm_weights["discrimination"] * discrimination_scores[local_index]
+                + norm_weights["coverage"] * coverage_scores[local_index]
+                + norm_weights["volatility"] * volatility_scores[local_index]
+                + norm_weights["uniqueness"] * uniqueness_scores[local_index]
+            )
+            row["screening_component_coverage"] = coverage_scores[local_index]
+            row["screening_component_slope"] = slope_scores[local_index]
+            row["screening_component_breach"] = breach_signal_scores[local_index]
+            row["screening_component_discrimination"] = discrimination_scores[local_index]
+            row["screening_component_volatility"] = volatility_scores[local_index]
+            row["screening_component_uniqueness"] = uniqueness_scores[local_index]
+            row["screening_decision_raw"] = "Drop"
+            row["screening_score"] = score_value
+            row["keep_drop_decision"] = "Drop"
+            local_scores.append((indices[local_index], score_value))
+
+        top_k = SCREENING_TOP_K_BY_ROLE.get(role, 0)
+        review_k = SCREENING_REVIEW_K_BY_ROLE.get(role, 0)
+        ranked = sorted(local_scores, key=lambda item: (-item[1], str(rows[item[0]].get("metric", ""))))
+        for rank, (global_index, _) in enumerate(ranked, start=1):
+            row = rows[global_index]
+            if rank <= top_k:
+                decision = "Keep"
+            elif rank <= top_k + review_k:
+                decision = "Review"
+            else:
+                decision = "Drop"
+            row["screening_rank_within_role"] = rank
+            row["screening_top_k"] = top_k
+            row["screening_review_k"] = review_k
+            row["screening_decision_raw"] = decision
+            row["keep_drop_decision"] = decision
+
+
+def mark_screening_selection(rows: list[dict[str, object]]) -> None:
+    for row in rows:
+        row["screening_selected_for_analysis"] = (
+            "Yes" if str(row.get("keep_drop_decision")) in SCREENING_ANALYSIS_DECISIONS else "No"
+        )
+
+
+def screening_weight_variants() -> list[tuple[str, dict[str, float]]]:
+    variants = [("base", dict(SCREENING_BASE_WEIGHTS))]
+    for key in SCREENING_BASE_WEIGHTS:
+        for suffix, factor in (("minus20pct", 1.0 - SCREENING_WEIGHT_PERTURBATION), ("plus20pct", 1.0 + SCREENING_WEIGHT_PERTURBATION)):
+            weights = dict(SCREENING_BASE_WEIGHTS)
+            weights[key] *= factor
+            variants.append((f"{key}_{suffix}", weights))
+    return variants
+
+
+def build_screening_sensitivity_rows(rows: list[dict[str, object]]) -> list[dict[str, object]]:
+    sensitivity_rows: list[dict[str, object]] = []
+    for weight_set, weights in screening_weight_variants():
+        variant_rows = [dict(row) for row in rows]
+        for row in variant_rows:
+            row["retention_rule"] = ""
+        assign_screening_scores(variant_rows, weights, weight_set)
+        apply_retention_rules(variant_rows)
+        mark_screening_selection(variant_rows)
+        norm_weights = normalized_screening_weights(weights)
+        for row in variant_rows:
+            sensitivity_rows.append(
+                {
+                    "screening_weight_set": weight_set,
+                    "role": row["role"],
+                    "subfamily": row["subfamily"],
+                    "metric": row["metric"],
+                    "screening_score": row["screening_score"],
+                    "screening_rank_within_role": row["screening_rank_within_role"],
+                    "screening_decision_raw": row["screening_decision_raw"],
+                    "keep_drop_decision": row["keep_drop_decision"],
+                    "screening_selected_for_analysis": row["screening_selected_for_analysis"],
+                    "retention_rule": row["retention_rule"],
+                    **{f"weight_{key}": norm_weights[key] for key in SCREENING_BASE_WEIGHTS},
+                }
+            )
+    return sensitivity_rows
+
+
+def selected_metrics_from_screening(
+    screening_rows: list[dict[str, object]],
+    role: str,
+    require_threshold: bool = False,
+) -> tuple[MetricSpec, ...]:
+    selected_keys = {
+        str(row["metric"])
+        for row in screening_rows
+        if row.get("role") == role and row.get("screening_selected_for_analysis") == "Yes"
+    }
+    selected = [
+        metric
+        for metric in METRICS
+        if metric.role == role and metric.key in selected_keys and (not require_threshold or metric.threshold is not None)
+    ]
+    return tuple(selected)
+
+
+def build_driver_response_regression_rows(
+    records: list[dict[str, object]],
+    response_metrics: tuple[MetricSpec, ...],
+    driver_metrics: tuple[MetricSpec, ...],
+) -> list[dict[str, object]]:
+    driver_keys = tuple(metric.key for metric in driver_metrics)
+    if not response_metrics or not driver_keys:
+        return []
+
+    rows: list[dict[str, object]] = []
+    scopes: list[tuple[str, str, str, list[dict[str, object]]]] = [("pooled", "All", "All", records)]
+    by_climate: defaultdict[str, list[dict[str, object]]] = defaultdict(list)
+    for record in records:
+        city = str(record.get("city", ""))
+        by_climate[CITY_KOPPEN_MAP.get(city, "Unknown")].append(record)
+    for climate_type, ct_records in sorted(by_climate.items()):
+        cities = "; ".join(sorted({str(record.get("city", "")) for record in ct_records}))
+        scopes.append(("per_climate", climate_type, cities, ct_records))
+
+    for model_scope, climate_type, city, scope_records in scopes:
+        for metric in response_metrics:
+            attribution = driver_response_attribution(scope_records, metric, driver_keys)
+            block = driver_block_variance_share(scope_records, metric, driver_keys)
+            row = {
+                "model_scope": model_scope,
+                "model_role": "main" if model_scope == "per_climate" else "pooled_baseline",
+                "climate_type": climate_type,
+                "city": city,
+                "response_metric": metric.key,
+                "response_label": metric.label,
+                "response_subfamily": metric.subfamily,
+                "driver_metrics": "; ".join(driver_keys),
+                "driver_metric_count": len(driver_keys),
+                "response_screening_source": "screening_selected_for_analysis",
+                "model": "annual_standardized_ridge",
+                "ridge_alpha": ATTRIBUTION_RIDGE_ALPHA,
+            }
+            row.update(attribution)
+            row.update(block)
+            rows.append(row)
+    return rows
+
+
 def build_screening_rows(
     records: list[dict[str, object]],
     grouped_stats: dict[tuple[str | None, str | None, str | None], dict[str, dict[str, object]]],
     fieldnames: list[str],
+    weights: dict[str, float] | None = None,
+    weight_set: str = "base",
 ) -> list[dict[str, object]]:
     rows: list[dict[str, object]] = []
     for metric in METRICS:
@@ -1209,35 +1481,9 @@ def build_screening_rows(
         row.update(driver_response_attribution(records, metric))
         rows.append(row)
 
-    coverage_scores = scale_scores([to_float(row["coverage_pct"]) for row in rows], higher_is_better=True)
-    slope_scores = scale_scores([to_float(row["mean_abs_temporal_slope"]) for row in rows], higher_is_better=True)
-    breach_signal_scores = scale_scores(
-        [
-            to_float(row["breach_frequency_pct"])
-            if row["breach_frequency_pct"] is not None
-            else to_float(row["mean_abs_standardized_change"])
-            for row in rows
-        ],
-        higher_is_better=True,
-    )
-    discrimination_scores = scale_scores([to_float(row["climate_discrimination_score"]) for row in rows], higher_is_better=True)
-    volatility_scores = scale_scores([to_float(row["mean_volatility_change"]) for row in rows], higher_is_better=False)
-    uniqueness_scores = scale_scores([to_float(row["redundancy_max_abs_r"]) for row in rows], higher_is_better=False)
-
-    for index, row in enumerate(rows):
-        score_value = (
-            0.24 * slope_scores[index]
-            + 0.18 * breach_signal_scores[index]
-            + 0.22 * discrimination_scores[index]
-            + 0.16 * coverage_scores[index]
-            + 0.10 * volatility_scores[index]
-            + 0.10 * uniqueness_scores[index]
-        )
-        row["screening_decision_raw"] = decide_from_score(score_value, to_float(row["coverage_pct"]) or 0.0)
-        row["screening_score"] = score_value
-        row["keep_drop_decision"] = row["screening_decision_raw"]
-
+    assign_screening_scores(rows, weights, weight_set)
     apply_retention_rules(rows)
+    mark_screening_selection(rows)
 
     return rows
 
@@ -1344,10 +1590,38 @@ def screening_fieldnames() -> list[str]:
         "redundancy_max_abs_r",
         "redundancy_scope",
         "redundancy_flag",
+        "screening_weight_set",
+        "screening_normalization_group",
+        "screening_rank_within_role",
+        "screening_top_k",
+        "screening_review_k",
+        "screening_component_coverage",
+        "screening_component_slope",
+        "screening_component_breach",
+        "screening_component_discrimination",
+        "screening_component_volatility",
+        "screening_component_uniqueness",
         "screening_decision_raw",
         "screening_score",
         "keep_drop_decision",
+        "screening_selected_for_analysis",
         "retention_rule",
+    ]
+
+
+def screening_sensitivity_fieldnames() -> list[str]:
+    return [
+        "screening_weight_set",
+        "role",
+        "subfamily",
+        "metric",
+        "screening_score",
+        "screening_rank_within_role",
+        "screening_decision_raw",
+        "keep_drop_decision",
+        "screening_selected_for_analysis",
+        "retention_rule",
+        *[f"weight_{key}" for key in SCREENING_BASE_WEIGHTS],
     ]
 
 
@@ -1426,9 +1700,41 @@ def block_decomposition_fieldnames() -> list[str]:
     ]
 
 
+def driver_response_regression_fieldnames(driver_keys: tuple[str, ...]) -> list[str]:
+    return [
+        "model_scope",
+        "model_role",
+        "climate_type",
+        "city",
+        "response_metric",
+        "response_label",
+        "response_subfamily",
+        "driver_metrics",
+        "driver_metric_count",
+        "response_screening_source",
+        "model",
+        "ridge_alpha",
+        "driver_response_n",
+        "driver_response_r2",
+        "driver_response_condition_number",
+        "driver_response_dominant_driver",
+        "driver_response_dominant_abs_beta",
+        *[f"driver_response_beta_{driver_key}" for driver_key in driver_keys],
+        "block_decomposition_n",
+        "block_decomposition_r2",
+        *[f"block_beta2_share_{block}" for block in DRIVER_BLOCK_REPRESENTATIVES],
+        "block_dominant",
+        "block_dominant_share",
+    ]
+
+
 def climate_type_screening_fieldnames() -> list[str]:
     base = screening_fieldnames()
     return ["climate_type"] + base
+
+
+def climate_type_screening_sensitivity_fieldnames() -> list[str]:
+    return ["climate_type"] + screening_sensitivity_fieldnames()
 
 
 def main() -> None:
@@ -1436,9 +1742,12 @@ def main() -> None:
     input_csv = Path(args.file).resolve()
     output_csv = Path(args.output).resolve()
     screening_output_csv = Path(args.screening_output).resolve()
+    screening_sensitivity_csv = Path(args.screening_sensitivity_output).resolve()
     registry_output_csv = Path(args.registry_output).resolve()
     climate_type_screening_csv = Path(args.climate_type_screening_output).resolve()
+    climate_type_screening_sensitivity_csv = Path(args.climate_type_screening_sensitivity_output).resolve()
     block_decomposition_csv = Path(args.block_decomposition_output).resolve()
+    driver_response_regression_csv = Path(args.driver_response_regression_output).resolve()
 
     rows: list[dict[str, object]] = []
     with open(input_csv, encoding="utf-8") as infile:
@@ -1459,25 +1768,46 @@ def main() -> None:
             continue
         grouped[(row["scenario"], row["building"], row["city"])].append(row)
 
-    summary_rows: list[dict[str, object]] = []
     grouped_stats: dict[tuple[str | None, str | None, str | None], dict[str, dict[str, object]]] = {}
     for group_key, records in grouped.items():
-        scenario, building, city = group_key
-        result, stats = summarize(records, args.baseline_year, args.sustained_years, args.occurrence_ratio_threshold)
-        result.update({"scenario": scenario, "building": building, "city": city})
-        summary_rows.append(result)
+        _, stats = summarize(records, args.baseline_year, args.sustained_years, args.occurrence_ratio_threshold)
         grouped_stats[group_key] = stats
-
-    summary_rows.sort(key=lambda row: (str(row.get("scenario")), str(row.get("building")), str(row.get("city"))))
-    write_csv(output_csv, summary_rows, summary_fieldnames())
 
     valid_rows = [row for row in rows if row.get("year") is not None]
     screening_rows = build_screening_rows(valid_rows, grouped_stats, source_fieldnames)
     write_csv(screening_output_csv, screening_rows, screening_fieldnames())
+    write_csv(screening_sensitivity_csv, build_screening_sensitivity_rows(screening_rows), screening_sensitivity_fieldnames())
     write_csv(registry_output_csv, build_registry_rows(source_fieldnames), registry_fieldnames())
+
+    selected_driver_metrics = selected_metrics_from_screening(screening_rows, "driver")
+    selected_response_metrics = selected_metrics_from_screening(screening_rows, "response")
+    screened_failure_metrics = selected_metrics_from_screening(screening_rows, "response", require_threshold=True)
+    if not selected_driver_metrics:
+        selected_driver_metrics = tuple(metric for metric in METRICS if metric.key in ATTRIBUTION_DRIVER_KEYS)
+    if not selected_response_metrics:
+        selected_response_metrics = tuple(metric for metric in METRICS if metric.role == "response")
+    if not screened_failure_metrics:
+        screened_failure_metrics = FAILURE_METRICS
+
+    summary_rows: list[dict[str, object]] = []
+    for group_key, records in grouped.items():
+        scenario, building, city = group_key
+        result, _ = summarize(
+            records,
+            args.baseline_year,
+            args.sustained_years,
+            args.occurrence_ratio_threshold,
+            screened_failure_metrics,
+        )
+        result.update({"scenario": scenario, "building": building, "city": city})
+        summary_rows.append(result)
+
+    summary_rows.sort(key=lambda row: (str(row.get("scenario")), str(row.get("building")), str(row.get("city"))))
+    write_csv(output_csv, summary_rows, summary_fieldnames())
 
     # ── Per-climate-type screening (NCC Fig 2) ──────────────────────────
     climate_type_screening_rows: list[dict[str, object]] = []
+    climate_type_sensitivity_rows: list[dict[str, object]] = []
     by_climate_type: defaultdict[str, list[dict[str, object]]] = defaultdict(list)
     for row in valid_rows:
         city = str(row.get("city", ""))
@@ -1498,17 +1828,32 @@ def main() -> None:
         for row in ct_screening:
             row["climate_type"] = climate_type
         climate_type_screening_rows.extend(ct_screening)
+        ct_sensitivity = build_screening_sensitivity_rows(ct_screening)
+        for row in ct_sensitivity:
+            row["climate_type"] = climate_type
+        climate_type_sensitivity_rows.extend(ct_sensitivity)
 
     write_csv(climate_type_screening_csv, climate_type_screening_rows, climate_type_screening_fieldnames())
+    write_csv(
+        climate_type_screening_sensitivity_csv,
+        climate_type_sensitivity_rows,
+        climate_type_screening_sensitivity_fieldnames(),
+    )
+
+    selected_driver_keys = tuple(metric.key for metric in selected_driver_metrics)
+    regression_rows = build_driver_response_regression_rows(valid_rows, selected_response_metrics, selected_driver_metrics)
+    write_csv(
+        driver_response_regression_csv,
+        regression_rows,
+        driver_response_regression_fieldnames(selected_driver_keys),
+    )
 
     # ── Driver-block variance decomposition (NCC Fig 3) ─────────────────
     block_decomposition_rows: list[dict[str, object]] = []
     for climate_type, ct_rows in sorted(by_climate_type.items()):
         cities_in_type = sorted(set(str(row.get("city", "")) for row in ct_rows))
-        for metric in METRICS:
-            if metric.role != "response":
-                continue
-            decomp = driver_block_variance_share(ct_rows, metric)
+        for metric in selected_response_metrics:
+            decomp = driver_block_variance_share(ct_rows, metric, selected_driver_keys)
             decomp.update({
                 "climate_type": climate_type,
                 "city": "; ".join(cities_in_type),
@@ -1535,10 +1880,16 @@ def main() -> None:
     print(f"Metric specs      : {len(METRICS)}")
     print(f"Metrics with data : {available_count}")
     print(f"Climate types     : {len(by_climate_type)}")
+    print(f"Selected drivers  : {'; '.join(metric.key for metric in selected_driver_metrics)}")
+    print(f"Selected responses: {'; '.join(metric.key for metric in selected_response_metrics)}")
+    print(f"Break-year metrics: {'; '.join(metric.key for metric in screened_failure_metrics)}")
     print(f"Saved summary     : {output_csv}")
     print(f"Saved screening   : {screening_output_csv}")
+    print(f"Saved sensitivity : {screening_sensitivity_csv}")
     print(f"Saved registry    : {registry_output_csv}")
     print(f"Saved CT screening: {climate_type_screening_csv}")
+    print(f"Saved CT sens.    : {climate_type_screening_sensitivity_csv}")
+    print(f"Saved regression  : {driver_response_regression_csv}")
     print(f"Saved block decomp: {block_decomposition_csv}")
 
 
