@@ -4,15 +4,19 @@ __pycache__/
 
 # Local input data to be provisioned separately
 data/
+analysis_outputs/
 
 # Generated weather artifacts and EPWs
-weather/output/
+freeze-and-stress-main/weather/data
+freeze-and-stress-main/weather/utils/logs
 epw_pipeline/epw_out/
 
 # EnergyPlus run outputs and derived analysis exports
 epw_pipeline/energyplus_runner/output/
 epw_pipeline/energyplus_runner/results/
 epw_pipeline/energyplus_runner/results_*/
+epw_pipeline/frozen_models/
+epw_pipeline/source_models/
 
 .vscode/
 .claude/
