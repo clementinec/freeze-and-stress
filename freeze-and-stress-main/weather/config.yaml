@@ -16,6 +16,16 @@ scenarios:
     gcm: MPI-ESM-LR
     rcm: null
 
+  CMIP6_MPI_ssp245:
+    cmip6_base_path: data/CMIP6
+    gcm: MPI-ESM1-2-LR
+    rcm: null
+
+  CMIP6_CNRM_ssp245:
+    cmip6_base_path: data/CMIP6
+    gcm: CNRM-ESM2-1
+    rcm: null
+
 baseline:
   start_year: 1991
   end_year: 2010

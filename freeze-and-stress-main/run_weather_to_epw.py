@@ -4,8 +4,11 @@ Run the standalone verified weather pipeline through EPW generation.
 
 This wrapper does three steps:
   1. Generate RS-VAR baseline+anomaly outputs.
-  2. Apply the verified REMO2015 daily climate delta.
+  2. Apply climate delta from a specified scenario.
   3. Convert hourly V6 outputs into year-by-year EPWs.
+
+Use --skip-rsvar to reuse cached RS-VAR output and only re-run steps 2-3
+(e.g. when applying a different climate scenario to the same baseline).
 """
 
 from __future__ import annotations
@@ -17,6 +20,10 @@ from pathlib import Path
 
 
 CITY_NAME_MAP = {
+    "Los_Angeles": "Los Angeles",
+    "Miami": "Miami",
+    "Montreal": "Montreal",
+    "Toronto": "Toronto",
     "Phoenix": "Phoenix",
     "Vancouver": "Vancouver",
 }
@@ -45,6 +52,10 @@ def main() -> None:
     parser.add_argument("--start-year", type=int, default=2025)
     parser.add_argument("--end-year", type=int, default=2100)
     parser.add_argument("--overwrite", action="store_true")
+    parser.add_argument(
+        "--skip-rsvar", action="store_true",
+        help="Skip RS-VAR generation and reuse cached output in weather/output/RSVAR/.",
+    )
     args = parser.parse_args()
 
     root = Path(__file__).resolve().parent
@@ -61,15 +72,28 @@ def main() -> None:
     rsvar_dir = weather_dir / "output" / "RSVAR"
     climate_dir = weather_dir / "output" / ("RSVAR_cd_monthly" if args.delta_mode == "monthly" else "RSVAR_cd")
 
-    rsvar_cmd = [
-        sys.executable,
-        "run_v5_save_rsvar_batch.py",
-        "--output",
-        str(rsvar_dir),
-        "--city",
-        *weather_cities,
-    ]
-    _run(rsvar_cmd, weather_dir)
+    if args.skip_rsvar:
+        missing = [
+            city for city in city_slugs
+            if not (rsvar_dir / f"rsvar_output_{city}.xlsx").exists()
+            and not (rsvar_dir / f"rsvar_output_{city}.csv").exists()
+        ]
+        if missing:
+            raise SystemExit(
+                f"--skip-rsvar: cached RS-VAR output not found for: {missing}\n"
+                f"Expected files in {rsvar_dir}"
+            )
+        print(f"\n[skip-rsvar] Reusing cached RS-VAR output from {rsvar_dir}")
+    else:
+        rsvar_cmd = [
+            sys.executable,
+            "run_v5_save_rsvar_batch.py",
+            "--output",
+            str(rsvar_dir),
+            "--city",
+            *weather_cities,
+        ]
+        _run(rsvar_cmd, weather_dir)
 
     climate_cmd = [
         sys.executable,

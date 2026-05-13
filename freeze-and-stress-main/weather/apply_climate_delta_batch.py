@@ -566,7 +566,10 @@ def load_cmip6_or_cordex6(base_path: Path, city: str, ssp: str, scenario_id: str
         (daily_df, monthly_df, meta_dict)
     """
     city_slug = _slug_city(city)
-    city_dir = Path(base_path) / city_slug
+    # CMIP6 dirs may use display name with spaces; fall back if slug dir absent
+    city_dir_slug = Path(base_path) / city_slug
+    city_dir_space = Path(base_path) / city
+    city_dir = city_dir_slug if city_dir_slug.exists() else city_dir_space
 
     # Determine future scenario file suffix based on SSP
     # For CMIP5: rcp85 -> rcp_8_5
