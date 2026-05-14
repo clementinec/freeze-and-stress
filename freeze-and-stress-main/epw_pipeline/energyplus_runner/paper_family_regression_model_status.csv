@@ -1,0 +1,6 @@
+model,status,reason,output
+family_score_standardized_ridge_block_regression,completed,Uses decadal family scores and five driver-block predictors; suitable for current small prototype panel.,paper_family_regression_decomposition.csv
+drop_one_block_r2_decomposition,completed,Computed as full ridge R2 minus reduced ridge R2 with one block removed.,paper_family_regression_decomposition.csv
+grouped_permutation_importance,completed,Computed with 500 permutations per block using the fitted standardized ridge model.,paper_family_regression_decomposition.csv
+GAM,not_used_as_main_result,"Current panel is small for smooth-term inference after decadal aggregation (6 cities, 1 pathway, 3 score families). Use only after adding pathways/cities or keep as exploratory.",
+mixed_effect_model,not_used_as_main_result,City random effects are confounded with Koppen type because each Koppen type has one representative city; pathway random/fixed effects are unavailable because scenario_count=1.,

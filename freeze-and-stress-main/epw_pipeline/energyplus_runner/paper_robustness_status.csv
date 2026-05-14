@@ -1,0 +1,6 @@
+check,status,result
+Decadal baseline,completed,2025-2034 baseline used in paper_master_panel and family-score outputs
+Pathway sensitivity,blocked,1 pathway(s) present: CORDEX_CMIP5_REMO2015_rcp85
+Leave-one-city-out sensitivity,limited,6 cities but one representative per Koppen type; leave-one-city-out cannot test within-type replication
+Archetype sensitivity,blocked,1 building archetype(s) present: office
+Threshold transition coverage,completed,5/6 climate profiles have a main break year by 2100

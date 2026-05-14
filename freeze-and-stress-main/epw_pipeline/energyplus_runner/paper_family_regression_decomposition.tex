@@ -1,0 +1,41 @@
+\begin{table*}[t]
+\centering
+\scriptsize
+\caption{Block-level decomposition of decadal resilience-family score regressions.}
+\label{tab:family-regression-decomposition}
+\begin{threeparttable}
+\begin{tabular}{llrlrrrr}
+\toprule
+Family & Tier & Full $R^2$ & Driver block & Std. $\beta$ & $\beta^2$ share & Drop-one $\Delta R^2$ & Perm. $\Delta R^2$ \\
+\midrule
+Habitability & Main & 0.683 & Thermal shift & -0.316 & 0.086 & 0.037 & 0.206 (0.060) \\
+Habitability & Main & 0.683 & Demand background & 0.045 & 0.002 & 0.002 & 0.006 (0.005) \\
+Habitability & Main & 0.683 & Humid heat stress & 0.697 & 0.419 & 0.260 & 0.679 (0.021) \\
+Habitability & Main & 0.683 & Solar burden & -0.556 & 0.266 & 0.155 & 0.611 (0.091) \\
+Habitability & Main & 0.683 & Heatwave persistence & -0.513 & 0.227 & 0.170 & 0.537 (0.105) \\
+\addlinespace
+Operational adequacy & Main & 0.831 & Thermal shift & -0.391 & 0.159 & 0.056 & 0.317 (0.066) \\
+Operational adequacy & Main & 0.831 & Demand background & 0.640 & 0.427 & 0.241 & 0.777 (0.084) \\
+Operational adequacy & Main & 0.831 & Humid heat stress & 0.577 & 0.346 & 0.177 & 0.672 (0.109) \\
+Operational adequacy & Main & 0.831 & Solar burden & -0.011 & 0.000 & 0.000 & 0.001 (0.001) \\
+Operational adequacy & Main & 0.831 & Heatwave persistence & 0.255 & 0.068 & 0.041 & 0.131 (0.035) \\
+\addlinespace
+Durability cautious & Cautious supplementary & 0.585 & Thermal shift & 0.269 & 0.093 & 0.019 & 0.153 (0.054) \\
+Durability cautious & Cautious supplementary & 0.585 & Demand background & 0.542 & 0.377 & 0.172 & 0.543 (0.085) \\
+Durability cautious & Cautious supplementary & 0.585 & Humid heat stress & 0.118 & 0.018 & 0.007 & 0.030 (0.021) \\
+Durability cautious & Cautious supplementary & 0.585 & Solar burden & -0.477 & 0.293 & 0.112 & 0.460 (0.101) \\
+Durability cautious & Cautious supplementary & 0.585 & Heatwave persistence & -0.412 & 0.218 & 0.113 & 0.350 (0.094) \\
+\addlinespace
+Energy burden secondary & Secondary overlay & 0.981 & Thermal shift & 0.513 & 0.391 & 0.078 & 0.540 (0.079) \\
+Energy burden secondary & Secondary overlay & 0.981 & Demand background & 0.627 & 0.583 & 0.217 & 0.801 (0.116) \\
+Energy burden secondary & Secondary overlay & 0.981 & Humid heat stress & 0.119 & 0.021 & 0.006 & 0.029 (0.006) \\
+Energy burden secondary & Secondary overlay & 0.981 & Solar burden & -0.024 & 0.001 & 0.000 & 0.001 (0.001) \\
+Energy burden secondary & Secondary overlay & 0.981 & Heatwave persistence & -0.051 & 0.004 & 0.002 & 0.005 (0.002) \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+\footnotesize
+\item Note: Models are standardized ridge regressions fitted to decadal family scores. Each family model uses $n=48$ decadal observations, ridge $\alpha=1$, and 500 grouped permutations. ``Drop-one $\Delta R^2$'' is the loss in model $R^2$ after removing the corresponding driver block. ``Perm. $\Delta R^2$'' reports the mean permutation loss with standard deviation in parentheses. Durability is retained as a cautious supplementary family because it is based on bulk zone relative humidity rather than a full moisture-risk model; energy burden is treated as a secondary overlay.
+\end{tablenotes}
+\end{threeparttable}
+\end{table*}
