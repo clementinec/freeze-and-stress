@@ -10,6 +10,12 @@ from pathlib import Path
 
 import pandas as pd
 
+try:
+    from tqdm import tqdm
+    HAS_TQDM = True
+except ImportError:
+    HAS_TQDM = False
+
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 DEFAULT_INPUT_CSV = SCRIPT_DIR / "annual_metrics.csv"
@@ -48,6 +54,12 @@ EXTREME_GHI_W_M2 = 800.0
 HOT_NIGHT_C = 25.0
 HEATWAVE_DAILY_MAX_C = 35.0
 HEATWAVE_MIN_RUN_DAYS = 3
+
+
+def iter_progress(total: int, desc: str):
+    if HAS_TQDM:
+        return tqdm(total=total, desc=desc, unit="epw")
+    return None
 
 
 def parse_args() -> argparse.Namespace:
@@ -220,15 +232,24 @@ def main() -> None:
     missing_epw = 0
     empty_epw = 0
 
+    progress = iter_progress(len(df), "Deriving drivers")
     for index, row in df.iterrows():
         epw_path = resolve_epw_path(epw_root, row)
         if not epw_path.exists():
             missing_epw += 1
+            if progress is not None:
+                progress.update(1)
+            elif (index + 1) % 100 == 0 or (index + 1) == len(df):
+                print(f"Deriving drivers: {index + 1}/{len(df)}")
             continue
 
         hourly = parse_epw_hourly(epw_path)
         if not hourly:
             empty_epw += 1
+            if progress is not None:
+                progress.update(1)
+            elif (index + 1) % 100 == 0 or (index + 1) == len(df):
+                print(f"Deriving drivers: {index + 1}/{len(df)}")
             continue
 
         derived = compute_drivers(hourly)
@@ -236,8 +257,13 @@ def main() -> None:
             df.at[index, column] = value
 
         processed += 1
-        if processed % 100 == 0:
-            print(f"Processed {processed} EPWs...")
+        if progress is not None:
+            progress.update(1)
+        elif (index + 1) % 100 == 0 or (index + 1) == len(df):
+            print(f"Deriving drivers: {index + 1}/{len(df)}")
+
+    if progress is not None:
+        progress.close()
 
     df.to_csv(output_csv, index=False)
     print(f"Loaded input rows : {len(df)}")

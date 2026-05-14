@@ -18,19 +18,27 @@ from statistics import median
 
 import numpy as np
 
+try:
+    from tqdm import tqdm
+    HAS_TQDM = True
+except ImportError:
+    HAS_TQDM = False
+
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 DEFAULT_INPUT = SCRIPT_DIR / "metric_exports" / "annual_metrics_extended.csv"
 if not DEFAULT_INPUT.exists():
     DEFAULT_INPUT = SCRIPT_DIR / "metric_exports" / "annual_metrics.csv"
-DEFAULT_OUTPUT = SCRIPT_DIR / "paper_metrics_summary.csv"
-DEFAULT_SCREENING_OUTPUT = SCRIPT_DIR / "paper_metric_screening.csv"
-DEFAULT_SCREENING_SENSITIVITY_OUTPUT = SCRIPT_DIR / "paper_metric_screening_sensitivity.csv"
-DEFAULT_REGISTRY_OUTPUT = SCRIPT_DIR / "paper_metric_registry.csv"
-DEFAULT_CLIMATE_TYPE_SCREENING_OUTPUT = SCRIPT_DIR / "paper_screening_by_climate_type.csv"
-DEFAULT_CLIMATE_TYPE_SCREENING_SENSITIVITY_OUTPUT = SCRIPT_DIR / "paper_screening_by_climate_type_sensitivity.csv"
-DEFAULT_BLOCK_DECOMPOSITION_OUTPUT = SCRIPT_DIR / "paper_block_decomposition.csv"
-DEFAULT_DRIVER_RESPONSE_REGRESSION_OUTPUT = SCRIPT_DIR / "paper_driver_response_regression.csv"
+OUTPUT_FILENAMES = {
+    "output": "paper_metrics_summary.csv",
+    "screening_output": "paper_metric_screening.csv",
+    "screening_sensitivity_output": "paper_metric_screening_sensitivity.csv",
+    "registry_output": "paper_metric_registry.csv",
+    "climate_type_screening_output": "paper_screening_by_climate_type.csv",
+    "climate_type_screening_sensitivity_output": "paper_screening_by_climate_type_sensitivity.csv",
+    "block_decomposition_output": "paper_block_decomposition.csv",
+    "driver_response_regression_output": "paper_driver_response_regression.csv",
+}
 
 DEFAULT_BASELINE_YEAR = 2025
 
@@ -97,6 +105,12 @@ DRIVER_BLOCK_REPRESENTATIVES = {
     "persistence_heatwave": ("heatwave_days", "maximum_consecutive_hot_days"),
 }
 DECISION_RANK = {"Drop": 0, "Supplementary": 1, "Review": 2, "Priority Review": 3, "Keep": 4}
+
+
+def iter_progress(items, desc: str, unit: str):
+    if HAS_TQDM:
+        return tqdm(items, desc=desc, unit=unit)
+    return items
 
 
 @dataclass(frozen=True)
@@ -406,41 +420,46 @@ SUMMARY_SUFFIXES = (
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Compute break years and paper-facing metric summaries.")
     parser.add_argument("--file", default=str(DEFAULT_INPUT), help="Input annual metrics CSV.")
-    parser.add_argument("--output", default=str(DEFAULT_OUTPUT), help="Output wide summary CSV.")
+    parser.add_argument(
+        "--output-dir",
+        default=None,
+        help="Directory for all output CSVs. Defaults to metric_res/<scenario> under the script directory.",
+    )
+    parser.add_argument("--output", default=None, help="Output wide summary CSV (overrides --output-dir).")
     parser.add_argument(
         "--screening-output",
-        default=str(DEFAULT_SCREENING_OUTPUT),
-        help="Output long-form metric screening CSV.",
+        default=None,
+        help="Output long-form metric screening CSV (overrides --output-dir).",
     )
     parser.add_argument(
         "--screening-sensitivity-output",
-        default=str(DEFAULT_SCREENING_SENSITIVITY_OUTPUT),
-        help="Output pooled metric-screening weight sensitivity CSV.",
+        default=None,
+        help="Output pooled metric-screening weight sensitivity CSV (overrides --output-dir).",
     )
     parser.add_argument(
         "--registry-output",
-        default=str(DEFAULT_REGISTRY_OUTPUT),
-        help="Output metric registry CSV with roles, thresholds, and retention notes.",
+        default=None,
+        help="Output metric registry CSV (overrides --output-dir).",
     )
     parser.add_argument(
         "--climate-type-screening-output",
-        default=str(DEFAULT_CLIMATE_TYPE_SCREENING_OUTPUT),
-        help="Output per-climate-type screening CSV (NCC Fig 2).",
+        default=None,
+        help="Output per-climate-type screening CSV (overrides --output-dir).",
     )
     parser.add_argument(
         "--climate-type-screening-sensitivity-output",
-        default=str(DEFAULT_CLIMATE_TYPE_SCREENING_SENSITIVITY_OUTPUT),
-        help="Output per-climate-type metric-screening weight sensitivity CSV.",
+        default=None,
+        help="Output per-climate-type metric-screening weight sensitivity CSV (overrides --output-dir).",
     )
     parser.add_argument(
         "--block-decomposition-output",
-        default=str(DEFAULT_BLOCK_DECOMPOSITION_OUTPUT),
-        help="Output driver-block variance decomposition CSV (NCC Fig 3).",
+        default=None,
+        help="Output driver-block variance decomposition CSV (overrides --output-dir).",
     )
     parser.add_argument(
         "--driver-response-regression-output",
-        default=str(DEFAULT_DRIVER_RESPONSE_REGRESSION_OUTPUT),
-        help="Output screened annual driver-response regressions, including per-climate and pooled baseline fits.",
+        default=None,
+        help="Output screened annual driver-response regressions (overrides --output-dir).",
     )
     parser.add_argument(
         "--baseline-year",
@@ -1740,14 +1759,6 @@ def climate_type_screening_sensitivity_fieldnames() -> list[str]:
 def main() -> None:
     args = parse_args()
     input_csv = Path(args.file).resolve()
-    output_csv = Path(args.output).resolve()
-    screening_output_csv = Path(args.screening_output).resolve()
-    screening_sensitivity_csv = Path(args.screening_sensitivity_output).resolve()
-    registry_output_csv = Path(args.registry_output).resolve()
-    climate_type_screening_csv = Path(args.climate_type_screening_output).resolve()
-    climate_type_screening_sensitivity_csv = Path(args.climate_type_screening_sensitivity_output).resolve()
-    block_decomposition_csv = Path(args.block_decomposition_output).resolve()
-    driver_response_regression_csv = Path(args.driver_response_regression_output).resolve()
 
     rows: list[dict[str, object]] = []
     with open(input_csv, encoding="utf-8") as infile:
@@ -1760,6 +1771,27 @@ def main() -> None:
         for source in reader:
             rows.append(normalize_row(source))
 
+    # Determine output directory: explicit --output-dir > metric_res/<scenario>
+    if args.output_dir is not None:
+        out_dir = Path(args.output_dir).resolve()
+    else:
+        scenarios = sorted({str(row["scenario"]) for row in rows if row.get("scenario")})
+        scenario_tag = scenarios[0] if scenarios else "unknown"
+        out_dir = SCRIPT_DIR / "metric_res" / scenario_tag
+    out_dir.mkdir(parents=True, exist_ok=True)
+
+    def _resolve(arg_val: str | None, key: str) -> Path:
+        return Path(arg_val).resolve() if arg_val is not None else out_dir / OUTPUT_FILENAMES[key]
+
+    output_csv = _resolve(args.output, "output")
+    screening_output_csv = _resolve(args.screening_output, "screening_output")
+    screening_sensitivity_csv = _resolve(args.screening_sensitivity_output, "screening_sensitivity_output")
+    registry_output_csv = _resolve(args.registry_output, "registry_output")
+    climate_type_screening_csv = _resolve(args.climate_type_screening_output, "climate_type_screening_output")
+    climate_type_screening_sensitivity_csv = _resolve(args.climate_type_screening_sensitivity_output, "climate_type_screening_sensitivity_output")
+    block_decomposition_csv = _resolve(args.block_decomposition_output, "block_decomposition_output")
+    driver_response_regression_csv = _resolve(args.driver_response_regression_output, "driver_response_regression_output")
+
     grouped: defaultdict[tuple[str | None, str | None, str | None], list[dict[str, object]]] = defaultdict(list)
     skipped_rows = 0
     for row in rows:
@@ -1769,9 +1801,15 @@ def main() -> None:
         grouped[(row["scenario"], row["building"], row["city"])].append(row)
 
     grouped_stats: dict[tuple[str | None, str | None, str | None], dict[str, dict[str, object]]] = {}
-    for group_key, records in grouped.items():
+    if grouped:
+        print(f"Stage 3 summary groups: {len(grouped)}")
+
+    grouped_items = list(grouped.items())
+    for index, (group_key, records) in enumerate(iter_progress(grouped_items, "Precomputing stats", "group"), start=1):
         _, stats = summarize(records, args.baseline_year, args.sustained_years, args.occurrence_ratio_threshold)
         grouped_stats[group_key] = stats
+        if not HAS_TQDM and (index == len(grouped_items) or index % 25 == 0):
+            print(f"Precomputing stats: {index}/{len(grouped_items)}")
 
     valid_rows = [row for row in rows if row.get("year") is not None]
     screening_rows = build_screening_rows(valid_rows, grouped_stats, source_fieldnames)
@@ -1790,7 +1828,7 @@ def main() -> None:
         screened_failure_metrics = FAILURE_METRICS
 
     summary_rows: list[dict[str, object]] = []
-    for group_key, records in grouped.items():
+    for index, (group_key, records) in enumerate(iter_progress(grouped_items, "Building summaries", "group"), start=1):
         scenario, building, city = group_key
         result, _ = summarize(
             records,
@@ -1801,6 +1839,8 @@ def main() -> None:
         )
         result.update({"scenario": scenario, "building": building, "city": city})
         summary_rows.append(result)
+        if not HAS_TQDM and (index == len(grouped_items) or index % 25 == 0):
+            print(f"Building summaries: {index}/{len(grouped_items)}")
 
     summary_rows.sort(key=lambda row: (str(row.get("scenario")), str(row.get("building")), str(row.get("city"))))
     write_csv(output_csv, summary_rows, summary_fieldnames())
@@ -1814,7 +1854,8 @@ def main() -> None:
         climate_type = CITY_KOPPEN_MAP.get(city, "Unknown")
         by_climate_type[climate_type].append(row)
 
-    for climate_type, ct_rows in sorted(by_climate_type.items()):
+    climate_items = sorted(by_climate_type.items())
+    for ct_index, (climate_type, ct_rows) in enumerate(iter_progress(climate_items, "Climate screening", "climate"), start=1):
         # Build grouped_stats for this climate type only
         ct_grouped: defaultdict[tuple[str | None, str | None, str | None], list[dict[str, object]]] = defaultdict(list)
         for row in ct_rows:
@@ -1832,6 +1873,8 @@ def main() -> None:
         for row in ct_sensitivity:
             row["climate_type"] = climate_type
         climate_type_sensitivity_rows.extend(ct_sensitivity)
+        if not HAS_TQDM and (ct_index == len(climate_items) or ct_index % 2 == 0):
+            print(f"Climate screening: {ct_index}/{len(climate_items)}")
 
     write_csv(climate_type_screening_csv, climate_type_screening_rows, climate_type_screening_fieldnames())
     write_csv(
@@ -1850,7 +1893,7 @@ def main() -> None:
 
     # ── Driver-block variance decomposition (NCC Fig 3) ─────────────────
     block_decomposition_rows: list[dict[str, object]] = []
-    for climate_type, ct_rows in sorted(by_climate_type.items()):
+    for ct_index, (climate_type, ct_rows) in enumerate(iter_progress(climate_items, "Block decomposition", "climate"), start=1):
         cities_in_type = sorted(set(str(row.get("city", "")) for row in ct_rows))
         for metric in selected_response_metrics:
             decomp = driver_block_variance_share(ct_rows, metric, selected_driver_keys)
@@ -1864,6 +1907,8 @@ def main() -> None:
                 "label": metric.label,
             })
             block_decomposition_rows.append(decomp)
+        if not HAS_TQDM and (ct_index == len(climate_items) or ct_index % 2 == 0):
+            print(f"Block decomposition: {ct_index}/{len(climate_items)}")
 
     write_csv(block_decomposition_csv, block_decomposition_rows, block_decomposition_fieldnames())
 

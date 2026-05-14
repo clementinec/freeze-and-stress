@@ -14,6 +14,7 @@ epw_pipeline/energyplus_runner/results/
 epw_pipeline/energyplus_runner/results_*/
 epw_pipeline/energyplus_runner/smoke_results*/
 # epw_pipeline/energyplus_runner/metric_exports*/
+epw_pipeline/energyplus_runner/metric_res/
 epw_pipeline/energyplus_runner/breakyear_quick_by_scenario/
 epw_pipeline/energyplus_runner/unmet_relative_summary_current/
 

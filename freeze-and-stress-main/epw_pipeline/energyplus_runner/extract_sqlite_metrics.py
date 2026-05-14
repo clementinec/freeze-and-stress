@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
-"""Extract annual metrics from EnergyPlus SQLite outputs for the standalone run."""
+"""Extract annual metrics from EnergyPlus SQLite outputs.
+
+Supports both of these result layouts:
+
+- results/<building>/<city>/<year>/eplusout.sql
+- results/<scenario>/<building>/<city>/<year>/eplusout.sql
+"""
 
 from __future__ import annotations
 
@@ -11,6 +17,21 @@ from datetime import datetime
 from pathlib import Path
 
 from output_preset import REPRESENTATIVE_ZONES
+
+try:
+    from tqdm import tqdm
+    HAS_TQDM = True
+except ImportError:
+    HAS_TQDM = False
+
+
+DEFAULT_SCENARIO = "CORDEX_CMIP5_REMO2015_rcp85"
+
+
+def iter_progress(items: list[dict[str, object]], desc: str):
+    if HAS_TQDM:
+        return tqdm(items, desc=desc, unit="sql")
+    return items
 
 
 METER_ALIASES = {
@@ -189,20 +210,21 @@ def safe_float(value: object) -> float | None:
 
 
 
-def discover_sqlite_files(results_root: Path) -> list[dict[str, object]]:
-    """Discover simulation SQLite files under results/<building>/<city>/<year>/."""
+def discover_sqlite_files(results_root: Path, default_scenario: str = DEFAULT_SCENARIO) -> list[dict[str, object]]:
+    """Discover simulation SQLite files under supported result layouts."""
     discovered: list[dict[str, object]] = []
 
     for sql_path in sorted(results_root.rglob("eplusout.sql")):
         rel = sql_path.relative_to(results_root)
         parts = rel.parts
 
-        # 兼容当前结构: results/<building>/<city>/<year>/eplusout.sql
-        if len(parts) != 4:
+        if len(parts) == 4:
+            scenario = default_scenario
+            building, city, year_text, _ = parts
+        elif len(parts) == 5:
+            scenario, building, city, year_text, _ = parts
+        else:
             continue
-
-        building, city, year_text, _ = parts
-        scenario = "CORDEX_CMIP5_REMO2015_rcp85"  # 给个默认场景名!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
         discovered.append(
             {
@@ -585,6 +607,12 @@ def main() -> int:
         help="Optional comma-separated scenario filter",
     )
     parser.add_argument(
+        "--default-scenario",
+        type=str,
+        default=DEFAULT_SCENARIO,
+        help="Scenario name to use for legacy results/<building>/<city>/<year> roots.",
+    )
+    parser.add_argument(
         "--limit",
         type=int,
         default=None,
@@ -596,21 +624,27 @@ def main() -> int:
     results_root = (script_dir / args.results_root).resolve()
     output_dir = (script_dir / args.output_dir).resolve()
 
-    discovered = discover_sqlite_files(results_root)
+    discovered = discover_sqlite_files(results_root, args.default_scenario)
     if args.scenarios:
         allowed = {item.strip() for item in args.scenarios.split(",") if item.strip()}
         discovered = [entry for entry in discovered if entry["scenario"] in allowed]
     if args.limit is not None:
         discovered = discovered[: args.limit]
 
-    rows: list[dict[str, object]] = []
-    failures: list[dict[str, object]] = []
+    rows_by_scenario: dict[str, list[dict[str, object]]] = {}
+    failures_by_scenario: dict[str, list[dict[str, object]]] = {}
 
-    for entry in discovered:
+    if discovered:
+        print(f"Processing {len(discovered)} SQLite files...")
+
+    for index, entry in enumerate(iter_progress(discovered, "Extracting"), start=1):
+        scenario = str(entry["scenario"])
+        rows_by_scenario.setdefault(scenario, [])
+        failures_by_scenario.setdefault(scenario, [])
         try:
-            rows.append(extract_one_sqlite(entry))
+            rows_by_scenario[scenario].append(extract_one_sqlite(entry))
         except Exception as exc:
-            failures.append(
+            failures_by_scenario[scenario].append(
                 {
                     "scenario": entry["scenario"],
                     "building": entry["building"],
@@ -620,8 +654,10 @@ def main() -> int:
                     "error": str(exc),
                 }
             )
+        if not HAS_TQDM and (index == len(discovered) or index % 25 == 0):
+            print(f"Extracting: {index}/{len(discovered)}")
 
-    fieldnames = build_fieldnames(rows) if rows else [
+    fallback_fieldnames = [
         "scenario",
         "building",
         "city",
@@ -630,35 +666,58 @@ def main() -> int:
         "extracted_at",
     ]
 
-    write_csv(output_dir / "annual_metrics.csv", rows, fieldnames)
-    write_csv(
-        output_dir / "extraction_failures.csv",
-        failures,
-        ["scenario", "building", "city", "year", "sql_path", "error"],
-    )
+    output_dir.mkdir(parents=True, exist_ok=True)
+    discovered_all = discover_sqlite_files(results_root, args.default_scenario)
+    found_by_scenario: dict[str, int] = {}
+    for entry in discovered_all:
+        scenario = str(entry["scenario"])
+        found_by_scenario[scenario] = found_by_scenario.get(scenario, 0) + 1
 
-    summary = {
+    processed_by_scenario: dict[str, int] = {}
+    for entry in discovered:
+        scenario = str(entry["scenario"])
+        processed_by_scenario[scenario] = processed_by_scenario.get(scenario, 0) + 1
+
+    summaries: list[dict[str, object]] = []
+    scenarios = sorted(set(found_by_scenario) | set(processed_by_scenario) | set(rows_by_scenario) | set(failures_by_scenario))
+    for scenario in scenarios:
+        rows = rows_by_scenario.get(scenario, [])
+        failures = failures_by_scenario.get(scenario, [])
+        scenario_output_dir = output_dir / scenario
+        fieldnames = build_fieldnames(rows) if rows else fallback_fieldnames
+
+        write_csv(scenario_output_dir / "annual_metrics.csv", rows, fieldnames)
+        write_csv(
+            scenario_output_dir / "extraction_failures.csv",
+            failures,
+            ["scenario", "building", "city", "year", "sql_path", "error"],
+        )
+
+        summary = {
+            "created_at": datetime.now().isoformat(timespec="seconds"),
+            "scenario": scenario,
+            "results_root": str(results_root),
+            "output_dir": str(scenario_output_dir),
+            "sqlite_files_found": found_by_scenario.get(scenario, 0),
+            "sqlite_files_processed": processed_by_scenario.get(scenario, 0),
+            "rows_written": len(rows),
+            "failures": len(failures),
+        }
+        with (scenario_output_dir / "extraction_summary.json").open("w", encoding="utf-8") as handle:
+            json.dump(summary, handle, indent=2)
+        summaries.append(summary)
+
+    manifest = {
         "created_at": datetime.now().isoformat(timespec="seconds"),
         "results_root": str(results_root),
-        "output_dir": str(output_dir),
-        "sqlite_files_found": len(discover_sqlite_files(results_root)),
-        "sqlite_files_processed": len(discovered),
-        "rows_written": len(rows),
-        "failures": len(failures),
-        "scenario_counts": {},
+        "output_root": str(output_dir),
+        "scenario_count": len(summaries),
+        "scenarios": summaries,
     }
+    with (output_dir / "extraction_summary_all.json").open("w", encoding="utf-8") as handle:
+        json.dump(manifest, handle, indent=2)
 
-    scenario_counts: dict[str, int] = {}
-    for row in rows:
-        scenario = str(row["scenario"])
-        scenario_counts[scenario] = scenario_counts.get(scenario, 0) + 1
-    summary["scenario_counts"] = scenario_counts
-
-    output_dir.mkdir(parents=True, exist_ok=True)
-    with (output_dir / "extraction_summary.json").open("w", encoding="utf-8") as handle:
-        json.dump(summary, handle, indent=2)
-
-    print(json.dumps(summary, indent=2))
+    print(json.dumps(manifest, indent=2))
     return 0
 
 
