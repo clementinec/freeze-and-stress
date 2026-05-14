@@ -1,0 +1,7 @@
+climate_type,city,dominant_driver_chain,sentinel_metric,main_break_year,main_sustained_failure_year,adaptation_priority
+Am,Miami,Thermal shift,Annual EDH; Cooling setpoint not met occupied hours,2026,2026,Envelope heat control + cooling adequacy check
+BWh,Phoenix,Thermal shift + Demand background,Annual EDH; Maximum daily EDH; Daily EDH exceedance days,2026,Never,"Peak comfort, shading, and operating controls"
+Csb,Los_Angeles,Humid heat stress,Maximum daily EDH,2028,2082,Short-duration overheating controls
+Cfb,Vancouver,Demand background,Heating unmet hours,2030,Never,Heating adequacy and heat-pump timing
+Dfa,Toronto,No severe-transition driver,Never,Never,Never,Monitor; no severe-transition retrofit trigger
+Dfb,Montreal,Demand background,Maximum daily EDH,2049,Never,Intermittent overheating monitoring in cold climate

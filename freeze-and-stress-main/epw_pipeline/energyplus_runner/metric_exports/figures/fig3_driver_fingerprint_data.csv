@@ -1,0 +1,31 @@
+climate_type,city,driver_block,driver_block_label,mean_abs_standardized_change,mean_abs_temporal_slope,mean_volatility_change
+Am,Miami,thermal_shift,Thermal shift,4.307838137952353,0.04403038633986815,0.45717878771779763
+Am,Miami,demand_background,Demand background,2.463099900964381,7.562087696514011,76.00084103063045
+Am,Miami,humid_heat_stress,Humid heat stress,5.953204351859026,0.043176809802804,0.8584372258737155
+Am,Miami,solar_burden,Solar burden,1.2988454157151272,0.2585691729323308,70.70911247480987
+Am,Miami,persistence_heatwave,Heatwave persistence,1.773797446098281,0.1608612440191387,4.994908620766345
+BWh,Phoenix,thermal_shift,Thermal shift,2.6119185490603476,0.05875028012174515,1.0616319300808867
+BWh,Phoenix,demand_background,Demand background,2.93859971847169,10.7674010936432,176.99644567588905
+BWh,Phoenix,humid_heat_stress,Humid heat stress,2.1255794426929504,0.0277712317968585,0.9708016109009822
+BWh,Phoenix,solar_burden,Solar burden,,0.0,0.0
+BWh,Phoenix,persistence_heatwave,Heatwave persistence,1.834825932906096,0.626431989063568,26.742984610266923
+Csb,Los_Angeles,thermal_shift,Thermal shift,1.9735101216055382,0.036146135915234204,1.2443226527104496
+Csb,Los_Angeles,demand_background,Demand background,3.0339950038728847,7.763454682159945,209.73828128571995
+Csb,Los_Angeles,humid_heat_stress,Humid heat stress,4.306288353540529,0.0595405081679886,1.739778770261351
+Csb,Los_Angeles,solar_burden,Solar burden,0.8913400282147854,0.7922645933014356,70.27500242303374
+Csb,Los_Angeles,persistence_heatwave,Heatwave persistence,0.6540069712804386,0.0103827751196172,0.9148272302375396
+Cfb,Vancouver,thermal_shift,Thermal shift,3.1129524087110587,0.0481229632778508,0.8649371174963165
+Cfb,Vancouver,demand_background,Demand background,2.960560694060147,9.019700683527,150.98279050114922
+Cfb,Vancouver,humid_heat_stress,Humid heat stress,2.53384491256948,0.0462488775655402,1.0636611521695214
+Cfb,Vancouver,solar_burden,Solar burden,,0.0,0.0
+Cfb,Vancouver,persistence_heatwave,Heatwave persistence,,0.0,0.0
+Dfa,Toronto,thermal_shift,Thermal shift,3.9450364416484307,0.0365946696226346,0.8527486403302165
+Dfa,Toronto,demand_background,Demand background,3.7404695772778886,6.888903691045797,151.9731123300116
+Dfa,Toronto,humid_heat_stress,Humid heat stress,1.4377726248373124,0.0488791811648382,1.5799097535895494
+Dfa,Toronto,solar_burden,Solar burden,0.6334345910796662,0.8640313738892684,103.51473196022492
+Dfa,Toronto,persistence_heatwave,Heatwave persistence,7.84598178531016,0.0077785372522214,0.5109781682137085
+Dfb,Montreal,thermal_shift,Thermal shift,3.367149667802824,0.045611338330779044,0.8393902075289292
+Dfb,Montreal,demand_background,Demand background,3.2119088966433527,8.76726937799043,153.98007627786907
+Dfb,Montreal,humid_heat_stress,Humid heat stress,3.222573967771793,0.044627358957601,1.578313605815388
+Dfb,Montreal,solar_burden,Solar burden,0.6094746113384499,0.8349796992481208,111.55131505123944
+Dfb,Montreal,persistence_heatwave,Heatwave persistence,5.135604075836093,0.00141490088858505,0.09977753031397175

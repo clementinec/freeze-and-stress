@@ -1,0 +1,73 @@
+climate_type,city,climate_label,metric_order,subfamily,subfamily_label,metric,label,unit,failure_relevant,has_standard_threshold,break_year,sustained_failure_year,is_first_trigger,main_break_year,main_sustained_failure_year,first_trigger_metric
+Am,Miami,Am / Miami,0,habitability,Habitability,annual_edh_c_h,Annual EDH,C h,True,True,2026,2026,True,2026,2026,Annual EDH; Cooling setpoint not met occupied hours
+Am,Miami,Am / Miami,1,habitability,Habitability,daily_edh_exceedance_days,Daily EDH exceedance days,days,True,True,Never,Never,False,2026,2026,Annual EDH; Cooling setpoint not met occupied hours
+Am,Miami,Am / Miami,2,habitability,Habitability,maximum_daily_edh_k_h,Maximum daily EDH,K h,True,True,Never,Never,False,2026,2026,Annual EDH; Cooling setpoint not met occupied hours
+Am,Miami,Am / Miami,3,habitability,Habitability,maximum_delta_t_k,Maximum delta_t,K,False,False,Never,Never,False,2026,2026,Annual EDH; Cooling setpoint not met occupied hours
+Am,Miami,Am / Miami,4,operational_adequacy,"Operational
+adequacy",cooling_setpoint_not_met_occupied_hours,Cooling setpoint not met occupied hours,h,True,True,2026,2026,True,2026,2026,Annual EDH; Cooling setpoint not met occupied hours
+Am,Miami,Am / Miami,5,operational_adequacy,"Operational
+adequacy",heating_unmet_hours,Heating unmet hours,h,True,True,Never,Never,False,2026,2026,Annual EDH; Cooling setpoint not met occupied hours
+Am,Miami,Am / Miami,6,operational_adequacy,"Operational
+adequacy",cooling_peak_demand_kw,Cooling peak demand,kW,False,False,Never,Never,False,2026,2026,Annual EDH; Cooling setpoint not met occupied hours
+Am,Miami,Am / Miami,7,energy_burden,"Energy
+burden",annual_cooling_electricity_kwh,Annual cooling electricity,kWh,False,False,Never,Never,False,2026,2026,Annual EDH; Cooling setpoint not met occupied hours
+BWh,Phoenix,BWh / Phoenix,0,habitability,Habitability,annual_edh_c_h,Annual EDH,C h,True,True,2026,2026,True,2026,Never,Annual EDH; Maximum daily EDH; Daily EDH exceedance days
+BWh,Phoenix,BWh / Phoenix,1,habitability,Habitability,daily_edh_exceedance_days,Daily EDH exceedance days,days,True,True,2025,Never,True,2026,Never,Annual EDH; Maximum daily EDH; Daily EDH exceedance days
+BWh,Phoenix,BWh / Phoenix,2,habitability,Habitability,maximum_daily_edh_k_h,Maximum daily EDH,K h,True,True,2025,2025,True,2026,Never,Annual EDH; Maximum daily EDH; Daily EDH exceedance days
+BWh,Phoenix,BWh / Phoenix,3,habitability,Habitability,maximum_delta_t_k,Maximum delta_t,K,False,False,Never,Never,False,2026,Never,Annual EDH; Maximum daily EDH; Daily EDH exceedance days
+BWh,Phoenix,BWh / Phoenix,4,operational_adequacy,"Operational
+adequacy",cooling_setpoint_not_met_occupied_hours,Cooling setpoint not met occupied hours,h,True,True,Never,Never,False,2026,Never,Annual EDH; Maximum daily EDH; Daily EDH exceedance days
+BWh,Phoenix,BWh / Phoenix,5,operational_adequacy,"Operational
+adequacy",heating_unmet_hours,Heating unmet hours,h,True,True,Never,Never,False,2026,Never,Annual EDH; Maximum daily EDH; Daily EDH exceedance days
+BWh,Phoenix,BWh / Phoenix,6,operational_adequacy,"Operational
+adequacy",cooling_peak_demand_kw,Cooling peak demand,kW,False,False,Never,Never,False,2026,Never,Annual EDH; Maximum daily EDH; Daily EDH exceedance days
+BWh,Phoenix,BWh / Phoenix,7,energy_burden,"Energy
+burden",annual_cooling_electricity_kwh,Annual cooling electricity,kWh,False,False,Never,Never,False,2026,Never,Annual EDH; Maximum daily EDH; Daily EDH exceedance days
+Csb,Los_Angeles,Csb / Los Angeles,0,habitability,Habitability,annual_edh_c_h,Annual EDH,C h,True,True,2058,Never,False,2028,2082,Maximum daily EDH
+Csb,Los_Angeles,Csb / Los Angeles,1,habitability,Habitability,daily_edh_exceedance_days,Daily EDH exceedance days,days,True,True,Never,Never,False,2028,2082,Maximum daily EDH
+Csb,Los_Angeles,Csb / Los Angeles,2,habitability,Habitability,maximum_daily_edh_k_h,Maximum daily EDH,K h,True,True,2028,Never,True,2028,2082,Maximum daily EDH
+Csb,Los_Angeles,Csb / Los Angeles,3,habitability,Habitability,maximum_delta_t_k,Maximum delta_t,K,False,False,Never,Never,False,2028,2082,Maximum daily EDH
+Csb,Los_Angeles,Csb / Los Angeles,4,operational_adequacy,"Operational
+adequacy",cooling_setpoint_not_met_occupied_hours,Cooling setpoint not met occupied hours,h,True,True,2058,2091,False,2028,2082,Maximum daily EDH
+Csb,Los_Angeles,Csb / Los Angeles,5,operational_adequacy,"Operational
+adequacy",heating_unmet_hours,Heating unmet hours,h,True,True,Never,Never,False,2028,2082,Maximum daily EDH
+Csb,Los_Angeles,Csb / Los Angeles,6,operational_adequacy,"Operational
+adequacy",cooling_peak_demand_kw,Cooling peak demand,kW,False,False,Never,Never,False,2028,2082,Maximum daily EDH
+Csb,Los_Angeles,Csb / Los Angeles,7,energy_burden,"Energy
+burden",annual_cooling_electricity_kwh,Annual cooling electricity,kWh,False,False,Never,Never,False,2028,2082,Maximum daily EDH
+Cfb,Vancouver,Cfb / Vancouver,0,habitability,Habitability,annual_edh_c_h,Annual EDH,C h,True,True,Never,Never,False,2030,Never,Heating unmet hours
+Cfb,Vancouver,Cfb / Vancouver,1,habitability,Habitability,daily_edh_exceedance_days,Daily EDH exceedance days,days,True,True,Never,Never,False,2030,Never,Heating unmet hours
+Cfb,Vancouver,Cfb / Vancouver,2,habitability,Habitability,maximum_daily_edh_k_h,Maximum daily EDH,K h,True,True,Never,Never,False,2030,Never,Heating unmet hours
+Cfb,Vancouver,Cfb / Vancouver,3,habitability,Habitability,maximum_delta_t_k,Maximum delta_t,K,False,False,Never,Never,False,2030,Never,Heating unmet hours
+Cfb,Vancouver,Cfb / Vancouver,4,operational_adequacy,"Operational
+adequacy",cooling_setpoint_not_met_occupied_hours,Cooling setpoint not met occupied hours,h,True,True,Never,Never,False,2030,Never,Heating unmet hours
+Cfb,Vancouver,Cfb / Vancouver,5,operational_adequacy,"Operational
+adequacy",heating_unmet_hours,Heating unmet hours,h,True,True,2030,Never,True,2030,Never,Heating unmet hours
+Cfb,Vancouver,Cfb / Vancouver,6,operational_adequacy,"Operational
+adequacy",cooling_peak_demand_kw,Cooling peak demand,kW,False,False,Never,Never,False,2030,Never,Heating unmet hours
+Cfb,Vancouver,Cfb / Vancouver,7,energy_burden,"Energy
+burden",annual_cooling_electricity_kwh,Annual cooling electricity,kWh,False,False,Never,Never,False,2030,Never,Heating unmet hours
+Dfa,Toronto,Dfa / Toronto,0,habitability,Habitability,annual_edh_c_h,Annual EDH,C h,True,True,Never,Never,False,Never,Never,Never
+Dfa,Toronto,Dfa / Toronto,1,habitability,Habitability,daily_edh_exceedance_days,Daily EDH exceedance days,days,True,True,Never,Never,False,Never,Never,Never
+Dfa,Toronto,Dfa / Toronto,2,habitability,Habitability,maximum_daily_edh_k_h,Maximum daily EDH,K h,True,True,Never,Never,False,Never,Never,Never
+Dfa,Toronto,Dfa / Toronto,3,habitability,Habitability,maximum_delta_t_k,Maximum delta_t,K,False,False,Never,Never,False,Never,Never,Never
+Dfa,Toronto,Dfa / Toronto,4,operational_adequacy,"Operational
+adequacy",cooling_setpoint_not_met_occupied_hours,Cooling setpoint not met occupied hours,h,True,True,Never,Never,False,Never,Never,Never
+Dfa,Toronto,Dfa / Toronto,5,operational_adequacy,"Operational
+adequacy",heating_unmet_hours,Heating unmet hours,h,True,True,Never,Never,False,Never,Never,Never
+Dfa,Toronto,Dfa / Toronto,6,operational_adequacy,"Operational
+adequacy",cooling_peak_demand_kw,Cooling peak demand,kW,False,False,Never,Never,False,Never,Never,Never
+Dfa,Toronto,Dfa / Toronto,7,energy_burden,"Energy
+burden",annual_cooling_electricity_kwh,Annual cooling electricity,kWh,False,False,Never,Never,False,Never,Never,Never
+Dfb,Montreal,Dfb / Montreal,0,habitability,Habitability,annual_edh_c_h,Annual EDH,C h,True,True,Never,Never,False,2049,Never,Maximum daily EDH
+Dfb,Montreal,Dfb / Montreal,1,habitability,Habitability,daily_edh_exceedance_days,Daily EDH exceedance days,days,True,True,Never,Never,False,2049,Never,Maximum daily EDH
+Dfb,Montreal,Dfb / Montreal,2,habitability,Habitability,maximum_daily_edh_k_h,Maximum daily EDH,K h,True,True,2049,Never,True,2049,Never,Maximum daily EDH
+Dfb,Montreal,Dfb / Montreal,3,habitability,Habitability,maximum_delta_t_k,Maximum delta_t,K,False,False,Never,Never,False,2049,Never,Maximum daily EDH
+Dfb,Montreal,Dfb / Montreal,4,operational_adequacy,"Operational
+adequacy",cooling_setpoint_not_met_occupied_hours,Cooling setpoint not met occupied hours,h,True,True,Never,Never,False,2049,Never,Maximum daily EDH
+Dfb,Montreal,Dfb / Montreal,5,operational_adequacy,"Operational
+adequacy",heating_unmet_hours,Heating unmet hours,h,True,True,Never,Never,False,2049,Never,Maximum daily EDH
+Dfb,Montreal,Dfb / Montreal,6,operational_adequacy,"Operational
+adequacy",cooling_peak_demand_kw,Cooling peak demand,kW,False,False,Never,Never,False,2049,Never,Maximum daily EDH
+Dfb,Montreal,Dfb / Montreal,7,energy_burden,"Energy
+burden",annual_cooling_electricity_kwh,Annual cooling electricity,kWh,False,False,Never,Never,False,2049,Never,Maximum daily EDH

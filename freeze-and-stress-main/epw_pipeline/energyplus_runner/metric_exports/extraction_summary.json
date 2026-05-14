@@ -1,0 +1,12 @@
+{
+  "created_at": "2026-04-21T15:49:18",
+  "results_root": "E:\\00_research\\03_freezethenstress\\freeze-and-stress-main\\epw_pipeline\\energyplus_runner\\results",
+  "output_dir": "E:\\00_research\\03_freezethenstress\\freeze-and-stress-main\\epw_pipeline\\energyplus_runner\\metric_exports",
+  "sqlite_files_found": 456,
+  "sqlite_files_processed": 456,
+  "rows_written": 456,
+  "failures": 0,
+  "scenario_counts": {
+    "CORDEX_CMIP5_REMO2015_rcp85": 456
+  }
+}

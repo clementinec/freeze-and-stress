@@ -1,0 +1,2 @@
+scenario,building,city,year,sql_path,abups_occupied_cooling_not_met_hours
+CORDEX_CMIP5_REMO2015_rcp85,office,Los_Angeles,2025,E:\00_research\03_freezethenstress\freeze-and-stress-main\epw_pipeline\energyplus_runner\results\office\Los_Angeles\2025\eplusout.sql,194.67

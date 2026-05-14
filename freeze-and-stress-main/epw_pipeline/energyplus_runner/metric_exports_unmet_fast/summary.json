@@ -1,0 +1,8 @@
+{
+  "created_at": "2026-04-02T19:19:54",
+  "results_root": "E:\\00_research\\03_freezethenstress\\freeze-and-stress-main\\epw_pipeline\\energyplus_runner\\results",
+  "output_dir": "E:\\00_research\\03_freezethenstress\\freeze-and-stress-main\\epw_pipeline\\energyplus_runner\\metric_exports_unmet_fast",
+  "sqlite_files_processed": 1,
+  "rows_written": 1,
+  "failures": 0
+}

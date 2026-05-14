@@ -1,0 +1,21 @@
+family,metric,label,coverage_pct,mean_abs_norm_slope,mean_abs_standardized_change,median_r2,mean_volatility,breach_frequency_pct,climate_discrimination,redundancy_max_abs_r,slope_score,breach_score,discrimination_score,coverage_score,stability_score,uniqueness_score,screening_score,decision
+Climate Drivers,heatwave_days,heatwave days,100,0.0539215,3.43947,0.0527611,3.26647,,0.984134,0.955375,1,0.7,0.9,0.65,0.05,0.325,0.7055,Keep
+Climate Drivers,outdoor_drybulb_c_mean,outdoor drybulb c mean,100,0.00303736,3.65972,0.775815,0.049175,,0.972018,0.942247,0.3,0.75,0.85,0.65,0.85,0.5,0.633,Keep
+Climate Drivers,cdd_18,cdd 18,100,0.00836198,3.3022,0.674398,0.174127,,0.96577,0.947862,0.55,0.6,0.75,0.65,0.6,0.425,0.6115,Keep
+Climate Drivers,hdd_18,hdd 18,100,0.00911492,2.81401,0.681091,0.269004,,0.968837,0.969951,0.6,0.45,0.8,0.65,0.5,0.25,0.58,Review
+Climate Drivers,annual_ghi_kwh_m2,annual GHI kWh m2,100,0.000520902,1.15089,0.0824763,0.0281595,,0.997281,0.915055,0.15,0.1,1,0.65,0.95,0.725,0.5455,Review
+Climate Drivers,summer_mean_drybulb_c,summer mean drybulb c,100,0.00170655,2.77975,0.62459,0.0422253,,0.961535,0.947862,0.2,0.4,0.65,0.65,0.9,0.425,0.4995,Review
+Climate Drivers,max_consec_hot_days_35c,max consec hot days 35c,100,0.0486358,3.11899,0.176351,2.25006,,0.895877,0.955375,0.95,0.5,0.15,0.65,0.1,0.325,0.4975,Review
+Climate Drivers,peak_ghi_w_m2,peak GHI w m2,100,0.000444528,0.565654,0.0191302,0.056794,,0.987495,0.915055,0.1,0.05,0.95,0.65,0.75,0.725,0.4935,Review
+Climate Drivers,outdoor_wetbulb_c_max,outdoor wetbulb c max,100,0.00173609,3.26321,0.480646,0.0498446,,0.77996,0.878416,0.25,0.55,0.05,0.65,0.8,0.875,0.4415,Review
+Energy Burden,cooling_electricity_annual_kwh,cooling electricity annual kWh,99.7807,0.00750985,3.43019,0.743749,0.121388,,0.964219,0.924478,0.45,0.65,0.7,0.15,0.65,0.575,0.5255,Review
+Energy Burden,heating_electricity_annual_kwh,heating electricity annual kWh,99.7807,0.0130152,2.65925,0.616504,0.378196,,0.919105,0.974663,0.85,0.35,0.55,0.15,0.4,0.175,0.4695,Review
+Habitability,rep_zone_operative_temp_c_max,rep zone operative temp c max,100,8.147e-05,1.89384,0.097126,0.00483179,,0.908033,0.985895,0.05,0.25,0.4,0.65,1,0.075,0.3565,Drop
+Habitability,annual_edh_c_h,annual EDH C h,100,0.0125974,3.01996,0.308395,0.882497,76.5351,0.896344,0.915057,0.8,1,0.2,0.65,0.15,0.65,0.6,Keep
+Habitability,daily_edh_exceed_6kh_count,daily EDH exceed 6kh count,100,0.00942451,1.66252,0.0841534,0.723236,15.7895,0.897669,0.909316,0.7,0.8,0.25,0.65,0.25,0.8,0.576,Review
+Habitability,daily_edh_max_k_h,daily EDH max K h,100,0.0093962,0.720557,0.0873576,0.852141,70.1754,0.849821,0.797131,0.65,0.95,0.1,0.65,0.2,1,0.573,Review
+Habitability,delta_t_max_k,delta t max k,100,0.00801807,1.53546,0.0971276,0.614533,,0.917447,0.985895,0.5,0.15,0.5,0.65,0.35,0.075,0.4035,Review
+Operational Adequacy,heating_electricity_peak_kw,heating electricity peak kW,99.7807,0.00548744,2.02496,0.124843,0.333615,,0.904222,0.874095,0.4,0.3,0.35,0.15,0.45,0.95,0.391,Drop
+Operational Adequacy,facility_cooling_setpoint_not_met_occupied_time_total_hours,facility cooling setpoint not met occupied time total hours,100,0.011766,3.77703,0.58277,0.19309,28.0702,0.912973,0.924478,0.75,0.9,0.45,0.65,0.55,0.575,0.6575,Keep
+Operational Adequacy,abups_occupied_heating_not_met_hours,abups occupied heating not met hours,99.7807,0.0172266,2.20903,0.527309,0.621835,17.1429,0.902622,0.974663,0.9,0.85,0.3,0.15,0.3,0.175,0.5065,Review
+Operational Adequacy,cooling_electricity_peak_kw,cooling electricity peak kW,99.7807,0.00342955,1.84383,0.548723,0.097883,,0.94588,0.878416,0.35,0.2,0.6,0.15,0.7,0.875,0.4335,Review
