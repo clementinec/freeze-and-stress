@@ -8,7 +8,7 @@
 ### 2. Run metric extraction + derived drivers + break-year analysis             ###
 ###                                                                              ###
 ### Usage:                                                                       ###
-###   sbatch run_office_metric_pipeline.sbatch <EPW_ROOT> <SCENARIO>             ###
+###   sbatch run_office_metric_pipeline.sbatch <EPW_ROOT> <SCENARIO> [RESULTS_ROOT] ###
 ###                                                                              ###
 ### Arguments:                                                                   ###
 ###   EPW_ROOT   Root folder that contains scenario subfolders                   ###
@@ -16,10 +16,14 @@
 ###   SCENARIO   Scenario folder name under EPW_ROOT and results/                ###
 ###              Example: CORDEX_CMIP5_REMO2015_rcp85                            ###
 ###                                                                              ###
+### Optional argument:                                                           ###
+###   RESULTS_ROOT  Root folder for simulation outputs only.                     ###
+###                 If omitted, defaults to the project path                     ###
+###                 freeze-and-stress-main/epw_pipeline/energyplus_runner/results ###
+###                                                                              ###
 ### Notes:                                                                       ###
-### - This script keeps intermediate paths at project defaults, i.e.             ###
-###   results/<scenario>/..., metric_exports/<scenario>/...,                     ###
-###   metric_res/<scenario>/...                                                  ###
+### - metric_exports/<scenario>/... and metric_res/<scenario>/... remain under   ###
+###   the project default paths.                                                 ###
 ### - It requires EnergyPlus to be available on compute nodes.                   ###
 ###   Set ENERGYPLUS_BIN or ensure `energyplus` is on PATH.                      ###
 ### - It assumes the Python environment already has pandas / numpy (and tqdm     ###
@@ -42,8 +46,8 @@
 
 set -euo pipefail
 
-if [[ $# -ne 2 ]]; then
-  echo "Usage: sbatch $(basename "$0") <EPW_ROOT> <SCENARIO>" >&2
+if [[ $# -lt 2 || $# -gt 3 ]]; then
+  echo "Usage: sbatch $(basename "$0") <EPW_ROOT> <SCENARIO> [RESULTS_ROOT]" >&2
   exit 1
 fi
 
@@ -57,7 +61,8 @@ RUN_FUTURE_SCRIPT="${RUNNER_DIR}/run_future_simulations.py"
 RUN_METRIC_SCRIPT="${RUNNER_DIR}/run_metric_pipeline.sh"
 
 EPW_SCENARIO_DIR="${EPW_ROOT_INPUT}/${SCENARIO}"
-RESULTS_ROOT="${RUNNER_DIR}/results"
+DEFAULT_RESULTS_ROOT="${RUNNER_DIR}/results"
+RESULTS_ROOT="${3:-${DEFAULT_RESULTS_ROOT}}"
 SCENARIO_RESULTS_DIR="${RESULTS_ROOT}/${SCENARIO}"
 PYTHON_BIN="${PYTHON_BIN:-python3}"
 ENERGYPLUS_BIN="${ENERGYPLUS_BIN:-$(command -v energyplus || true)}"
@@ -91,6 +96,7 @@ echo "Runner Dir     : ${RUNNER_DIR}"
 echo "EPW Root Input : ${EPW_ROOT_INPUT}"
 echo "Scenario       : ${SCENARIO}"
 echo "Scenario EPWs  : ${EPW_SCENARIO_DIR}"
+echo "Results Root   : ${RESULTS_ROOT}"
 echo "Results Dir    : ${SCENARIO_RESULTS_DIR}"
 echo "Python         : ${PYTHON_BIN}"
 echo "EnergyPlus     : ${ENERGYPLUS_BIN}"
@@ -115,7 +121,7 @@ echo "[B/2] Running metric pipeline for scenario ${SCENARIO}"
 echo "==========================================================="
 echo "Job Finish Time: $(date '+%Y/%m/%d -- %H:%M:%S')"
 echo "Results stored under:"
-echo "  ${RUNNER_DIR}/results/${SCENARIO}"
+echo "  ${RESULTS_ROOT}/${SCENARIO}"
 echo "  ${RUNNER_DIR}/metric_exports/${SCENARIO}"
 echo "  ${RUNNER_DIR}/metric_res/${SCENARIO}"
 echo "==========================================================="
