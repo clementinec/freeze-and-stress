@@ -54,8 +54,13 @@ fi
 EPW_ROOT_INPUT="$1"
 SCENARIO="$2"
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-REPO_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
+SCRIPT_PATH="${BASH_SOURCE[0]}"
+SCRIPT_DIR="$(cd "$(dirname "${SCRIPT_PATH}")" && pwd)"
+if [[ -n "${SLURM_SUBMIT_DIR:-}" ]]; then
+  REPO_ROOT="${SLURM_SUBMIT_DIR}"
+else
+  REPO_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
+fi
 RUNNER_DIR="${REPO_ROOT}/freeze-and-stress-main/epw_pipeline/energyplus_runner"
 RUN_FUTURE_SCRIPT="${RUNNER_DIR}/run_future_simulations.py"
 RUN_METRIC_SCRIPT="${RUNNER_DIR}/run_metric_pipeline.sh"
