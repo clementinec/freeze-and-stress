@@ -126,13 +126,17 @@ for scenario_dir in "${scenario_dirs[@]}"; do
     continue
   fi
 
-  echo "[2/3] (${scenario_index}/${scenario_count}) Computing derived climate drivers for ${scenario}"
+  echo "[2/4] (${scenario_index}/${scenario_count}) Computing EDH metrics for ${scenario}"
+  "${PYTHON_BIN}" "${SCRIPT_DIR}/compute_edh_from_sqlite.py" \
+    --file "${annual_csv}"
+
+  echo "[3/4] (${scenario_index}/${scenario_count}) Computing derived climate drivers for ${scenario}"
   "${PYTHON_BIN}" "${SCRIPT_DIR}/metric_exports/compute_derived_drivers.py" \
     --input "${annual_csv}" \
     --output "${extended_csv}" \
     --epw-root "${EPW_ROOT}"
 
-  echo "[3/3] (${scenario_index}/${scenario_count}) Computing break-year and screening outputs for ${scenario}"
+  echo "[4/4] (${scenario_index}/${scenario_count}) Computing break-year and screening outputs for ${scenario}"
   "${PYTHON_BIN}" "${SCRIPT_DIR}/compute_break_years_multi_metric.py" \
     --file "${extended_csv}" \
     --output-dir "${scenario_metric_res}"
