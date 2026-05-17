@@ -625,6 +625,7 @@ def main() -> int:
     output_dir = (script_dir / args.output_dir).resolve()
 
     discovered = discover_sqlite_files(results_root, args.default_scenario)
+    allowed: set[str] | None = None
     if args.scenarios:
         allowed = {item.strip() for item in args.scenarios.split(",") if item.strip()}
         discovered = [entry for entry in discovered if entry["scenario"] in allowed]
@@ -668,6 +669,8 @@ def main() -> int:
 
     output_dir.mkdir(parents=True, exist_ok=True)
     discovered_all = discover_sqlite_files(results_root, args.default_scenario)
+    if allowed is not None:
+        discovered_all = [entry for entry in discovered_all if entry["scenario"] in allowed]
     found_by_scenario: dict[str, int] = {}
     for entry in discovered_all:
         scenario = str(entry["scenario"])

@@ -102,7 +102,9 @@ if not manifest.exists():
 data = json.loads(manifest.read_text(encoding="utf-8"))
 for item in data.get("scenarios", []):
     output_dir = item.get("output_dir")
-    if output_dir:
+    rows_written = int(item.get("rows_written", 0) or 0)
+    sqlite_files_processed = int(item.get("sqlite_files_processed", 0) or 0)
+    if output_dir and (rows_written > 0 or sqlite_files_processed > 0):
         print(output_dir)
 PY
 )
@@ -123,6 +125,26 @@ for scenario_dir in "${scenario_dirs[@]}"; do
 
   if [[ ! -f "${annual_csv}" ]]; then
     echo "Skipping ${scenario}: missing ${annual_csv}" >&2
+    continue
+  fi
+
+  annual_row_count="$("${PYTHON_BIN}" - "${annual_csv}" <<'PY'
+import csv
+import sys
+
+path = sys.argv[1]
+with open(path, encoding="utf-8", newline="") as handle:
+    reader = csv.reader(handle)
+    try:
+        next(reader)
+    except StopIteration:
+        print(0)
+        raise SystemExit(0)
+    print(sum(1 for _ in reader))
+PY
+)"
+  if [[ "${annual_row_count}" == "0" ]]; then
+    echo "Skipping ${scenario}: ${annual_csv} has 0 data rows" >&2
     continue
   fi
 
