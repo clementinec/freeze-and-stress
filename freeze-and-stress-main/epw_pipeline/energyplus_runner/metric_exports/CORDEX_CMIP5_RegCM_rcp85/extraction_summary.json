@@ -1,0 +1,10 @@
+{
+  "created_at": "2026-05-17T15:49:24",
+  "scenario": "CORDEX_CMIP5_RegCM_rcp85",
+  "results_root": "/lustre1/g/arch_guo/freeze-and-stress/simulations",
+  "output_dir": "/home/u3012641/freeze-and-stress/freeze-and-stress-main/epw_pipeline/energyplus_runner/metric_exports/CORDEX_CMIP5_RegCM_rcp85",
+  "sqlite_files_found": 456,
+  "sqlite_files_processed": 456,
+  "rows_written": 456,
+  "failures": 0
+}
