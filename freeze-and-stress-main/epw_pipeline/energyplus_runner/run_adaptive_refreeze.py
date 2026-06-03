@@ -46,6 +46,7 @@ from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
 
+import compute_break_years_multi_metric as cbm
 from output_preset import REPRESENTATIVE_ZONES
 
 # ---------------------------------------------------------------------------
@@ -174,41 +175,67 @@ def load_screened_failure_metrics(metric_res_root: Path, scenario: str) -> list[
     if not screening_csv.exists():
         raise FileNotFoundError(f"Screening CSV not found: {screening_csv}")
 
-    metrics: list[ScreenedMetric] = []
+    screening_rows: list[dict[str, object]] = []
     with screening_csv.open("r", encoding="utf-8", newline="") as handle:
         reader = csv.DictReader(handle)
-        for row in reader:
-            if row.get("role") != "response":
-                continue
-            if str(row.get("screening_selected_for_analysis", "")).strip().lower() != "yes":
-                continue
-            threshold_text = str(row.get("threshold", "")).strip()
-            if not threshold_text:
-                continue
+        screening_rows = list(reader)
 
-            key = str(row.get("metric", "")).strip()
-            if key not in SUPPORTED_SCREENED_METRICS:
-                raise ValueError(
-                    f"Unsupported screened failure metric '{key}' in {screening_csv}. "
-                    "Add an explicit SQLite extraction mapping before using it in adaptive refreeze."
-                )
+    selected = cbm.selected_metrics_from_screening(screening_rows, "response", require_threshold=True)
+    if not selected:
+        selected = cbm.FAILURE_METRICS
 
-            metrics.append(
-                ScreenedMetric(
-                    key=key,
-                    label=str(row.get("label", key)).strip(),
-                    threshold=float(threshold_text),
-                    threshold_direction=str(row.get("threshold_direction", "above")).strip() or "above",
-                    subfamily=str(row.get("subfamily", "")).strip(),
-                    source_column=str(row.get("source_column", "")).strip(),
-                )
+    metrics: list[ScreenedMetric] = []
+    for metric in selected:
+        if metric.key not in SUPPORTED_SCREENED_METRICS:
+            raise ValueError(
+                f"Unsupported screened failure metric '{metric.key}' in {screening_csv}. "
+                "Add an explicit SQLite extraction mapping before using it in adaptive refreeze."
             )
+        metrics.append(
+            ScreenedMetric(
+                key=metric.key,
+                label=metric.label,
+                threshold=float(metric.threshold),
+                threshold_direction=metric.threshold_direction,
+                subfamily=metric.subfamily,
+                source_column=str(metric.aliases[0]) if metric.aliases else metric.key,
+            )
+        )
 
     if not metrics:
         raise ValueError(
             f"No thresholded response metrics with screening_selected_for_analysis=Yes found in {screening_csv}"
         )
     return metrics
+
+
+def _cbm_metrics_from_screened(screened_metrics: list[ScreenedMetric]) -> tuple[cbm.MetricSpec, ...]:
+    selected_keys = {metric.key for metric in screened_metrics}
+    return tuple(metric for metric in cbm.METRICS if metric.key in selected_keys)
+
+
+def _record_from_metric_values(year: int, metric_values: dict[str, float | None]) -> dict[str, object]:
+    record: dict[str, object] = {"year": year}
+    for key, value in metric_values.items():
+        record[key] = value
+    return record
+
+
+def _records_for_generation(
+    trigger_rows: dict[tuple[int, int], dict],
+    generation: int,
+    screened_metrics: list[ScreenedMetric],
+) -> dict[int, dict[str, object]]:
+    records: dict[int, dict[str, object]] = {}
+    keys = [metric.key for metric in screened_metrics]
+    for (gen, year), row in trigger_rows.items():
+        if gen != generation:
+            continue
+        record: dict[str, object] = {"year": year}
+        for key in keys:
+            record[key] = _safe_float(row.get(key))
+        records[year] = record
+    return records
 
 
 # ---------------------------------------------------------------------------
@@ -474,6 +501,7 @@ def _save_trigger_rows(pair_dir: Path, rows_by_key: dict[tuple[int, int], dict])
         "year",
         "freeze_year",
         "sql_path",
+        "threshold_breached",
         "break_triggered",
         "all_trigger_metrics",
         "all_trigger_metric_keys",
@@ -568,12 +596,14 @@ def run_adaptive_refreeze_pair(
     current_frozen  = Path(state["current_frozen"])
     sequence        = state["sequence"]
     completed_years = set(state["completed_years"])
+    cbm_metrics     = _cbm_metrics_from_screened(screened_metrics)
 
     # Track per-gen simulation start year (for sequence entry)
     # On resume, gen N starts at (previous gen's break_year + 1)
     gen_start_year  = 2025 if gen == 0 else (
         sequence[-1]["break_year"] + 1 if sequence else 2025
     )
+    gen_records_by_year = _records_for_generation(trigger_rows, gen, screened_metrics)
 
     print(f"\n  [{building}/{city}] Resuming: gen={gen}, current_model={current_frozen.name}")
 
@@ -612,6 +642,10 @@ def run_adaptive_refreeze_pair(
         all_trigger_subfamilies = "; ".join(
             metric.subfamily for metric in breached if metric.subfamily
         )
+        gen_records_by_year[year] = _record_from_metric_values(year, metric_values)
+        records_this_gen = [gen_records_by_year[y] for y in sorted(gen_records_by_year)]
+        candidate_break_year = cbm.break_year(records_this_gen, gen_start_year, cbm_metrics)
+        break_triggered = candidate_break_year == year
 
         trigger_row = {
             "scenario": scenario_name,
@@ -621,7 +655,8 @@ def run_adaptive_refreeze_pair(
             "year": year,
             "freeze_year": state["freeze_year"],
             "sql_path": str(sql_path),
-            "break_triggered": "Yes" if breached else "No",
+            "threshold_breached": "Yes" if breached else "No",
+            "break_triggered": "Yes" if break_triggered else "No",
             "all_trigger_metrics": all_trigger_metrics,
             "all_trigger_metric_keys": all_trigger_metric_keys,
             "all_trigger_subfamilies": all_trigger_subfamilies,
@@ -652,8 +687,11 @@ def run_adaptive_refreeze_pair(
         else:
             print(f"    [{building}/{city}] gen{gen} {year}: no screened breach")
 
-        # Check for failure
-        if breached and gen < max_gens:
+        if breached and not break_triggered:
+            print(f"    [{building}/{city}] gen{gen} {year}: threshold breach noted, main break still pending")
+
+        # Check for failure under the main-pipeline break-year definition.
+        if break_triggered and gen < max_gens:
             # ── Record this generation's sequence entry ──────────────────────
             snap = _read_snapshot(pair_dir, gen)
             entry = _build_entry(building, city, gen, state["freeze_year"],
@@ -697,6 +735,7 @@ def run_adaptive_refreeze_pair(
             gen_start_year = year + 1   # next gen starts from the year after the break
             current_frozen = frozen_out
             completed_years = set()
+            gen_records_by_year = {}
 
             state["gen"]             = gen
             state["freeze_year"]     = trigger_year
@@ -832,6 +871,7 @@ def aggregate_trigger_csv(
         "year",
         "freeze_year",
         "sql_path",
+        "threshold_breached",
         "break_triggered",
         "all_trigger_metrics",
         "all_trigger_metric_keys",
